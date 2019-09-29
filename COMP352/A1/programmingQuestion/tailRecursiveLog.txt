@@ -1,0 +1,80 @@
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 0 is 0
+Execution time: 5292 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 5 is 2
+Execution time: 1657 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 10 is 56
+Execution time: 1661 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 15 is 1490
+Execution time: 2320 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 20 is 39648
+Execution time: 2907 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 25 is 1055026
+Execution time: 3998 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 30 is 28074040
+Execution time: 4314 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 35 is 747044834
+Execution time: 5370 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 40 is 19878720128
+Execution time: 9438 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 45 is 528968939938
+Execution time: 7052 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 50 is 14075762303480
+Execution time: 28866 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 55 is 374553342295090
+Execution time: 8383 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 60 is 9966792788887776
+Execution time: 8810 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 65 is 265214449530564434
+Execution time: 11480 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 70 is 7057305768232953720
+Execution time: 10694 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 75 is 3326115739525933250
+Execution time: 29720 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 80 is -1917029801431269376
+Execution time: 15139 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 85 is 9090637906711111746
+Execution time: 11793 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 90 is -7109564001247022408
+Execution time: 14357 ns.
+
+Calculating Tetranacci number using tail recursive algorithm ...
+Tetranacci number at index 95 is 7765711627022177170
+Execution time: 14540 ns.
+

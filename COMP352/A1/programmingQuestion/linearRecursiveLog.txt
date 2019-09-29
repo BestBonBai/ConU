@@ -1,80 +1,80 @@
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 0 is 0
-Execution time: 5246 ns.
+Execution time: 5257 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 5 is 2
-Execution time: 3877 ns.
+Execution time: 3746 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 10 is 56
-Execution time: 5033 ns.
+Execution time: 5515 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 15 is 1490
-Execution time: 15339 ns.
+Execution time: 12957 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 20 is 39648
-Execution time: 10655 ns.
+Execution time: 10423 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 25 is 1055026
-Execution time: 12993 ns.
+Execution time: 12225 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 30 is 28074040
-Execution time: 15778 ns.
+Execution time: 14545 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 35 is 747044834
-Execution time: 22290 ns.
+Execution time: 22017 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 40 is 19878720128
-Execution time: 28117 ns.
+Execution time: 21851 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 45 is 528968939938
-Execution time: 31333 ns.
+Execution time: 25008 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 50 is 14075762303480
-Execution time: 43593 ns.
+Execution time: 47241 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 55 is 374553342295090
-Execution time: 29618 ns.
+Execution time: 32126 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 60 is 9966792788887776
-Execution time: 147747 ns.
+Execution time: 33422 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 65 is 265214449530564434
-Execution time: 40470 ns.
+Execution time: 37638 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 70 is 7057305768232953720
-Execution time: 43031 ns.
+Execution time: 35970 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 75 is 3326115739525933250
-Execution time: 45573 ns.
+Execution time: 71192 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 80 is -1917029801431269376
-Execution time: 23620 ns.
+Execution time: 56074 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 85 is 9090637906711111746
-Execution time: 6631 ns.
+Execution time: 49096 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 90 is -7109564001247022408
-Execution time: 6093 ns.
+Execution time: 57348 ns.
 
 Calculating Tetranacci number using linear recursive algorithm ...
 Tetranacci number at index 95 is 7765711627022177170
-Execution time: 6286 ns.
+Execution time: 58233 ns.
 
