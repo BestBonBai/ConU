@@ -1,0 +1,40 @@
+Calculating Tetranacci number using multiple recursive method ...
+Tetranacci number at index 0 is 0.
+Execution time:7334 ns.
+
+Calculating Tetranacci number using multiple recursive method ...
+Tetranacci number at index 5 is 2.
+Execution time:10470 ns.
+
+Calculating Tetranacci number using multiple recursive method ...
+Tetranacci number at index 10 is 56.
+Execution time:17750 ns.
+
+Calculating Tetranacci number using multiple recursive method ...
+Tetranacci number at index 15 is 1490.
+Execution time:559360 ns.
+
+Calculating Tetranacci number using multiple recursive method ...
+Tetranacci number at index 20 is 39648.
+Execution time:1781596 ns.
+
+Calculating Tetranacci number using multiple recursive method ...
+Tetranacci number at index 25 is 1055026.
+Execution time:10581186 ns.
+
+Calculating Tetranacci number using multiple recursive method ...
+Tetranacci number at index 30 is 28074040.
+Execution time:136592770 ns.
+
+Calculating Tetranacci number using multiple recursive method ...
+Tetranacci number at index 35 is 747044834.
+Execution time:3660256781 ns.
+
+Calculating Tetranacci number using multiple recursive method ...
+Tetranacci number at index 40 is 19878720128.
+Execution time:102395803311 ns.
+
+Calculating Tetranacci number using multiple recursive method ...
+Tetranacci number at index 45 is 528968939938.
+Execution time:2457324064655 ns.
+
