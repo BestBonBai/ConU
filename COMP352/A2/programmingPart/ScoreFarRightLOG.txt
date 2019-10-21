@@ -1,0 +1,126 @@
+------LOG FILE FOR SCORE FAR RIGHT------
+The starting index is denoted with < index >
+
+Board's configuration:
+[| 8 || 9 || 7 || 9 || 8 || 6 || 6 || 2 || 6 |< 12 >| 6 || 0 |]
+The first index is 9
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 16 || 7 || 11 || 10 || 11 || 8 || 14 || 17 || 17 || 18 || 6 || 19 || 19 || 11 || 7 || 12 || 15 || 0 || 1 |< 0 >]
+The first index is 19
+This is a WINNABLE configuration.
+
+Board's configuration:
+[| 1 || 0 |< 5 >| 10 || 6 || 12 || 4 || 5 || 4 || 6 || 12 || 9 || 2 || 0 |]
+The first index is 2
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 7 || 20 || 6 || 23 || 23 || 23 || 13 |< 9 >| 19 || 3 || 7 || 0 || 14 || 8 || 16 || 14 || 9 || 19 || 9 || 10 || 24 || 15 || 14 || 23 || 0 |]
+The first index is 7
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 3 || 9 || 5 || 5 |< 0 >| 4 || 3 || 4 || 12 || 0 || 11 || 0 |]
+The first index is 4
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 10 || 15 || 12 || 10 || 20 |< 4 >| 15 || 3 || 9 || 15 || 5 || 8 || 1 || 0 || 15 || 14 || 1 || 1 || 1 || 2 || 0 |]
+The first index is 5
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 1 |< 0 >| 3 || 2 || 5 || 10 || 8 || 6 || 0 || 4 || 0 |]
+The first index is 1
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 1 || 4 || 5 || 2 |< 0 >]
+The first index is 4
+This is a WINNABLE configuration.
+
+Board's configuration:
+[| 6 || 6 || 4 |< 6 >| 2 || 5 || 0 |]
+The first index is 3
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 2 || 4 || 11 |< 8 >| 0 || 8 || 5 || 2 || 8 || 4 || 1 || 0 |]
+The first index is 3
+This is a WINNABLE configuration.
+
+Board's configuration:
+[| 5 || 6 || 6 || 7 || 4 || 1 |< 0 >]
+The first index is 6
+This is a WINNABLE configuration.
+
+Board's configuration:
+[| 7 |< 4 >| 4 || 5 || 3 || 6 || 0 |]
+The first index is 1
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 6 || 9 || 8 || 7 || 10 || 8 || 19 || 7 || 5 || 6 || 15 || 5 || 3 || 21 || 21 || 16 || 0 || 4 || 6 || 15 || 3 |< 0 >]
+The first index is 21
+This is a WINNABLE configuration.
+
+Board's configuration:
+[| 17 || 15 || 16 || 19 || 21 || 11 || 2 || 6 || 2 || 12 || 5 || 11 || 23 || 22 || 16 || 9 || 7 |< 6 >| 4 || 17 || 12 || 16 || 0 |]
+The first index is 17
+This is a WINNABLE configuration.
+
+Board's configuration:
+[| 0 || 7 || 9 || 0 |< 2 >| 2 || 2 || 9 || 3 || 0 |]
+The first index is 4
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[< 7 >| 17 || 3 || 6 || 4 || 2 || 14 || 2 || 12 || 12 || 15 || 16 || 1 || 6 || 10 || 6 || 3 || 3 || 18 || 0 |]
+The first index is 0
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 4 |< 7 >| 0 || 7 || 3 || 6 || 8 || 0 |]
+The first index is 1
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 15 || 7 || 1 || 7 || 14 || 11 || 12 || 9 || 18 || 9 |< 6 >| 5 || 8 || 5 || 16 || 16 || 13 || 0 |]
+The first index is 10
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 6 || 6 || 12 || 11 || 7 || 13 || 11 || 0 || 0 || 11 |< 12 >| 8 || 0 |]
+The first index is 10
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[| 5 || 6 || 11 || 12 || 7 || 1 || 11 || 21 || 1 || 2 || 8 || 7 || 8 || 21 || 6 || 17 || 2 || 18 |< 7 >| 11 || 9 || 0 |]
+The first index is 18
+This is an UNWINNABLE configuration.
+
+----Personal configuration----
+Board's configuration:
+[< 4 >| 8 || 5 || 2 || 3 || 5 || 1 || 6 || 4 || 0 |]
+The first index is 0
+This is a WINNABLE configuration.
+
+Board's configuration:
+[< 5 >| 8 || 2 || 3 || 1 || 5 || 0 |]
+The first index is 0
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[< 2 >| 1 || 5 || 8 || 2 || 3 || 1 || 5 || 0 |]
+The first index is 0
+This is an UNWINNABLE configuration.
+
+Board's configuration:
+[< 5 >| 8 || 2 || 3 || 1 || 5 || 2 || 3 || 4 || 3 || 5 || 2 || 0 |]
+The first index is 0
+This is an UNWINNABLE configuration.
+
+
+----FINISHED----
