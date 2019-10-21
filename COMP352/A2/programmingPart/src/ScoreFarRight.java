@@ -22,7 +22,7 @@ public class ScoreFarRight {
     }
 
     public static void main(String[] args) {
-        int[] board = new int[]{1, 5, 2, 3, 4, 5, 6, 0};
+        int[] board = new int[]{8,2,1,2,3,7,6,4,6,5,4,1,8,3,1,0};
         if (checkWinnable(0, board)) {
             System.out.println("This game is winnable.");
         } else {

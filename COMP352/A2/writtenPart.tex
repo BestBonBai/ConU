@@ -1,13 +1,387 @@
-\documentclass{article}
+\documentclass[16pt, letterpaper]{article}
 \usepackage{amsmath}
-\title{Gina Cody School of Computer Science and Software Engineering
-	\\Concordia University
-	\\COMP 352: DATA STRUCTURE AND ALGORITHMS
-	\\ Assignment no.2}
-\author{Duc Nguyen}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{comment}
+\title{Gina Cody School of Computer Science and Software Engineering \\Concordia University
+\\COMP 352: Data Structure and Algorithms }
+\author{Student: Duc Nguyen}
 \date{}
+
 \begin{document}
+
+\begin{titlepage}
 \maketitle
+\end{titlepage}
+\tableofcontents
 
+\section{Double-stack array} 
+\textbf{NOTE: All the Java implementation of this question is in the folder Implementation. This is out of scope for this assignment, but it will help anyone reading this get a better understanding.}
+\subsection{Case 1: }
+Fairness in space allocation to the two stacks is required. In that sense, if Stack1 for instance use all its alocated space, while Stack 2 still has some space; insertion into Stack 1 cannot be made, even though there are still some empty elements in the array.
 
-\end{document}
+\subsubsection*{A. Description}
+In this scenario, the array could be implemented by allocating the range from starting index to the maximum capacity index to be the reserved space for Stack 1 (left-to-right order). 
+While stack 2 will take place from the last index of the array, goes left until it reaches its maximum capacity (right-to-left order).
+\\
+\textbf{Global variables:}
+\begin{itemize} 
+    \item array: the array itself
+    \item arrayLength: The length of the array
+    \item headStack1: The index of the last element in Stack 1. (starts from -1 when the stack is empty)
+    \item stack1Capacity: the fixed given capacity of Stack 1.
+    \item headStack2: The index of the last element in Stack 2. (starts from arrayLength when the stack is empty)
+    \item stack2Capacity: the fixed given capacity of Stack 2.
+\end{itemize}
+
+\subsubsection*{B. Algorithms for push(), pop(), size(), isEmpty(), is Full()}
+%  PUSH METHODS
+\begin{algorithm} [H]
+\caption{Push Element to Stack 1}
+\begin{algorithmic}[1]
+	\Procedure{PushStack1(element)} {}
+	\If{$isStack1Full() = false$}
+		\State$headStack1 \gets \textit{headStack1} + 1$
+		\State$array[headStack1] \gets \textit{element}$
+	\Else
+		\State\textit{throw FullStackException}
+	\EndIf
+	\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm} [H]
+\caption{Push Element to Stack 2}
+\begin{algorithmic}[1]
+    \Procedure{PushStack2(Element)} {}
+    \If{$isStack2Full() = false$}
+        \State $headStack2 \gets \textit{headStack2} - 1$
+        \State $array[headStack2] \gets \textit{element}$
+    \Else 
+        \State\textit{throw FullStackException}
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+% ---------------------
+
+% POP METHODS
+\begin{algorithm} [H]
+\caption{Pop Element out of Stack 1. Return the popped element}
+\begin{algorithmic}[1]
+    \Procedure{popStack1()}{}
+    \If {$isStack1Empty() = false$}
+        \State $temp \gets \textit{array[headStack1]}$
+        \State $array[headStack1] \gets \textit{null}$
+        \State $headStack1 \gets \textit{headStack1 - 1}$ 
+        \State \Return $temp$
+    \Else
+        \State \textit{throw EmptyStackException}
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm} [H]
+\caption{Pop Element out of Stack 2. Return the popped element}
+\begin{algorithmic}[1]
+    \Procedure{popStack2()}{}
+    \If {$isStack2Empty() = false$}
+        \State $temp \gets \textit{array[headStack2]}$
+        \State $array[headStack2] \gets \textit{null}$
+        \State $headStack2 \gets \textit{headStack2 + 1}$
+        \State \Return $temp$
+    \Else
+        \State \textit{throw EmptyStackException}
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+%------------------
+
+% SIZE
+\begin{algorithm} [H]
+\caption{Return an integer indicates the size of Stack 1}
+\begin{algorithmic}
+    \Procedure{sizeStack1()}{}
+    \State \Return $\textit{headStack1 + 1}$
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm} [H]
+\caption{Return an integer indicates the size of Stack 2}
+\begin{algorithmic}
+    \Procedure{sizeStack2()}{}
+    \State \Return $\textit{arrayLength - headStack2}$
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+%------------------
+
+% isEmpty methods
+\begin{algorithm} [H]
+\caption{Return a boolean value indicates whether or not Stack 1 is empty}
+\begin{algorithmic}
+    \Procedure{isStack1Empty()}{}
+    \If{$headStack1 = -1$}
+    \State \Return $\textit{true}$
+    \Else
+    \State \Return $\textit{false}$
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm} [H]
+\caption{Return a boolean value indicates whether or not Stack 2 is empty}
+\begin{algorithmic}
+    \Procedure{isStack2Empty()}{}
+    \If{$headStack2 = arrayLength$}
+    \State \Return $\textit{true}$
+    \Else
+    \State \Return $\textit{false}$
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+%-----------------
+
+% isFull methods
+\begin{algorithm} [H]
+\caption{Return a boolean value indicates whether or not Stack 1 is full}
+\begin{algorithmic}
+    \Procedure{isStack1Full()}{}
+    \If{$headStack1 + 1 = stack1Capacity$} 
+    \State \Return $\textit{true}$
+    \Else
+    \State \Return $\textit{false}$
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm} [H]
+\caption{Return a boolean value indicates whether or not Stack 2 is full}
+\begin{algorithmic}
+    \Procedure{isStack2Full()}{}
+    \If{$arrayLength - headStack2 = stack2Capacity$} 
+    \State \Return $\textit{true}$
+    \Else
+    \State \Return $\textit{false}$
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+%-------------
+
+\subsubsection*{C. Big-O complexity}
+Since there was no loop, or recursive calls in every implemented method,
+\begin{itemize}
+    \item Push() - $O(1)$
+    \item Pop() - $O(1)$
+    \item Size() - $O(1)$
+    \item isEmpty() - $O(1)$
+    \item isFull() - $O(1)$
+\end{itemize}
+
+\subsubsection*{D. Big-$\Omega()$ complexity}
+\begin{itemize}
+    \item Push() - $\Omega(1)$
+    \item Pop() - $\Omega(1)$
+    \item Size() - $\Omega(1)$
+    \item isEmpty() - $\Omega(1)$
+    \item isFull() - $\Omega(1)$
+\end{itemize}
+
+\subsection{Case 2: }
+Space is critical; so you should use all available elements in the array if needed. In other words, the two stacks may not finally get the same exact amount of allocation, as one of them may consume more elements (if many push() operations are performed for instance into that stack first).
+
+\subsubsection*{A. Description}
+The ADT can be implemented by the same way as the previous case. However, in this case, it keeps pushing new element into both stacks. A stack is only full when the array is full of elements.
+\\
+\textbf{Global variables:}
+\begin{itemize} 
+    \item array: the array itself
+    \item arrayLength: The length of the array
+    \item headStack1: The index of the last element in Stack 1. (starts from -1 when the stack is empty)
+    \item headStack2: The index of the last element in Stack 2. (starts from arrayLength when the stack is empty)
+\end{itemize}
+
+\subsubsection*{B. Algorithms for push(), pop(), size(), isEmpty(), is Full()}
+%  PUSH METHODS
+\begin{algorithm} [H]
+\caption{Push Element to Stack 1}
+\begin{algorithmic}[1]
+	\Procedure{PushStack1(element)} {}
+	\If{$isFull()= false$}
+		\State$headStack1 \gets \textit{headStack1} + 1$
+		\State$array[headStack1] \gets \textit{element}$
+	\Else
+		\State\textit{throw FullStackException}
+	\EndIf
+	\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm} [H]
+\caption{Push Element to Stack 2}
+\begin{algorithmic}[1]
+    \Procedure{PushStack2(Element)} {}
+    \If{$isFull() = false$}
+        \State $headStack2 \gets \textit{headStack2} - 1$
+        \State $array[headStack2] \gets \textit{element}$
+    \Else 
+        \State\textit{throw FullStackException}
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+% ---------------------
+
+% POP METHODS
+\begin{algorithm} [H]
+\caption{Pop Element out of Stack 1. Return the popped element}
+\begin{algorithmic}[1]
+    \Procedure{popStack1()}{}
+    \If {$isStack1Empty() = false$}
+        \State $temp \gets \textit{array[headStack1]}$
+        \State $array[headStack1] \gets \textit{null}$
+        \State $headStack1 \gets \textit{headStack1 - 1}$ 
+        \State \Return $temp$
+    \Else
+        \State \textit{throw EmptyStackException}
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm} [H]
+\caption{Pop Element out of Stack 2. Return the popped element}
+\begin{algorithmic}[1]
+    \Procedure{popStack2()}{}
+    \If {$isStack2Empty() = false$}
+        \State $temp \gets \textit{array[headStack2]}$
+        \State $array[headStack2] \gets \textit{null}$
+        \State $headStack2 \gets \textit{headStack2 + 1}$
+        \State \Return $temp$
+    \Else
+        \State \textit{throw EmptyStackException}
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+%------------------
+
+% SIZE
+\begin{algorithm} [H]
+\caption{Return an integer indicates the size of Stack 1}
+\begin{algorithmic}
+    \Procedure{sizeStack1()}{}
+    \State \Return $\textit{headStack1 + 1}$
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm} [H]
+\caption{Return an integer indicates the size of Stack 2}
+\begin{algorithmic}
+    \Procedure{sizeStack2()}{}
+    \State \Return $\textit{arrayLength - headStack2}$
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+%------------------
+
+% isEmpty methods
+\begin{algorithm} [H]
+\caption{Return a boolean value indicates whether or not Stack 1 is empty}
+\begin{algorithmic}
+    \Procedure{isStack1Empty()}{}
+    \If{$headStack1 = -1$}
+    \State \Return $\textit{true}$
+    \Else
+    \State \Return $\textit{false}$
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm} [H]
+\caption{Return a boolean value indicates whether or not Stack 2 is empty}
+\begin{algorithmic}
+    \Procedure{isStack2Empty()}{}
+    \If{$headStack2 = arrayLength$}
+    \State \Return $\textit{true}$
+    \Else
+    \State \Return $\textit{false}$
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+%-----------------
+
+% isFull method
+\textbf{When the size of each stack is allocatable, the only time a stack is full is when the array is full.}
+\begin{algorithm} [H]
+\caption{Return a boolean value indicates whether or not a stack is full}
+\begin{algorithmic}
+    \Procedure{isFull()}{}
+    \If{$headStack1 + 1 = headStack2$} 
+    \State \Return \textit{true}
+    \Else
+    \State \Return \textit{false}
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+%-----------------
+
+\subsubsection*{C. Big-O complexity}
+Since there was no loop, or recursive calls in every implemented method,
+\begin{itemize}
+    \item Push() - $O(1)$
+    \item Pop() - $O(1)$
+    \item Size() - $O(1)$
+    \item isEmpty() - $O(1)$
+    \item isFull() - $O(1)$
+\end{itemize}
+
+\subsubsection*{D. Big-$\Omega$complexity}
+\begin{itemize}
+    \item Push() - $\Omega(1)$
+    \item Pop() - $\Omega(1)$
+    \item Size() - $\Omega(1)$
+    \item isEmpty() - $\Omega(1)$
+    \item isFull() - $\Omega(1)$
+\end{itemize}
+
+\subsection{Concerning the possible of a 3-stack array}
+\begin{itemize}
+    \item \textbf{Case 1:}
+    It is possible to implement a three-stack array. The third stack will lie between the first stack, and the second stack. In this case, the complexity will not change significantly since every stack has reserved its own space inside the array.
+    \item \textbf{Case 2:}
+    It is possible to implement a three-stack array. To optimize all space inside the array, the new third stack starts right after the end of the first stack (after headStack1) , but it must end before the end of stack 2 (before headStack2). This leads to a significant change in complexity since the stack 3 will have to shift all its elements every time there is a new push or pop in either stack 1 or stack 2. 
+\end{itemize}
+
+\section{Antique dealer}
+\subsection{Pseudo code of max() function}
+\subsection{Big-O complexity}
+\subsection{Possible to have \underline{all}  3 methods (push(), pop(), and max()) be designed to have O(1)?}
+
+\section{Evaluate complexity's relationship}
+\begin{tabular}{l l l}
+a. & $f(n) = {\log^3 n}$ & $g(n) = \sqrt n$ \\
+b. & $f(n) = n\sqrt n + \log n$ & $g(n) = \log n^2 $ \\
+c. & $f(n) = n $ & $g(n) = \log^2 n$ \\
+d. & $f(n) = \sqrt n $ & $g(n) = 2^(\sqrt {\log n})$ \\
+e. & $f(n) = 2^n $ & $g(n) = 3^n$
+\end{tabular}
+
+\section{Remove duplicate elements}
+\subsection{Description}
+\subsection{Big-O Complexity}
+\subsection{Big-$\Omega$ Complexity}
+\subsection{Big-O \emph{space} complexity}
+
+\end{document}l
