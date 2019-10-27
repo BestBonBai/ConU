@@ -3,3 +3,6 @@
 *.idea
 *.yml
 *.iml
+*.project
+*.settings
+*out
