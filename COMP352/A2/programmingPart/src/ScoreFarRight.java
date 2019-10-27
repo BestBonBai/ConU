@@ -39,6 +39,8 @@ import java.io.PrintWriter;
 
 public class ScoreFarRight {
     private static Stack<Integer> indexStack = new Stack<>();
+
+    //MAIN ALGORITHM
     private static boolean checkWinnable(int index, int[] board) {
         // base case
         if (index + 1 == board.length) {
