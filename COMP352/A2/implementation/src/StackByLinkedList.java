@@ -44,6 +44,7 @@ public class StackByLinkedList{
         }
     }
 
+    //Another way to push
     public void pushTrial(double value) {
         Node temp = new Node(value);
         temp.next = head;
@@ -99,13 +100,13 @@ public class StackByLinkedList{
 class antiqueDealer {
     public static void main(String[] args) {
         StackByLinkedList inventory = new StackByLinkedList();
-        inventory.pushTrial(4);
+        inventory.push(4);
         inventory.pop();
         System.out.println("The current size is " + inventory.size());
-        inventory.pushTrial(6);
-        inventory.pushTrial(7);
+        inventory.push(6);
+        inventory.push(7);
         System.out.println("Popped out " + inventory.getValue(inventory.pop()));
-        inventory.pushTrial(15);
+        inventory.push(15);
         if(!inventory.isEmpty()) {
             System.out.println("The size of the inventory is " + inventory.size());
             System.out.println("The maximum value in inventory is " +inventory.maxValue());
