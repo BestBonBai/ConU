@@ -44,6 +44,19 @@ public class StackByLinkedList{
         }
     }
 
+    public void pushTrial(double value) {
+        Node temp = new Node(value);
+        temp.next = head;
+        head = temp;
+        if(temp.next == null) {
+            temp.max = value;
+        } else if(temp.next.getMax() < value) {
+            temp.max = value;
+        } else {
+            temp.max = temp.next.max;
+        }
+    }
+
     public Node pop() {
         if (head == null) {
             return null;
@@ -86,13 +99,13 @@ public class StackByLinkedList{
 class antiqueDealer {
     public static void main(String[] args) {
         StackByLinkedList inventory = new StackByLinkedList();
-        inventory.push(4);
+        inventory.pushTrial(4);
         inventory.pop();
         System.out.println("The current size is " + inventory.size());
-        inventory.push(6);
-        inventory.push(7);
+        inventory.pushTrial(6);
+        inventory.pushTrial(7);
         System.out.println("Popped out " + inventory.getValue(inventory.pop()));
-        inventory.push(15);
+        inventory.pushTrial(15);
         if(!inventory.isEmpty()) {
             System.out.println("The size of the inventory is " + inventory.size());
             System.out.println("The maximum value in inventory is " +inventory.maxValue());

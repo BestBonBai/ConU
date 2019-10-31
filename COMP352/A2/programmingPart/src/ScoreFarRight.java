@@ -104,8 +104,8 @@ public class ScoreFarRight {
         System.out.println("First index will be denoted with < value > in log file");
         for (int i = 0; i < 20; i++) {
             //Init the board
-            int size = getRandom(1, 25);
-            int firstIndex = getRandom(0, size-1);
+            int size = getRandom(2, 25);
+            int firstIndex = getRandom(0, size-2);
             int[] board = new int[size];
             for (int j = 0; j< size - 1; j++) {
                 board[j] = getRandom(0, size);
