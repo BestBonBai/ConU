@@ -31,11 +31,12 @@ to check if the game is winnable.
 It will write all the calculated results to a log file .txt after that.
  */
 
-import java.util.Stack;
-import java.util.Random;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class ScoreFarRight {
     private static Stack<Integer> indexStack = new Stack<>();
@@ -52,7 +53,7 @@ public class ScoreFarRight {
             return false;
         }
 
-        // move out of border
+        // Move out of border
         if ((index < 0) || (index >= board.length)) {
             return false;
         }
@@ -134,8 +135,58 @@ public class ScoreFarRight {
             printLog(firstIndex, board[i], checkWinnable(firstIndex, board[i]), pw);
         }
 
+        pw.println("----Self-input configuration----");
+        Scanner keyIn = new Scanner(System.in);
+
+        boolean legalInput = false;
+        while (!legalInput) {
+            try {
+                System.out.println("\nDo you want to input a board to check ? " +
+                        "\n1: Yes    " +
+                        "\n0: No");
+                int choice = keyIn.nextInt();
+                boolean hasInput = (choice == 1);
+
+                if(hasInput) {
+                    System.out.println("\nInput the size of the board: ");
+                    int size = keyIn.nextInt();
+                    if (size <= 1) {
+                        throw new InputMismatchException();
+                    }
+
+                    System.out.println("\nInput the first index to start: ");
+                    int startIndex = keyIn.nextInt();
+                    if ((startIndex < 0) || (startIndex >= size)) {
+                        throw new InputMismatchException();
+                    }
+
+                    //Init the board
+                    int[] userBoard = new int[size];
+                    for (int i = 0; i < size; i++) {
+                        System.out.print("Input the value of index " + i + " :");
+                        userBoard[i] = keyIn.nextInt();
+
+                    }
+
+                    System.out.println("Finished init the board. Calculating ...");
+                    printLog(startIndex, userBoard, checkWinnable(startIndex, userBoard), pw);
+
+                } else {
+                    pw.println("User chose not to init a new board");
+                }
+                // Stopping condition
+                legalInput = true;
+
+            } catch (Exception e) {
+                keyIn.nextLine();
+                System.out.println("Illegal input. Please try again");
+            }
+
+        }
+
         pw.println("\n----FINISHED----");
+        keyIn.close();
         pw.close();
-        System.out.println("Process finished");
+        System.out.println("Process finished. Check out log file for the result");
     }
 }
