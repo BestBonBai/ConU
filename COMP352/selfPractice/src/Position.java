@@ -8,6 +8,6 @@ public interface Position<E> {
      * @return the element in a position
      * @throws IllegalStateException When the position does not exist
      */
-    E element() throws IllegalStateException;
+    E getElement() throws IllegalStateException;
 
 }
