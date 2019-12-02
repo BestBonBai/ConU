@@ -1,0 +1,33 @@
+\section{Draw a Tree statisfies the conditions}
+\subsection{Instruction}
+Draw a (single) tree T, such that
+\begin{itemize}
+    \item Each internal node of T stores a single character;
+    \item A preorder traversal of T yields: E K D M J G I A C F H B L;
+    \item A postorder traversal of T yields: D J I G A M K F L B H C E.
+\end{itemize}
+
+\subsection{Tree satisfies the requirements}
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+\node [arn_n] {E}
+    child{ node [arn_n] {K}
+        child{ node [arn_n] {D}}
+        child{ node [arn_n] {M}
+            child{ node [arn_n] {J}}
+            child{ node [arn_n] {G}
+                child{ node [arn_n] {I}}
+                }
+            child{ node [arn_n] {A}}
+            }
+    }
+    child{ node [arn_n] {C}
+        child{ node [arn_n] {F}}
+        child{ node [arn_n] {H}
+            child{ node [arn_n] {B}
+                child{ node [arn_n] {L}}
+            }
+        }
+    }
+;
+\end{tikzpicture}

@@ -1,0 +1,16 @@
+\section{Attempt to reduce collisions in separate chaining}
+\subsection{Instruction}
+To reduce the maximum number of collisions in the hash table described in Question 7 above,
+someone proposed the use of a larger array of 15 elements (that is roughly 15\% bigger) and of
+course modifying the hash function to: h(k)=k mod 15. The idea is to reduce the load factor and
+hence the number of collisions.
+\\
+\\
+Does this proposal hold any validity to it? If yes, indicate why such modifications would actually
+reduce the number of collisions. If no, indicate clearly the reasons you believe/think that such
+proposal is senseless. 
+
+\subsection{Use a larger array to achieve a better load factor}
+The idea of reducing load factor by increasing the size of an array is actually a good solution to lower the number of collisions. When the size of the table is expanded, the distribution of hash value could be more uniformly, and well distributed. In another word, the probability of getting an uniformed distribution increases. Thus, a better load factor could be achieved. 
+\\
+However, with such a small increase with a small set of number as in the current case (expand from 13 elements to 15 elements), the improvement will just be a slight change. The number of collisions even could stay the same despite the decrease of the load factor. 

@@ -1,0 +1,668 @@
+\section{AVL tree}
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_n] {84}
+        child{ node [arn_n] {62}
+            child{ node [arn_n] {2}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{ node [arn_n] {82}
+                child{ node [arn_n] {75}
+                    child{node [arn_x] {}}
+                    child{node [arn_n] {81}
+                        child{node [arn_x] {}}
+                        child{node [arn_x] {}}
+                        }
+                }
+                child{node [arn_x] {}}
+            }
+        }
+        child{ node [arn_n] {93}
+            child{ node [arn_n] {89}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+
+\subsection{Instruction}
+\begin{itemize}
+    \item 
+Are there any errors with the tree as shown? If so, indicate what the error(s) are, correct
+these error(s) [you should attempt applying the smallest possible number of changes to
+correct the tree], show the corrected AVL tree, then proceed to the following questions
+(Questions ii to iv) and start with the tree that you have just corrected. If no errors are
+there in the above tree, indicate why the tree is correctly an AVL tree, then proceed to
+the following questions (Questions ii to iv) and continue working on the tree as shown
+above.
+\item ii) Show the AVL tree after put(74) operation is performed. Give the complexity of this
+operation in terms of Big-O notation.
+\item iii) Show the AVL tree after remove(62) is performed. Give the complexity of this
+operation in terms of Big-O notation.
+\item iv) Show the AVL tree after remove(93) is performed. Show the progress of your work
+step-by-step. Give the complexity of this operation in terms of Big-O notation.
+\end{itemize}
+
+
+\subsection{Check errors with the given AVL tree}
+\textit{The error lying at the subtree of 82. The right sub tree has height 0 while the left subtree has heigh of 2. Thus, it is a violation of AVL tree's property.}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_n] {84}
+        child{ node [arn_n] {62}
+            child{ node [arn_n] {2}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{ node [arn_o] {82}
+                child{ node [arn_o] {75}
+                    child{node [arn_x] {}}
+                    child{node [arn_o] {81}
+                        child{node [arn_x] {}}
+                        child{node [arn_x] {}}
+                        }
+                }
+                child{node [arn_x] {}}
+            }
+        }
+        child{ node [arn_n] {93}
+            child{ node [arn_n] {89}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{After restructuring the sub tree of 82}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_n] {84}
+        child{ node [arn_n] {62}
+            child{ node [arn_n] {2}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{ node [arn_t] {81}
+                child{ node [arn_t] {75}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+                child{ node [arn_t] {82}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+        }
+        child{ node [arn_n] {93}
+            child{ node [arn_n] {89}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Final result:}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_n] {84}
+        child{ node [arn_n] {62}
+            child{ node [arn_n] {2}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{ node [arn_n] {81}
+                child{ node [arn_n] {75}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+                child{ node [arn_n] {82}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+        }
+        child{ node [arn_n] {93}
+            child{ node [arn_n] {89}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+
+\subsection{Put(74)}
+\subsubsection{Perform the operation}
+
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_n] {84}
+        child{ node [arn_n] {62}
+            child{ node [arn_n] {2}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{ node [arn_n] {81}
+                child{ node [arn_n] {75}
+                    child{node [arn_o] {74}
+                        child{node [arn_x] {}}
+                        child{node [arn_x] {}}
+                    }
+                    child{node [arn_x] {}}
+                }
+                child{ node [arn_n] {82}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+        }
+        child{ node [arn_n] {93}
+            child{ node [arn_n] {89}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Need restructuring at the subtree of 62.}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_n] {84}
+        child{ node [arn_o] {62}
+            child{ node [arn_n] {2}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{ node [arn_o] {81}
+                child{ node [arn_o] {75}
+                    child{node [arn_t] {74}
+                        child{node [arn_x] {}}
+                        child{node [arn_x] {}}
+                    }
+                    child{node [arn_x] {}}
+                }
+                child{ node [arn_n] {82}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+        }
+        child{ node [arn_n] {93}
+            child{ node [arn_n] {89}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{After restructuring:}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_n] {84}
+        child{ node [arn_t] {75}
+            child{ node [arn_t] {62}
+                child{ node [arn_n] {2}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+                child{ node [arn_n] {74}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+            child{ node [arn_t] {81}
+                child{node [arn_x] {}}
+                child{ node [arn_n] {82}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+        }
+        child{ node [arn_n] {93}
+            child{ node [arn_n] {89}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Final result:}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_n] {84}
+        child{ node [arn_n] {75}
+            child{ node [arn_n] {62}
+                child{ node [arn_n] {2}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+                child{ node [arn_n] {74}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+            child{ node [arn_n] {81}
+                child{node [arn_x] {}}
+                child{ node [arn_n] {82}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+        }
+        child{ node [arn_n] {93}
+            child{ node [arn_n] {89}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+
+
+\subsubsection{Time complexity}
+To find the place to put a new node at the beginning, it takes n time. In addition, to find out if there is a need for restructuring, the algorithm has to run log n time. To actually restructure the tree to suit the AVL tree's property, it takes constant time, meaning 1 in Big-O. In conclusion, the whole operation has the time complexity of \textbf{O(logn).}
+
+\subsection{remove(62)}
+\subsubsection{Perform the operation}
+\textbf{Final result:}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_n] {84}
+        child{ node [arn_n] {75}
+            child{ node [arn_n] {74}
+                child{ node [arn_n] {2}
+                    child{ node [arn_x] {}}
+                    child{ node [arn_x] {}}
+                }
+                child{ node [arn_x] {}}
+            } 
+            child{ node [arn_n] {81}
+                child{node [arn_x] {}}
+                child{ node [arn_n] {82}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+        }
+        child{ node [arn_n] {93}
+            child{ node [arn_n] {89}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+
+\subsubsection{Time complexity}
+The time complexity is \textbf{O(log n)} since the algorithm has to find where to remove (log n), and then check if it needs restructuring or not (takes log n).
+
+\subsection{remove(93)}
+\subsubsection{Step-by-step progress}
+\textbf{Remove(93). Traverse to find the replace node for 93. Found 89}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_n] {84}
+        child{ node [arn_n] {75}
+            child{ node [arn_n] {74}
+                child{ node [arn_n] {2}
+                    child{ node [arn_x] {}}
+                    child{ node [arn_x] {}}
+                }
+                child{ node [arn_x] {}}
+            } 
+            child{ node [arn_n] {81}
+                child{node [arn_x] {}}
+                child{ node [arn_n] {82}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+        }
+        child{ node [arn_o] {93}
+            child{ node [arn_o] {89}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Remove 93. Replace 93 by 89}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_n] {84}
+        child{ node [arn_n] {75}
+            child{ node [arn_n] {74}
+                child{ node [arn_n] {2}
+                    child{ node [arn_x] {}}
+                    child{ node [arn_x] {}}
+                }
+                child{ node [arn_x] {}}
+            } 
+            child{ node [arn_n] {81}
+                child{node [arn_x] {}}
+                child{ node [arn_n] {82}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+        }
+        child{ node [arn_o] {89}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Need to restructure. The subtree 84 is violating AVL tree's property.}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+    child{ node [arn_o] {84}
+        child{ node [arn_o] {75}
+            child{ node [arn_o] {74}
+                child{ node [arn_n] {2}
+                    child{ node [arn_x] {}}
+                    child{ node [arn_x] {}}
+                }
+                child{ node [arn_x] {}}
+            } 
+            child{ node [arn_n] {81}
+                child{node [arn_x] {}}
+                child{ node [arn_n] {82}
+                    child{node [arn_x] {}}
+                    child{node [arn_x] {}}
+                }
+            }
+        }
+        child{ node [arn_n] {89}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+    }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Use 3 main nodes: 84, 75, 74 to restructure the sub tree. Resulting:}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 70mm/#1,
+  level distance = 1cm}] 
+  \node [arn_n] {55}
+    child{ node [arn_n] {29}
+        child{node [arn_n] {17}
+            child{node [arn_x] {}}
+            child{node [arn_x] {}}
+        }
+        child{node [arn_n] {44}
+            child{node [arn_n] {35}
+                child{node [arn_x] {}}
+                child{node [arn_x] {}}
+            }
+            child{node [arn_x] {}}
+        }
+   }
+   child{ node [arn_n] {75}
+        child{ node [arn_n] {74}
+            child{ node [arn_n] {2}
+                child{ node [arn_x] {}}
+                child{ node [arn_x] {}}
+            }    
+            child{ node [arn_x] {}}
+        }
+        child{ node [arn_n] {84}
+           child{ node [arn_n] {81}
+                child{ node [arn_x] {}}
+                child{ node [arn_n] {82}
+                    child{ node [arn_x] {}}
+                    child{ node [arn_x] {}}
+                } 
+           } 
+           child{ node [arn_n] {89}
+                child{ node [arn_x] {}}
+                child{ node [arn_x] {}}
+           }
+        }
+   }
+;
+\end{tikzpicture}
+
+\subsubsection{Time complexity}
+In order to find the node to replace 93, the algorithm has to traverse log n time to find 93 and log n time to find the element that can replace the position of 93. Then, the algorithm has to run log n time to restructuring the tree. In conclusion, the total operation has time complexity of \textbf{O(log n).}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

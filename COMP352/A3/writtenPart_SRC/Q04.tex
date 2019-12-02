@@ -1,0 +1,576 @@
+\section{Create a max-heap}
+\subsection{Instruction}
+Create a max-heap using the list of values from Question 3 above but this time you have to insert
+these values one by one using the order from left to right (i.e insert 42, then 25, then 49, etc.).
+Show the tree after each step and the final tree representing the max-heap.
+
+\subsection{Step-by-step process to construct the Max-heap tree}
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_t] {42};
+\end{tikzpicture}
+\\
+\textbf{Adding 42 to the heap}
+\\
+\\
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {42}
+   child{ node [arn_t] {25}}
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 25 to the heap. No conflict found}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {42}
+   child{ node [arn_n] {25}}
+   child{ node [arn_t] {49}}
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 49 to the heap. Conflict found. Bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_t] {49}
+   child{ node [arn_n] {25}}
+   child{ node [arn_n] {42}}
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $49>42$. No remaining conflict}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {49}
+   child{ node [arn_n] {25}
+    child{ node [arn_t] {18}}
+    }
+   child{ node [arn_n] {42}}
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 18 to the heap. No conflict found}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {49}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {18}}
+    child{ node [arn_t] {57}}
+    }
+   child{ node [arn_n] {42}}
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 57 to the heap. Conflict found. Bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {49}
+   child{ node [arn_t] {57}
+    child{ node [arn_n] {18}}
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_n] {42}}
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $57>25$. Still having conflict. Continue bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_t] {57}
+   child{ node [arn_n] {49}
+    child{ node [arn_n] {18}}
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_n] {42}}
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $57>49$. No remaining conflict}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {57}
+   child{ node [arn_n] {49}
+    child{ node [arn_n] {18}}
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_n] {42}
+    child{ node [arn_t] {105}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 105 to the heap. Conflict found. Bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {57}
+   child{ node [arn_n] {49}
+    child{ node [arn_n] {18}}
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_t] {105}
+    child{ node [arn_n] {42}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $105>42$. Still having conflict. Continue bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_t] {105}
+   child{ node [arn_n] {49}
+    child{ node [arn_n] {18}}
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_n] {57}
+    child{ node [arn_n] {42}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $105>57$. No remaining conflict}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {105}
+   child{ node [arn_n] {49}
+    child{ node [arn_n] {18}}
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_n] {57}
+    child{ node [arn_n] {42}}
+    child{ node [arn_t] {112}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 112 to the heap. Conflict found. Bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {105}
+   child{ node [arn_n] {49}
+    child{ node [arn_n] {18}}
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_t] {112}
+    child{ node [arn_n] {42}}
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $112>57$. Still having conflict. Continue bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_t] {112}
+   child{ node [arn_n] {49}
+    child{ node [arn_n] {18}}
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}}
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $112>105$. No remaining conflict}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {49}
+    child{ node [arn_n] {18}
+        child{ node [arn_t] {35}}
+    }
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}}
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 35 to the heap. Conflict found. Bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {49}
+    child{ node [arn_t] {35}
+        child{ node [arn_n] {18}}
+    }
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}}
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $35>18$. No remaining conflict}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {49}
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {18}}
+        child{ node [arn_t] {38}}
+    }
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}}
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 38 to the heap. Conflict found. Bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {49}
+    child{ node [arn_t] {38}
+        child{ node [arn_n] {18}}
+        child{ node [arn_n] {35}}
+    }
+    child{ node [arn_n] {25}}
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}}
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $38>35$. No remaining conflict}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {49}
+    child{ node [arn_n] {38}
+        child{ node [arn_n] {18}}
+        child{ node [arn_n] {35}}
+    }
+    child{ node [arn_n] {25}
+        child{ node [arn_t] {64}}
+    }
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}}
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 64 to the heap. Conflict found. Bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {49}
+    child{ node [arn_n] {38}
+        child{ node [arn_n] {18}}
+        child{ node [arn_n] {35}}
+    }
+    child{ node [arn_t] {64}
+        child{ node [arn_n] {25}}
+    }
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}}
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $64>25$. Still having conflict. Continue bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_t] {64}
+    child{ node [arn_n] {38}
+        child{ node [arn_n] {18}}
+        child{ node [arn_n] {35}}
+    }
+    child{ node [arn_n] {49}
+        child{ node [arn_n] {25}}
+    }
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}}
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $64>49$. No remaining conflict}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {64}
+    child{ node [arn_n] {38}
+        child{ node [arn_n] {18}}
+        child{ node [arn_n] {35}}
+    }
+    child{ node [arn_n] {49}
+        child{ node [arn_n] {25}}
+        child{ node [arn_t] {53}}
+    }
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}}
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 53 to the heap. Conflict found. Bubbling up}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {64}
+    child{ node [arn_n] {38}
+        child{ node [arn_n] {18}}
+        child{ node [arn_n] {35}}
+    }
+    child{ node [arn_t] {53}
+        child{ node [arn_n] {25}}
+        child{ node [arn_n] {49}}
+    }
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}}
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Swapping with its parents. $53>49$. No remaining conflict}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {64}
+    child{ node [arn_n] {38}
+        child{ node [arn_n] {18}}
+        child{ node [arn_n] {35}}
+    }
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {25}}
+        child{ node [arn_n] {49}}
+    }
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}
+        child{ node [arn_t] {20}}
+    }
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 20 to the heap. No conflict found}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {64}
+    child{ node [arn_n] {38}
+        child{ node [arn_n] {18}}
+        child{ node [arn_n] {35}}
+    }
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {25}}
+        child{ node [arn_n] {49}}
+    }
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}
+        child{ node [arn_n] {20}}
+        child{ node [arn_t] {25}}
+    }
+    child{ node [arn_n] {57}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 25 to the heap. No conflict found}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {64}
+    child{ node [arn_n] {38}
+        child{ node [arn_n] {18}}
+        child{ node [arn_n] {35}}
+    }
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {25}}
+        child{ node [arn_n] {49}}
+    }
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}
+        child{ node [arn_n] {20}}
+        child{ node [arn_n] {25}}
+    }
+    child{ node [arn_n] {57}
+        child{ node [arn_t] {19}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 19 to the heap. No conflict found}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {64}
+    child{ node [arn_n] {38}
+        child{ node [arn_n] {18}}
+        child{ node [arn_n] {35}}
+    }
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {25}}
+        child{ node [arn_n] {49}}
+    }
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}
+        child{ node [arn_n] {20}}
+        child{ node [arn_n] {25}}
+    }
+    child{ node [arn_n] {57}
+        child{ node [arn_n] {19}}
+        child{ node [arn_t] {16}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Adding 16 to the heap. No conflict found}
+\\
+\\
+\subsection{Final Max-heap tree}
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {112}
+   child{ node [arn_n] {64}
+    child{ node [arn_n] {38}
+        child{ node [arn_n] {18}}
+        child{ node [arn_n] {35}}
+    }
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {25}}
+        child{ node [arn_n] {49}}
+    }
+    }
+   child{ node [arn_n] {105}
+    child{ node [arn_n] {42}
+        child{ node [arn_n] {20}}
+        child{ node [arn_n] {25}}
+    }
+    child{ node [arn_n] {57}
+        child{ node [arn_n] {19}}
+        child{ node [arn_n] {16}}
+    }
+   }
+;
+\end{tikzpicture}
