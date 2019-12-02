@@ -1,0 +1,900 @@
+\section{Construct a min-heap by bottom-up heap algorithm}
+\subsection{Instruction}
+Draw the min-heap that results from running the bottom-up heap construction algorithm on the
+following list of values:
+\\
+\begin{center}
+\textbf{42 25 49 18 57 105 112 35 38 64 53 20 25 19 16}
+\end{center}
+Starting from the bottom layer, use the values from left to right as specified above. Show
+intermediate steps and the final tree representing the min-heap. Afterwards perform the operation
+removeMin() 3 times and show the resulting min-heap after each step.
+
+\subsection{Steps to use bottom-up heap algorithm to construct a min-heap}
+\begin{itemize}
+    \item There are 15 entries need to be inserted
+    \item Therefore, need to construct a heap with height 
+    \begin{equation}
+        \ceil[\bigg]{\log{(N+1)} - 1}
+        = \ceil[\bigg]{\log{(15+1)} - 1} = 3
+    \end{equation}
+\end{itemize}
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_x] {}
+   child{ node [arn_x] {}
+    child{ node [arn_x] {}
+        child{ node [arn_x] {}}
+        child{ node [arn_x] {}}
+    }
+    child{ node [arn_x] {}
+        child{ node [arn_x] {}}
+        child{ node [arn_x] {}}
+    }
+    }
+   child{ node [arn_x] {}
+    child{ node [arn_x] {}
+        child{ node [arn_x] {}}
+        child{ node [arn_x] {}}
+    }
+    child{ node [arn_x] {}
+        child{ node [arn_x] {}}
+        child{ node [arn_x] {}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Initialize Structure (height = 3) with empty entries}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_x] {}
+   child{ node [arn_x] {}
+    child{ node [arn_x] {}
+        child{ node [arn_t] {42}}
+        child{ node [arn_t] {25}}
+    }
+    child{ node [arn_x] {}
+        child{ node [arn_t] {49}}
+        child{ node [arn_t] {18}}
+    }
+    }
+   child{ node [arn_x] {}
+    child{ node [arn_x] {}
+        child{ node [arn_t] {57}}
+        child{ node [arn_t] {105}}
+    }
+    child{ node [arn_x] {}
+        child{ node [arn_t] {112}}
+        child{ node [arn_t] {35}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Construct $\frac{(n+1)}{2} = 8$ first elements to store in each entries at height 3. No bubbling needed}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_x] {}
+   child{ node [arn_x] {}
+    child{ node [arn_t] {38}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {25}}
+    }
+    child{ node [arn_t] {64}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {18}}
+    }
+    }
+   child{ node [arn_x] {}
+    child{ node [arn_t] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_t] {20}
+        child{ node [arn_n] {112}}
+        child{ node [arn_n] {35}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Construct $\frac{(n+1)}{4} = 4$ next elements to store in each entries at height 2. Bubbling needed.}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_x] {}
+   child{ node [arn_x] {}
+    child{ node [arn_o] {38}
+        child{ node [arn_n] {42}}
+        child{ node [arn_o] {25}}
+    }
+    child{ node [arn_o] {64}
+        child{ node [arn_n] {49}}
+        child{ node [arn_o] {18}}
+    }
+    }
+   child{ node [arn_x] {}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+        child{ node [arn_n] {35}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Bubbling needed for 38-25 and 64-18.}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_x] {}
+   child{ node [arn_x] {}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {18}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_x] {}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+        child{ node [arn_n] {35}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Finished bubbling.}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_x] {}
+   child{ node [arn_t] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {18}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_t] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+        child{ node [arn_n] {35}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Construct $\frac{(n+1)}{8} = 2$ next elements to store in each entries at height 1. Bubbling needed.} 
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_x] {}
+   child{ node [arn_o] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_o] {18}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+        child{ node [arn_n] {35}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Bubbling needed for 25-18}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_x] {}
+   child{ node [arn_n] {18}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+        child{ node [arn_n] {35}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Finished bubbling.}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_t] {16}
+   child{ node [arn_n] {18}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+        child{ node [arn_n] {35}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Construct $\frac{(n+1)}{16} = 1 $ next element (last element) to store in entry at height 0. No conflict found.} 
+\\
+\\
+
+\subsection{Final min-heap tree after bottom-up constructing}
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {16}
+   child{ node [arn_n] {18}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+        child{ node [arn_n] {35}}
+    }
+   }
+;
+\end{tikzpicture}
+
+% CALLING REMOVE MIN () 
+\subsection{Perform removeMin() 3 times}
+\subsubsection{First removeMin()}
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {}
+   child{ node [arn_n] {18}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+        child{ node [arn_n] {35}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Remove the root's key. Return the key 16}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {}
+   child{ node [arn_n] {18}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+        child{ node [arn_o] {35}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{The last node is 35}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {35}
+   child{ node [arn_n] {18}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{The entry of the last node will replace the root key. Then, remove the last node out of the heap}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {35}
+   child{ node [arn_o] {18}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Start down-heap bubbling for 35-18}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {18}
+   child{ node [arn_o] {35}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_o] {25}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Continue down-heap bubbling for 35-25}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {18}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Finished bubbling}
+\\
+\\
+
+\subsubsection{Second removeMin()}
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_n] {112}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Remove the root's key. Return the key 18}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}
+        child{ node [arn_o] {112}}
+    }
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{The last node is 112}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {112}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{The entry of the last node will replace the root key. Then, remove the last node out of the heap}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {112}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_o] {19}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {20}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Start down-heap bubbling for 112-19}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {19}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_o] {112}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_o] {20}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Continue down-heap bubbling for 112-20}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {19}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {20}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {112}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Finished bubbling}
+\\
+\\
+
+\subsubsection{Third removeMin()}
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {20}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {112}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Remove the root's key. Return the key 19}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {20}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+        child{ node [arn_o] {105}}
+    }
+    child{ node [arn_n] {112}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{The last node is 105}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {105}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {20}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+    }
+    child{ node [arn_n] {112}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{The entry of the last node will replace the root key. Then, remove the last node out of the heap}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_o] {105}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_o] {20}
+    child{ node [arn_n] {53}
+        child{ node [arn_n] {57}}
+    }
+    child{ node [arn_n] {112}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Start down-heap bubbling for 105-20}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {20}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_o] {105}
+    child{ node [arn_o] {53}
+        child{ node [arn_n] {57}}
+    }
+    child{ node [arn_n] {112}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Continue down-heap bubbling for 105-53}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {20}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {53}
+    child{ node [arn_o] {105}
+        child{ node [arn_o] {57}}
+    }
+    child{ node [arn_n] {112}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Continue down-heap bubbling for 105-57}
+\\
+\\
+
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {20}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {53}
+    child{ node [arn_o] {57}
+        child{ node [arn_o] {105}}
+    }
+    child{ node [arn_n] {112}}
+   }
+;
+\end{tikzpicture}
+\\
+\\
+\textbf{Finished bubbling}
+\\
+\\
+
+\subsection{Final Min-heap tree}
+\begin{tikzpicture}[level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+  \node [arn_n] {20}
+   child{ node [arn_n] {25}
+    child{ node [arn_n] {25}
+        child{ node [arn_n] {42}}
+        child{ node [arn_n] {38}}
+    }
+    child{ node [arn_n] {35}
+        child{ node [arn_n] {49}}
+        child{ node [arn_n] {64}}
+    }
+    }
+   child{ node [arn_n] {53}
+    child{ node [arn_n] {57}
+        child{ node [arn_n] {105}}
+    }
+    child{ node [arn_n] {112}}
+   }
+;
+\end{tikzpicture}

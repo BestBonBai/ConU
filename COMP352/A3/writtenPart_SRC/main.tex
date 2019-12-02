@@ -1,0 +1,60 @@
+\documentclass[16pt, letterpaper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,decorations.pathreplacing}
+
+\usepackage{comment}
+\usepackage{color,soul}
+\setul{0.5ex}{0.5ex}
+\setulcolor{red}
+
+\title{Gina Cody School of Computer Science and Software Engineering \\Concordia University
+\\COMP 352: Data Structure and Algorithms }
+\author{Student: Duc Nguyen}
+\date{}
+
+% Add new function for each
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+
+% Set up treenode drawing
+\tikzset{
+  treenode/.style = {align=center, inner sep=0pt, text centered,
+    font=\sffamily},
+  arn_o/.style = {treenode, circle, font=\sffamily\bfseries, draw=black, fill=white, text width=1.7em, dashed}, %  Nodes are being operated
+  arn_n/.style = {treenode, circle, white, font=\sffamily\bfseries, draw=black,
+    fill=black, text width=1.7em},% Nodes already on the tree
+  arn_t/.style = {treenode, circle, black, font=\sffamily\bfseries, draw=black,
+    fill=white, text width=1.7em}, % New nodes
+  arn_x/.style = {treenode, rectangle, draw=black,
+    minimum width=1.0em, minimum height=1.0em}% Empty entry
+}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+\tableofcontents
+
+\input{Q01.tex} %-- done
+\input{Q02.tex} %-- done
+\input{Q03.tex} %-- done
+\input{Q04.tex} %-- done
+\input{Q05.tex} %-- done 
+\input{Q06.tex} %-- done 
+\input{Q07.tex} %-- done
+\input{Q08.tex} %-- done
+\input{Q09.tex} %-- done 
+\input{Q10.tex} %-- done
+\input{Q11.tex} %-- done
+
+\end{document}

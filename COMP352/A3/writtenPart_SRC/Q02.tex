@@ -1,0 +1,32 @@
+\section{Smallest x numbers in the array}
+\subsection{Instruction}
+Given an array A of n integers, write an algorithm that finds the smallest x values in the array,
+where x $\leq$n. However, the first constraints are given: You are not allowed to use heaps; the array
+A should not be modified, and you can only use a maximum auxiliary space of O(n). 
+
+\subsection{Find x smallest elements in the array}
+\begin{algorithm}[H]
+\caption{Find, and return the x smallest elements in a given array}
+\textbf{Input:} the array of integer A, and an integer x represents the requested number of return elements.
+\\
+\textbf{Output:} x smallest elements from the array A
+\begin{algorithmic}[1]
+\Procedure{smallestElements}{integer array A, integer x}
+\State P $\leftarrow$ priority queue with comparator for integer
+\ForEach{value \textbf{v} $\in$ \textbf{A}}
+\State P.insert(v)
+\EndFor
+
+\State result $\leftarrow$ an integer array to store the result
+\State i $\leftarrow$ 0
+\While{i $<$ x}
+\State result[i] $\leftarrow$ P.removeMin()
+\EndWhile
+\State \Return result
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\textit{Since the algorithm only relies on one more priority queue which has the same number of element as the given array's, the space complexity would be of \textbf{O(n)}.}
+
+

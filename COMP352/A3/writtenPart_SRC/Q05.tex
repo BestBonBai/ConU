@@ -1,0 +1,98 @@
+\section{Trees}
+\subsection{Instruction}
+
+Given 2 trees T1 and T2, where T1 has more nodes than T2, and where each of the nodes in both
+trees holds an integer value. Further, the values in any of the trees are assumed to be unique (no
+duplicate values within the same tree).
+\begin{itemize}
+\item[] i) Give an algorithm that determines whether or not T2 represents a subtree of T1.
+\item[] ii) What is the time and space complexity of your algorithm in i)?
+\item[] iii) Will your algorithm still work if duplicate values are permitted in these trees?
+
+\begin{itemize}
+\item[] a. If your algorithm still works when duplicate values are allowed, explain clearly
+why this change could not have affected your solution.
+\item[] b. If your algorithm will fail if duplicate values are allowed, provide an example of
+the failure and propose some modification to fix this failure. 
+\end{itemize}
+\end{itemize}
+
+\subsection{Check sub-tree}
+
+
+\begin{algorithm}[H]
+\caption{Check if a tree is the subtree of another tree or not}
+\textbf{Input:} Root node of trees t1, t2, in which t1 is the tree with the number of nodes is equal or greater than that of t2.
+\\
+\textbf{Output:} a boolean value indicates if t2 is a subtree of t1.
+\begin{algorithmic}[1]
+\Procedure{isSubTree}{TreeNode rootT1, TreeNode rootT2}
+\State ArrayList t1 $\leftarrow$ null
+\State ArrayList t2 $\leftarrow$ null
+\State preOrder(rootT1, t1)
+\State preOrder(rootT2, t2)
+\State \Return isSubList(t1, t2)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+\textbf{Two dependent methods to support the main isSubTree method:}
+\\
+\\
+\begin{algorithm}[H]
+\caption{}
+\textbf{Input:} A root node of a tree. An array list acts as a container for all the nodes inside the given tree.
+\\
+\textbf{Output:} Assign the given arrayList to have all the nodes in the given tree with pre order traversal. 
+\begin{algorithmic}[1]
+\Procedure{preOrder}{TreeNode node, ArrayList t}
+\State t.add(node)
+\ForEach{$\text{child } \textbf{w} \in \textbf{node}$}
+\State preOrder(w)
+\EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{}
+\textbf{Input:} An array list of the tree which has the number of nodes is more or equal than that of the second array list.
+\\
+\textbf{Output:} A boolean value indicates if the array list t2 is a sub array of t1
+\begin{algorithmic}[1]
+\Procedure{isSubList}{ArrayList t1, ArrayList t2}
+\State i $\leftarrow$ 0
+\State j $\leftarrow$ 0
+
+\While {i $<$ t1.size \textbf{and} j $<$ t2.size}
+\If{t1[i] = t2[j]}
+\State i++
+\State j++
+
+\If{j = t2.size} 
+\Return true \Comment{iterated over t2.}
+\EndIf
+
+\Else
+\State i++
+\State j $\leftarrow$ 0
+\EndIf
+
+\EndWhile
+
+\Return false
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{Time and Space complexity}
+\textit{The problem concerns of 2 different input: tree 1 and tree 2. Let denote the number of nodes inside the first tree t1 to be n, and that of the second tree t2 to be m.}
+\begin{itemize}
+    \item \textbf{Time Complexity:} The algorithm takes n, m time for t1, t2 respectively to iterate and put every node into the 2 created array lists. Therefore, it takes \textbf{n + m} time for this operation. Next, the algorithm calls the function \textbf{isSubList} to check if one of the array list is the sub array of the other. By doing this, the algorithm has to iterate over every element in the bigger array which has n elements. Thus, the time it takes here is \textbf{n}. In conclusion, the algorithm takes up to \textbf{O(n + m)} of time complexity.
+    \item \textbf{Space Complexity:} The algorithm creates 2 new array lists to hold the elements from both trees. Thus, the space needs to be allocated is the total number of elements in both tree, which is  \textbf{n + m}. Space complexity is of \textbf{O(n+m)}.
+\end{itemize}
+
+\subsection{Algorithm still works if there are duplicate values?}
+The proposed algorithm above will work even when there are some duplicated elements inside one of the two given trees. Since the approach was to take all elements and put into one array list, and then check if one of them is the sub array of the other, it would guarantee that there is no possible misbehaviour with duplicated items.
+
+
