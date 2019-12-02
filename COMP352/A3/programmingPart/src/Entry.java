@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Entry<C> implements Comparable<Entry>{
     private String key;
     private C value;
-    private Entry record;
     private boolean isFixedKeyLength;
 
     public Entry(String key, C value) {
@@ -37,5 +36,9 @@ public class Entry<C> implements Comparable<Entry>{
     public int compareTo(Entry o) {
         return this.getKey().compareTo(o.getKey());
 
+    }
+
+    public Entry<C> clone() {
+        return new Entry<C>(this.key, this.value);
     }
 }

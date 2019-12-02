@@ -3,7 +3,6 @@ import java.util.NoSuchElementException;
 
 public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structure<C>{
     private ArrayList<Entry<C>> sequence;
-    private int size = 0;
     private historicalRecord record;
     private int duplicateOperation = 0;
 
@@ -28,7 +27,7 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
 
     @Override
     public String[] allKeys() {
-        String[] result = new String[size()];
+        String[] result = new String[super.getSize()];
         int ctr = 0;
         for(Entry<C> each : sequence) {
             result[ctr] = each.getKey();
@@ -39,7 +38,7 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
     }
 
     /**
-     * An insertion sort tom sort every key inside an array of String
+     * An insertion sort that sorts every key inside an array of String
      * Using this sort technique, because the time complexity is not required to be fast.
      * While the memory complexity is low.
      * @param keys An array of String (key) to be sorted
@@ -69,8 +68,9 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
             size++;
             return;
         }
+
         System.out.println("Found duplicate item at key " + key +
-                "\nOverwriting the duplicate item.");
+                "\nOverwriting.\n");
         sequence.add(new Entry<C>(key, value));
         size++;
         duplicateOperation++;
@@ -82,7 +82,7 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
         try {
             int index = search(key);
             Entry<C> temp = sequence.get(index);
-            record.addEntry(temp);
+            record.addEntry(temp.clone());
             sequence.remove(index);
             size--;
             return temp;
@@ -155,16 +155,11 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
 
     @Override
     public ArrayList<Entry> previousCars(String key) {
-        return record.getHistory(key);
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return (size == 0);
-    }
-
-    @Override
-    public int size() {
-        return size;
+        ArrayList<Entry> result = record.getHistory(key);
+        if(result.size() == 0) {
+            System.out.println("Key " + key + " does not exist in historical record");
+            return null;
+        }
+        return result;
     }
 }

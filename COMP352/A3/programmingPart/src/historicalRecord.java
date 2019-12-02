@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
+
 /**
  * A class uses to keep track of the historical record of every the element was removed from the data structure
  * @author Duc Nguyen
@@ -27,6 +29,7 @@ public class historicalRecord {
                 result.add(each);
             }
         }
+
         return result;
 
     }

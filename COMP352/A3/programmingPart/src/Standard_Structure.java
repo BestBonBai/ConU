@@ -49,14 +49,4 @@ public interface Standard_Structure<C> {
      */
     ArrayList<Entry> previousCars(String key);
 
-    /**
-     * @return the status of the data structure
-     */
-    boolean isEmpty();
-
-    /**
-     * @return number of elements inside the data structure
-     */
-    int size();
-
 }
