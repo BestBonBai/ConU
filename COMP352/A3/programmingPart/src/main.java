@@ -122,6 +122,23 @@ public class main {
     }
     //////////////////
 
+    //SUPPORT METHODS FOR OPERATIONS WITH KEY
+    public static boolean isValidLength(int length) {
+        return (length >= 6 && length <= 12);
+    }
+
+    public static String askKey() throws IllegalArgumentException {
+        keyIn.nextLine();
+        System.out.println("Enter key to operate: ");
+        String key = keyIn.nextLine();
+        if(!isValidLength(key.length())) {
+            System.out.println("Key length must be between 6 - 12");
+            throw new IllegalArgumentException();
+        }
+        return key;
+    }
+    ///////////////////////////////////////////
+
     /// OPERATIONS
     //CASE 1
     public static void benchmarkFiles() throws IllegalArgumentException {
@@ -374,22 +391,7 @@ public class main {
         calibrate();
     }
 
-    //SUPPORT METHODS FOR OPERATIONS WITH KEY
-    public static boolean isValidLength(int length) {
-        return (length >= 6 && length <= 12);
-    }
 
-    public static String askKey() throws IllegalArgumentException {
-        keyIn.nextLine();
-        System.out.println("Enter key to operate: ");
-        String key = keyIn.nextLine();
-        if(!isValidLength(key.length())) {
-            System.out.println("Key length must be between 6 - 12");
-            throw new IllegalArgumentException();
-        }
-        return key;
-    }
-    ///////////////////////////////////////////
 
     //CASE 9
     public static void getValue() throws IllegalArgumentException{
@@ -566,7 +568,6 @@ public class main {
             }
 
         }
-
 
     }
 }
