@@ -8,17 +8,30 @@ public class SmartAR_HashTable<C> extends SmartAR<C> implements Standard_Structu
     private int collision = 0;
 
     public SmartAR_HashTable() {
-        this(10);
+        this(1000);
 
     }
 
     public SmartAR_HashTable(int n) {
+        super();
         table = new Hashtable<>(n);
         record = new historicalRecord();
     }
 
+    public void setCollision(int collision) {
+        this.collision = collision;
+    }
+
     public int getCollision() {
         return collision;
+    }
+
+    public historicalRecord getRecord() {
+        return record;
+    }
+
+    public void setRecord(historicalRecord record) {
+        this.record = record;
     }
 
     @Override
@@ -102,6 +115,11 @@ public class SmartAR_HashTable<C> extends SmartAR<C> implements Standard_Structu
 
     @Override
     public void add(String key, C value) {
+        if(isFixedKeyLength && key.length() != keyLength) {
+            System.out.println("Error: Length is not sufficient");
+            return;
+        }
+
         Entry<C> entry = new Entry<>(key, value);
         if(table.containsKey(key)) {
             record.addEntry(table.get(key));
@@ -193,5 +211,23 @@ public class SmartAR_HashTable<C> extends SmartAR<C> implements Standard_Structu
             System.out.println("Key " + key + " does not exist in historical record.");
         }
         return result;
+    }
+
+    /**
+     * A function to restructure and transfer all elements to a new sequence
+     * @return a new sequence containing every element in the current hashtable
+     */
+    public SmartAR_Sequence<C> restructure() {
+        SmartAR_Sequence<C> sequence = new SmartAR_Sequence<>(this.getSize());
+        System.out.println("Restructuring data to SEQUENCE");
+
+        table.forEach((k, v) -> {
+            sequence.add(k, v.getValue());
+
+        });
+        sequence.setRecord(this.record);
+        sequence.setCollision(this.getCollision());
+        sequence.setThrehold(this.getThrehold());
+        return sequence;
     }
 }

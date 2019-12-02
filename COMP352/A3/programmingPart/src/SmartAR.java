@@ -1,14 +1,13 @@
 public class SmartAR<E> {
 
-    private int Threhold;
+    protected int Threhold;
     protected int keyLength;
     protected boolean isFixedKeyLength = false;
     protected int size;
-    protected boolean initStructure = false;
 
     //CONSTRUCTOR
     public SmartAR() {
-        this(1000);
+        this(50000);
 
     }
 
@@ -28,11 +27,16 @@ public class SmartAR<E> {
         this.Threhold = threhold;
     }
 
+    public int getThrehold() {
+        return Threhold;
+    }
+
     public int getKeyLength() {
         return keyLength;
     }
 
     public void setKeyLength(int keyLength) {
+        isFixedKeyLength = true;
         this.keyLength = keyLength;
     }
 
@@ -56,17 +60,4 @@ public class SmartAR<E> {
         return (size >= Threhold);
     }
 
-    public SmartAR<E> setup() {
-        initStructure = true;
-        if(isLarge()) {
-            return new SmartAR_HashTable<E>();
-        }
-        return new SmartAR_Sequence<E>();
-    }
-
-    //A FUNCTION TO RE EVALUATE THE STRUCTURE WITH THE CHANGE IN SIZE
-    // OR A CHANGE IN THREHOLD HAPPENS
-    public void calibrateStructure() {
-
-    }
 }

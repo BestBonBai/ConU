@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structure<C>{
     private ArrayList<Entry<C>> sequence;
     private historicalRecord record;
-    private int duplicateOperation = 0;
+    private int collision = 0;
 
     public SmartAR_Sequence() {
         this(0);
@@ -12,17 +12,26 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
     }
 
     public SmartAR_Sequence(int n) {
+        super();
         sequence = new ArrayList<>(n);
         record = new historicalRecord();
 
     }
 
-    public int getDuplicateOperation() {
-        return duplicateOperation;
+    public historicalRecord getRecord() {
+        return record;
     }
 
-    public void setDuplicateOperation(int duplicateOperation) {
-        this.duplicateOperation = duplicateOperation;
+    public void setRecord(historicalRecord record) {
+        this.record = record;
+    }
+
+    public int getCollision() {
+        return collision;
+    }
+
+    public void setCollision(int collision) {
+        this.collision= collision;
     }
 
     @Override
@@ -61,6 +70,11 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
 
     @Override
     public void add(String key, C value) {
+        if(isFixedKeyLength && key.length() != keyLength) {
+            System.out.println("Error: Length is not sufficient");
+            return;
+        }
+
         try {
             this.remove(key); //clear the old key
         } catch(Exception e) {
@@ -73,7 +87,7 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
                 "\nOverwriting.\n");
         sequence.add(new Entry<C>(key, value));
         size++;
-        duplicateOperation++;
+        collision++;
 
     }
 
@@ -88,6 +102,7 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
             return temp;
 
         } catch (NullPointerException e) {
+            System.out.println("Key " + key + " does not exist");
             return null;
         }
     }
@@ -99,7 +114,7 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
             return sequence.get(index).getValue();
 
         } catch (NoSuchElementException e) {
-            System.out.println("No such key exists");
+            System.out.println("Key " + key + " does not exist");
         }
 
         return null;
@@ -116,7 +131,7 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
             }
 
         } catch (NoSuchElementException e) {
-            System.out.println("No such key exists");
+            System.out.println("Next key of " + key + " does not exist.");
         }
         return null;
     }
@@ -132,7 +147,7 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
             }
 
         } catch (NoSuchElementException e) {
-            System.out.println("No such key exists");
+            System.out.println("Prev key of " + key + " does not exist.");
         }
         return null;
     }
@@ -161,5 +176,23 @@ public class SmartAR_Sequence<C> extends SmartAR<C> implements Standard_Structur
             return null;
         }
         return result;
+    }
+
+    /**
+     * A function restructures, and switch the data structure to hash table
+     * @return a hash table with all the element in this sequence
+     */
+    public SmartAR_HashTable<C> restructure() {
+        SmartAR_HashTable<C> table = new SmartAR_HashTable<>(this.getSize());
+        System.out.println("Restructuring data to HASHTABLE");
+
+        for(Entry<C> each : sequence) {
+           table.add(each.getKey(), each.getValue());
+        }
+        table.setRecord(this.record);
+        table.setCollision(this.getCollision());
+        table.setThrehold(this.getThrehold());
+        return table;
+
     }
 }
