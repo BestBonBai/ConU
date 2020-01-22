@@ -8,7 +8,7 @@ public class Car {
 
     public Car(int door, String colour) {
         this.numberOfDoor = door;
-        this.colour = colour;
+        this.colour       = colour;
     }
 
     public int getNumberOfDoor() {

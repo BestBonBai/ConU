@@ -6,7 +6,7 @@ public class Entry<C> implements Comparable<Entry>{
     private boolean isFixedKeyLength;
 
     public Entry(String key, C value) {
-        this.key = key;
+        this.key   = key;
         this.value = value;
 
     }
