@@ -1,5 +1,3 @@
-package comp346pa1w2020;
-
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

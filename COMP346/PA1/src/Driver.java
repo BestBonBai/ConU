@@ -1,5 +1,3 @@
-package comp346pa1w2020;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,7 +8,7 @@ package comp346pa1w2020;
  *
  * @author Kerly Titus
  */
-public class comp546pa1driver {
+public class Driver{
 
     /** 
      * main class
