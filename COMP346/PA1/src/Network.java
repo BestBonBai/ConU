@@ -555,6 +555,10 @@ public class Network extends Thread {
     	
     	while (true)
     	{
+    	    if (inBufferStatus.equalsIgnoreCase("empty") || inBufferStatus.equalsIgnoreCase("full")
+                || outBufferStatus.equalsIgnoreCase("empty") || outBufferStatus.equalsIgnoreCase("full")) {
+    	            Thread.yield();
+            }
 		/* Implement the code for the run method */
     	}    
     }
