@@ -155,8 +155,11 @@ public class Client extends Thread {
          int i = 0;     /* index of transaction array */
          
          while (i < getNumberOfTransactions())
-         {  
-            // while( objNetwork.getInBufferStatus().equals("full") );     /* Alternatively, busy-wait until the network input buffer is available */
+         {
+             /* Alternatively, busy-wait until the network input buffer is available */
+            while( objNetwork.getInBufferStatus().equals("full") ) {
+                Thread.yield();
+            };
                                              	
             transaction[i].setTransactionStatus("sent");   /* Set current transaction status */
            
@@ -180,7 +183,9 @@ public class Client extends Thread {
          
          while (i < getNumberOfTransactions())
          {     
-        	 // while( objNetwork.getOutBufferStatus().equals("empty"));  	/* Alternatively, busy-wait until the network output buffer is available */
+        	 while( objNetwork.getOutBufferStatus().equals("empty")){
+        	     Thread.yield();
+             };  	/* Alternatively, busy-wait until the network output buffer is available */
                                                                         	
             objNetwork.receive(transact);                               	/* Receive updated transaction from the network buffer */
             
@@ -203,15 +208,34 @@ public class Client extends Thread {
      }
     
     /** Code for the run method
-     * 
-     * @return 
-     * @param
      */
     public void run()
     {   
     	Transactions transact = new Transactions();
     	long sendClientStartTime, sendClientEndTime, receiveClientStartTime, receiveClientEndTime;
-    
-	/* Implement the code for the run method */
+
+        /* Implement the code for client run method */
+    	if(getClientOperation().equals("sending")) {
+            sendClientStartTime = System.currentTimeMillis();
+            sendTransactions();
+            sendClientEndTime = System.currentTimeMillis();
+            long running_time = sendClientEndTime - sendClientStartTime;
+            System.out.println("Terminating client sending thread - Running time " + running_time + " milliseconds");
+
+        }
+    	else {
+    	    if(getClientOperation().equals("receiving")) {
+    	        receiveClientStartTime = System.currentTimeMillis();
+    	        receiveTransactions(transact);
+    	        receiveClientEndTime = System.currentTimeMillis();
+    	        long running_time = receiveClientEndTime - receiveClientStartTime;
+                System.out.println("Terminating client receiving thread - Running time " + running_time + " milliseconds");
+
+            } else {
+    	        //Final conditional statement
+                System.out.println("ERROR OCCURRED: UNIDENTIFIED CLIENT OPERATION ");
+            }
+        }
+
     }
 }

@@ -39,7 +39,7 @@ public class Server extends Thread {
       transaction = new Transactions();
       account = new Accounts[maxNbAccounts];
       objNetwork = new Network("server");
-      System.out.println("\n Inializing the Accounts database ...");
+      System.out.println("\n Initializing the Accounts database ...");
       initializeAccounts( );
       System.out.println("\n Connecting server to network ...");
       if (!(objNetwork.connect(objNetwork.getServerIP())))
@@ -191,9 +191,12 @@ public class Server extends Thread {
               
          /* Process the accounts until the client disconnects */
          while ((!objNetwork.getClientConnectionStatus().equals("disconnected")))
-         { 
-        	 /* while( (objNetwork.getInBufferStatus().equals("empty"))); */  /* Alternatively, busy-wait until the network input buffer is available */
-        	 
+         {
+             /* Alternatively, busy-wait until the network input buffer is available */
+        	 while( (objNetwork.getInBufferStatus().equals("empty"))) {
+        	    Thread.yield();
+             }
+
         	 if (!objNetwork.getInBufferStatus().equals("empty"))
         	 {
         		 System.out.println("\n DEBUG : Server.processTransactions() - transferring in account " + trans.getAccountNumber());
@@ -307,13 +310,15 @@ public class Server extends Thread {
      * @param
      */
     public void run()
-    {   Transactions trans = new Transactions();
+    {
+        Transactions trans = new Transactions();
     	long serverStartTime, serverEndTime;
-    	serverStartTime = System.currentTimeMillis();
+        System.out.println("\n DEBUG : Server.run() - starting server thread " + objNetwork.getServerConnectionStatus());
 
-    	System.out.println("\n DEBUG : Server.run() - starting server thread " + objNetwork.getServerConnectionStatus());
-    	
-    	/* Implement the code for the run method */
+        //Implement the code
+        serverStartTime = System.currentTimeMillis();
+
+        this.processTransactions(trans);
 
         serverEndTime = System.currentTimeMillis();
         System.out.println("\n Terminating server thread - " + " Running time " + (serverEndTime - serverStartTime) + " milliseconds");
