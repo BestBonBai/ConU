@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 
 /**
  *
- * @author Kerly Titus
+ * @author Kerly Titus provides the template
+ * @solution Duc Nguyen
  */
 public class Driver{
 
@@ -14,12 +12,18 @@ public class Driver{
      * main class
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
     	
-    	 /*******************************************************************************************************************************************
-    	  * TODO : implement all the operations of main class   																					*
-    	  ******************************************************************************************************************************************/
-        
+       // Set up IO stream to write output out to file
+        try {
+            PrintStream output = new PrintStream("outputWithDebug_3.txt");
+            System.setOut(output);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found or could not be opened");
+            System.exit(0);
+        }
+
+        //Starting up server, client, network
     	Network objNetwork = new Network("network");            /* Activate the network */
         objNetwork.start();
         Server objServer = new Server();                        /* Start the server */ 

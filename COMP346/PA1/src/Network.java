@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /** Network class
  *
  * @author Kerly Titus
+ * @solution Duc Nguyen
  */
 public class Network extends Thread {
     
@@ -215,7 +210,7 @@ public class Network extends Thread {
      }
 
     /**
-     *  Accessor method of Netowrk class
+     *  Accessor method of Network class
      * 
      * @return networkStatus
      * @param
@@ -361,11 +356,10 @@ public class Network extends Thread {
             inComingPacket[inputIndexClient].setTransactionBalance(inPacket.getTransactionBalance());
             inComingPacket[inputIndexClient].setTransactionError(inPacket.getTransactionError());
             inComingPacket[inputIndexClient].setTransactionStatus("transferred");
-            
+
             System.out.println("\n DEBUG : Network.send() - index inputIndexClient " + inputIndexClient);
             System.out.println("\n DEBUG : Network.send() - account number " + inComingPacket[inputIndexClient].getAccountNumber());
-            
-            
+
             setinputIndexClient(((getinputIndexClient( ) + 1) % getMaxNbPackets ()));	/* Increment the input buffer index  for the client */
             /* Check if input buffer is full */
             if (getinputIndexClient() == getoutputIndexServer())
@@ -393,10 +387,10 @@ public class Network extends Thread {
             outPacket.setTransactionBalance(outGoingPacket[outputIndexClient].getTransactionBalance());
             outPacket.setTransactionError(outGoingPacket[outputIndexClient].getTransactionError());
             outPacket.setTransactionStatus("done");
-            
+
             System.out.println("\n DEBUG : Network.receive() - index outputIndexClient " + outputIndexClient);
             System.out.println("\n DEBUG : Network.receive() - account number " + outPacket.getAccountNumber());
-            
+
             setoutputIndexClient(((getoutputIndexClient( ) + 1) % getMaxNbPackets( ))); /* Increment the output buffer index for the client */
             /* Check if output buffer is empty */
             if ( getoutputIndexClient( ) == getinputIndexServer( ))
@@ -459,10 +453,10 @@ public class Network extends Thread {
             inPacket.setTransactionBalance(inComingPacket[outputIndexServer].getTransactionBalance());
             inPacket.setTransactionError(inComingPacket[outputIndexServer].getTransactionError());
             inPacket.setTransactionStatus("received");
-           
+
             System.out.println("\n DEBUG : Network.transferIn() - index outputIndexServer " + outputIndexServer);
             System.out.println("\n DEBUG : Network.transferIn() - account number " + inPacket.getAccountNumber());
-            
+
            setoutputIndexServer(((getoutputIndexServer() + 1) % getMaxNbPackets()));	/* Increment the input buffer index for the server */
            /* Check if input buffer is empty */
             if ( getoutputIndexServer( ) == getinputIndexClient( ))
@@ -539,16 +533,7 @@ public class Network extends Thread {
 	        return ("\n Network status " + getNetworkStatus() + "Input buffer " + getInBufferStatus() + "Output buffer " + getOutBufferStatus());
 	    }
     
-     /***********************************************************************************************************************************************
-      * TODO : implement the method Run() to execute the server thread				 																*
-      * *********************************************************************************************************************************************/
-	     
-    /**
-     *  Code for the run method
-     * 
-     * @return 
-     * @param
-     */
+
     public void run()
     {	
     	System.out.println("\n DEBUG : Network.run() - starting network thread");
@@ -556,12 +541,14 @@ public class Network extends Thread {
     	while (true)
     	{
     	    //Implement the code
-    	    if(this.getClientConnectionStatus().equals("disconnected") && this.getServerConnectionStatus().equals("disconnected")) {
-    	        this.setNetworkStatus("inactive");
-    	        break;
+    	    if(getClientConnectionStatus().equals("disconnected") && getServerConnectionStatus().equals("disconnected")) {
+                System.out.println("\n Terminating network thread - Client " + getClientConnectionStatus() + " Server " + getServerConnectionStatus());
+                this.setNetworkStatus("inactive");
+                System.exit(0);
             } else {
     	        Thread.yield();
             }
     	}
+
     }
 }

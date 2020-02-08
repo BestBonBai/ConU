@@ -3,15 +3,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /** Client class
  *
- * @author Kerly Titus
+ *@author Kerly Titus
+ *@solution Duc Nguyen
  */
 
 public class Client extends Thread {
@@ -21,11 +16,9 @@ public class Client extends Thread {
     private static Transactions [] transaction; 	/* Transactions to be processed */
     private static Network objNetwork;          	/* Client object to handle network operations */
     private String clientOperation;    				/* sending or receiving */
+    static boolean ActiveSending;
     
 	/** Constructor method of Client class
- 	 * 
-     * @return 
-     * @param
      */
      Client(String operation)
      { 
@@ -34,16 +27,19 @@ public class Client extends Thread {
            System.out.println("\n Initializing client sending application ...");
            numberOfTransactions = 0;
            maxNbTransactions = 100;
-           transaction = new Transactions[maxNbTransactions];  
+           transaction = new Transactions[maxNbTransactions];
            objNetwork = new Network("client");
            clientOperation = operation; 
            System.out.println("\n Initializing the transactions ... ");
            readTransactions();
            System.out.println("\n Connecting client to network ...");
            String cip = objNetwork.getClientIP();
+          //Check connection
            if (!(objNetwork.connect(cip)))
            {   System.out.println("\n Terminating client application, network unavailable");
                System.exit(0);
+           } else {
+               Client.setActiveSending(true);
            }
        	}
        else
@@ -60,7 +56,7 @@ public class Client extends Thread {
      * @return numberOfTransactions
      * @param
      */
-     public int getNumberOfTransactions()
+     public static int getNumberOfTransactions()
      {
          return numberOfTransactions;
      }
@@ -97,8 +93,16 @@ public class Client extends Thread {
 	 { 
 	     clientOperation = operation;
 	 }
-         
-    /** 
+
+    public static boolean isActiveSending() {
+        return ActiveSending;
+    }
+
+    public static void setActiveSending(boolean activeSending) {
+        ActiveSending = activeSending;
+    }
+
+    /**
      * Reading of the transactions from an input file
      * 
      * @return 
@@ -111,7 +115,7 @@ public class Client extends Thread {
         
         try
         {
-        	inputStream = new Scanner(new FileInputStream("transaction.txt"));
+        	inputStream = new Scanner(new FileInputStream("./resources/transaction.txt"));
         }
         catch(FileNotFoundException e)
         {
@@ -158,6 +162,7 @@ public class Client extends Thread {
          {
              /* Alternatively, busy-wait until the network input buffer is available */
             while( objNetwork.getInBufferStatus().equals("full") ) {
+                objNetwork.setClientConnectionStatus("idle");
                 Thread.yield();
             };
                                              	
@@ -216,20 +221,32 @@ public class Client extends Thread {
 
         /* Implement the code for client run method */
     	if(getClientOperation().equals("sending")) {
+            System.out.println("\n DEBUG: Client.run() - starting client sending thread connected");
             sendClientStartTime = System.currentTimeMillis();
+
             sendTransactions();
+
             sendClientEndTime = System.currentTimeMillis();
+
             long running_time = sendClientEndTime - sendClientStartTime;
-            System.out.println("Terminating client sending thread - Running time " + running_time + " milliseconds");
+
+            System.out.println("\n Terminating client sending thread - Running time " + running_time + " milliseconds");
+            Client.setActiveSending(false);
 
         }
     	else {
     	    if(getClientOperation().equals("receiving")) {
+                System.out.println("\n DEBUG: Client.run() - starting client receiving thread connected");
     	        receiveClientStartTime = System.currentTimeMillis();
+
     	        receiveTransactions(transact);
+
     	        receiveClientEndTime = System.currentTimeMillis();
+
     	        long running_time = receiveClientEndTime - receiveClientStartTime;
-                System.out.println("Terminating client receiving thread - Running time " + running_time + " milliseconds");
+
+                System.out.println("\n Terminating client receiving thread - Running time " + running_time + " milliseconds");
+                objNetwork.disconnect(objNetwork.getClientIP());
 
             } else {
     	        //Final conditional statement

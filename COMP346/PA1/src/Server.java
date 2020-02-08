@@ -3,16 +3,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/*package comp546pa1w2020;*/
-
 /** Server class
  *
  * @author Kerly Titus
+ * @solution Duc Nguyen
  */
 
 public class Server extends Thread {
@@ -23,7 +17,7 @@ public class Server extends Thread {
 	Transactions transaction;         /* Transaction being processed */
 	Network objNetwork;               /* Server object to handle network operations */
 	Accounts [] account;              /* Accounts to be accessed or updated */
-  
+
     /** 
      * Constructor method of Client class
      * 
@@ -128,7 +122,7 @@ public class Server extends Thread {
         
         try
         {
-         inputStream = new Scanner(new FileInputStream("account.txt"));
+         inputStream = new Scanner(new FileInputStream("./resources/account.txt"));
         }
         catch(FileNotFoundException e)
         {
@@ -194,12 +188,18 @@ public class Server extends Thread {
          {
              /* Alternatively, busy-wait until the network input buffer is available */
         	 while( (objNetwork.getInBufferStatus().equals("empty"))) {
-        	    Thread.yield();
+        	     if(!Client.isActiveSending()) {
+        	         //Sending Client thread is terminated
+                     break;
+                 }
+                 objNetwork.setServerConnectionStatus("idle");
+                 Thread.yield();
+                 objNetwork.setServerConnectionStatus("connected");
              }
 
         	 if (!objNetwork.getInBufferStatus().equals("empty"))
         	 {
-        		 System.out.println("\n DEBUG : Server.processTransactions() - transferring in account " + trans.getAccountNumber());
+        		System.out.println("\n DEBUG : Server.processTransactions() - transferring in account " + trans.getAccountNumber());
         		 
         		 objNetwork.transferIn(trans);                              /* Transfer a transaction from the network input buffer */
              
@@ -211,7 +211,7 @@ public class Server extends Thread {
         			 trans.setTransactionBalance(newBalance);
         			 trans.setTransactionStatus("done");
         			 
-        			 System.out.println("\n DEBUG : Server.processTransactions() - Deposit of " + trans.getTransactionAmount() + " in account " + trans.getAccountNumber());
+        			System.out.println("\n DEBUG : Server.processTransactions() - Deposit of " + trans.getTransactionAmount() + " in account " + trans.getAccountNumber());
         		 }
         		 else
         			 /* Process withdraw operation */
@@ -221,7 +221,7 @@ public class Server extends Thread {
         				 trans.setTransactionBalance(newBalance);
         				 trans.setTransactionStatus("done");
         				 
-        				 System.out.println("\n DEBUG : Server.processTransactions() - Withdrawal of " + trans.getTransactionAmount() + " from account " + trans.getAccountNumber());
+        				System.out.println("\n DEBUG : Server.processTransactions() - Withdrawal of " + trans.getTransactionAmount() + " from account " + trans.getAccountNumber());
         			 }
         			 else
         				 /* Process query operation */
@@ -232,9 +232,14 @@ public class Server extends Thread {
                             trans.setTransactionStatus("done");
                             
                             System.out.println("\n DEBUG : Server.processTransactions() - Obtaining balance from account" + trans.getAccountNumber());
-        				 } 
-        		        		 
-        		 // while( (objNetwork.getOutBufferStatus().equals("full"))); /* Alternatively,  busy-wait until the network output buffer is available */
+        				 }
+
+                 /* Alternatively,  busy-wait until the network output buffer is available */
+        		 while( (objNetwork.getOutBufferStatus().equals("full"))) {
+        		     objNetwork.setServerConnectionStatus("idle");
+        		     Thread.yield();
+        		     objNetwork.setServerConnectionStatus("connected");
+                 }
                                                            
         		 System.out.println("\n DEBUG : Server.processTransactions() - transferring out account " + trans.getAccountNumber());
         		 
@@ -299,16 +304,6 @@ public class Server extends Thread {
     	 return ("\n server IP " + objNetwork.getServerIP() + "connection status " + objNetwork.getServerConnectionStatus() + "Number of accounts " + getNumberOfAccounts());
      }
      
-     /* *********************************************************************************************************************************************
-      * TODO : implement the method Run() to execute the server thread				 																*
-      * *********************************************************************************************************************************************/
-     
-    /**
-     * Code for the run method
-     * 
-     * @return 
-     * @param
-     */
     public void run()
     {
         Transactions trans = new Transactions();
@@ -321,8 +316,10 @@ public class Server extends Thread {
         this.processTransactions(trans);
 
         serverEndTime = System.currentTimeMillis();
+
         System.out.println("\n Terminating server thread - " + " Running time " + (serverEndTime - serverStartTime) + " milliseconds");
-           
+        objNetwork.disconnect(objNetwork.getServerIP());
+
     }
 }
 
