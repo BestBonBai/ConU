@@ -3,22 +3,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class main {
-    protected static SmartAR_Sequence<Car> sequence;
+    protected static SmartAR_Sequence<Car>  sequence;
     protected static SmartAR_HashTable<Car> table;
-    protected static boolean isLarge;
-    protected static boolean useSequence;
-    protected static boolean useTable;
+    protected static boolean                isLarge;
+    protected static boolean                useSequence;
+    protected static boolean                useTable;
 
-    protected static String logPATH = "./log.txt";
-    protected static Scanner keyIn = new Scanner(System.in);
+    protected static String                 logPATH          = "./log.txt";
+    protected static Scanner                keyIn            = new Scanner(System.in);
 
-    protected static PrintWriter pw = null;
+    protected static PrintWriter            pw               = null;
 
-    protected static Scanner input;
-    protected static boolean inputStat = false;
+    protected static Scanner                input;
+    protected static boolean                inputStat        = false;
 
-    protected static boolean isFixedKeyLength = false;
-    protected static int fixedKeyLength;
+    protected static boolean                isFixedKeyLength = false;
+    protected static int                    fixedKeyLength;
 
 
     //DATA STRUCTURE OPERATIONS
