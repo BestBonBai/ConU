@@ -8,7 +8,6 @@ import java.util.InputMismatchException;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*package comp546pa1w2020;*/
 
 /** Server class
  *
@@ -271,10 +270,12 @@ public class Server extends Thread {
          /* Process the accounts until the client disconnects */
          while ((!Network.getClientConnectionStatus().equals("disconnected")))
          {
+             /*
         	while ( (Network.getInBufferStatus().equals("empty") && !Network.getClientConnectionStatus().equals("disconnected")) )
         	{
-        	    Thread.yield(); 	/* Yield the cpu if the network input buffer is empty */
+        	    Thread.yield(); 	//Yield the cpu if the network input buffer is empty
         	}
+            */
         	 
         	 if (!Network.getInBufferStatus().equals("empty"))
         	 { 
@@ -313,11 +314,12 @@ public class Server extends Thread {
                                  System.out.println("\n DEBUG : Server.processTransactions() - Obtaining balance from account" + trans.getAccountNumber());
 					}
 
-            	
+            /*
         	while (Network.getOutBufferStatus().equals("full"))
         	{
-        	    Thread.yield();		/* Yield the cpu if the network output buffer is full */
+        	    Thread.yield();		// Yield the cpu if the network output buffer is full
         	}
+        	 */
         		
         		 System.out.println("\n DEBUG : Server.processTransactions() - transferring out account " + trans.getAccountNumber());
         		 
@@ -436,8 +438,9 @@ public class Server extends Thread {
         }
 
         // Disconnect server from network if the 2 threads terminated
-        if(serverThreadRunningStatus1.equalsIgnoreCase("terminated")
-        && serverThreadRunningStatus2.equalsIgnoreCase("terminated")) {
+        if(getServerThreadRunningStatus1().equalsIgnoreCase("terminated")
+        && getServerThreadRunningStatus2().equalsIgnoreCase("terminated")
+        && Network.getClientConnectionStatus().equalsIgnoreCase("disconnected")) {
             Network.disconnect(Network.getServerIP());
         }
 	

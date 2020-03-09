@@ -156,11 +156,13 @@ public class Client extends Thread {
          
          while (i < getNumberOfTransactions())
          {  
-	
-		while (Network.getInBufferStatus().equals("full"))
-		{
-			Thread.yield(); 	/* Yield the cpu if the network input buffer is full */
-		}
+
+             /*
+            while (Network.getInBufferStatus().equals("full"))
+            {
+                Thread.yield(); 	//Yield the cpu if the network input buffer is full
+            }
+            */
                                               	
             transaction[i].setTransactionStatus("sent");   /* Set current transaction status */
            
@@ -183,12 +185,13 @@ public class Client extends Thread {
          int i = 0;     /* Index of transaction array */
          
          while (i < getNumberOfTransactions())
-         {   
+         {
+             /*
         	while (Network.getOutBufferStatus().equals("empty"))
         	{
-        		Thread.yield(); 	/* Yield the cpu if the network output buffer is full */
+        		Thread.yield(); 	// Yield the cpu if the network output buffer is full
         		 
-        	}
+        	} */
                                                                             	
             Network.receive(transact);                               	/* Receive updated transaction from the network buffer */
             

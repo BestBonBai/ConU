@@ -5,7 +5,6 @@
  */
 
 import java.io.*;
-import java.util.Scanner;
 
 /**
  *
@@ -18,9 +17,9 @@ public class Driver {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        File outputFile = new File("./output/output-synchronized2.txt");
-        PrintStream output = null;
         //Set up IO stream to write output to a file
+        File outputFile = new File("./output/output-semaphore3.txt");
+        PrintStream output = null;
         try {
             output = new PrintStream(outputFile);
             System.setOut(output);
