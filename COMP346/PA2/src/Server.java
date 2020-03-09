@@ -338,7 +338,7 @@ public class Server extends Thread {
      * @param i, amount
      */
    
-     public double deposit(int i, double amount)
+     public synchronized double deposit(int i, double amount)
      {  double curBalance;      /* Current account balance */
        
      		curBalance = account[i].getBalance( );          /* Get current account balance */
@@ -349,7 +349,8 @@ public class Server extends Thread {
      			try {
      					Thread.sleep(100);
      				}
-     				catch (InterruptedException e) {
+     			catch (InterruptedException e) {
+     			    e.printStackTrace();
         	
      				} 
      		} 
@@ -367,7 +368,7 @@ public class Server extends Thread {
      * @param i, amount
      */
  
-     public double withdraw(int i, double amount)
+     public synchronized double withdraw(int i, double amount)
      {  double curBalance;      /* Current account balance */
         
 	curBalance = account[i].getBalance( );          /* Get current account balance */
@@ -386,7 +387,7 @@ public class Server extends Thread {
      * @param i
      */
  
-     public double query(int i)
+     public synchronized double query(int i)
      {  double curBalance;      /* Current account balance */
         
 	curBalance = account[i].getBalance( );          /* Get current account balance */
@@ -414,7 +415,8 @@ public class Server extends Thread {
      */
       
     public void run()
-    {   Transactions trans = new Transactions();
+    {
+        Transactions trans = new Transactions();
     	 long serverStartTime, serverEndTime;
 
         /* .....................................................................................................................................................................................................*/
@@ -424,8 +426,21 @@ public class Server extends Thread {
         this.processTransactions(trans);
 
         serverEndTime = System.currentTimeMillis();
-        System.out.println("\n Terminating server thread - " + " Running time " + (serverEndTime - serverStartTime) + " milliseconds");
-        Network.disconnect(Network.getServerIP());
+        System.out.println("\n Terminating server thread - " + serverThreadId + " Running time " + (serverEndTime - serverStartTime) + " milliseconds");
+
+        if(getServerThreadId().equalsIgnoreCase("serverThread1")) {
+            setServerThreadRunningStatus1("terminated");
+        }
+
+        if(getServerThreadId().equalsIgnoreCase("serverThread2")) {
+            setServerThreadRunningStatus2("terminated");
+        }
+
+        // Disconnect server from network if the 2 threads terminated
+        if(serverThreadRunningStatus1.equalsIgnoreCase("terminated")
+        && serverThreadRunningStatus2.equalsIgnoreCase("terminated")) {
+            Network.disconnect(Network.getServerIP());
+        }
 	
     }
 }

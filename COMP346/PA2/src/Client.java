@@ -157,10 +157,10 @@ public class Client extends Thread {
          while (i < getNumberOfTransactions())
          {  
 	
-        while (Network.getInBufferStatus().equals("full"))
-        {
-        Thread.yield(); 	/* Yield the cpu if the network input buffer is full */
-        }
+		while (Network.getInBufferStatus().equals("full"))
+		{
+			Thread.yield(); 	/* Yield the cpu if the network input buffer is full */
+		}
                                               	
             transaction[i].setTransactionStatus("sent");   /* Set current transaction status */
            
@@ -186,7 +186,7 @@ public class Client extends Thread {
          {   
         	while (Network.getOutBufferStatus().equals("empty"))
         	{
-        	Thread.yield(); 	/* Yield the cpu if the network output buffer is full */
+        		Thread.yield(); 	/* Yield the cpu if the network output buffer is full */
         		 
         	}
                                                                             	
@@ -235,24 +235,23 @@ public class Client extends Thread {
             System.out.println("\n Terminating client sending thread - Running time " + running_time + " milliseconds");
 
         }
-        else {
-            if(getClientOperation().equals("receiving")) {
-                System.out.println("\n DEBUG: Client.run() - starting client receiving thread connected");
-                receiveClientStartTime = System.currentTimeMillis();
 
-                receiveTransactions(transact);
+        if(getClientOperation().equals("receiving")) {
+            System.out.println("\n DEBUG: Client.run() - starting client receiving thread connected");
+            receiveClientStartTime = System.currentTimeMillis();
 
-                receiveClientEndTime = System.currentTimeMillis();
+            receiveTransactions(transact);
 
-                long running_time = receiveClientEndTime - receiveClientStartTime;
+            receiveClientEndTime = System.currentTimeMillis();
 
-                System.out.println("\n Terminating client receiving thread - Running time " + running_time + " milliseconds");
-                Network.disconnect(Network.getClientIP());
+            long running_time = receiveClientEndTime - receiveClientStartTime;
 
-            } else {
-                //Final conditional statement
-                System.out.println("ERROR OCCURRED: UNIDENTIFIED CLIENT OPERATION ");
-            }
+            System.out.println("\n Terminating client receiving thread - Running time " + running_time + " milliseconds");
+
+            Network.disconnect(Network.getClientIP()); // Finished every transaction
+        } else {
+            //Final conditional statement
+            System.out.println("ERROR OCCURRED: UNIDENTIFIED CLIENT OPERATION ");
         }
 
     }
