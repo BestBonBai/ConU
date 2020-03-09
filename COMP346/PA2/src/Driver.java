@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import java.io.*;
+import java.util.Scanner;
 
 /**
  *
@@ -18,9 +18,11 @@ public class Driver {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        File outputFile = new File("./output/output-synchronized2.txt");
+        PrintStream output = null;
         //Set up IO stream to write output to a file
         try {
-            PrintStream output = new PrintStream("./output/output-semaphore1.txt");
+            output = new PrintStream(outputFile);
             System.setOut(output);
         } catch (FileNotFoundException e) {
             System.out.println("Output file not found or cannot be opened");
@@ -39,9 +41,9 @@ public class Driver {
         objClient1.start();
         Client objClient2 = new Client("receiving");        /* Start the receiving client thread */
         objClient2.start();
-        
+
       /*..............................................................................................................................................................*/
-       
+
     }
-    
+
  }

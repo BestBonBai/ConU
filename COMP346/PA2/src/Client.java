@@ -234,24 +234,25 @@ public class Client extends Thread {
 
             System.out.println("\n Terminating client sending thread - Running time " + running_time + " milliseconds");
 
-        }
-
-        if(getClientOperation().equals("receiving")) {
-            System.out.println("\n DEBUG: Client.run() - starting client receiving thread connected");
-            receiveClientStartTime = System.currentTimeMillis();
-
-            receiveTransactions(transact);
-
-            receiveClientEndTime = System.currentTimeMillis();
-
-            long running_time = receiveClientEndTime - receiveClientStartTime;
-
-            System.out.println("\n Terminating client receiving thread - Running time " + running_time + " milliseconds");
-
-            Network.disconnect(Network.getClientIP()); // Finished every transaction
         } else {
-            //Final conditional statement
-            System.out.println("ERROR OCCURRED: UNIDENTIFIED CLIENT OPERATION ");
+            if(getClientOperation().equals("receiving")) {
+                System.out.println("\n DEBUG: Client.run() - starting client receiving thread connected");
+                receiveClientStartTime = System.currentTimeMillis();
+
+                receiveTransactions(transact);
+
+                receiveClientEndTime = System.currentTimeMillis();
+
+                long running_time = receiveClientEndTime - receiveClientStartTime;
+
+                System.out.println("\n Terminating client receiving thread - Running time " + running_time + " milliseconds");
+
+                Network.disconnect(Network.getClientIP()); // Finished every transaction
+            } else {
+                //Final conditional statement
+                System.out.println("ERROR OCCURRED: UNIDENTIFIED CLIENT OPERATION ");
+            }
+
         }
 
     }
