@@ -58,7 +58,7 @@ public class Network extends Thread {
          networkStatus = "active";
 
          emptySending = new Semaphore(maxNbPackets);      //empty count
-         fullTransferIn = new Semaphore(0); //full count
+         fullTransferIn = new Semaphore(0);     //full count
          mutexIn = new Semaphore(1);
 
          emptyTransferOut = new Semaphore(maxNbPackets); //empty count
@@ -363,15 +363,11 @@ public class Network extends Thread {
         {
                 try {
                     emptySending.acquire();
+                    mutexIn.acquire();
                 } catch (InterruptedException e) {
                     System.out.println("Interruption occurred");
                 }
 
-                try{
-                    mutexIn.acquire();
-                } catch(InterruptedException e) {
-                    System.out.println("Mutex was interrupted");
-                }
         		  inComingPacket[inputIndexClient].setAccountNumber(inPacket.getAccountNumber());
         		  inComingPacket[inputIndexClient].setOperationType(inPacket.getOperationType());
         		  inComingPacket[inputIndexClient].setTransactionAmount(inPacket.getTransactionAmount());
@@ -412,14 +408,9 @@ public class Network extends Thread {
     {
         try {
             fullTransferIn.acquire();
+            mutexIn.acquire();
         } catch (InterruptedException e) {
             System.out.println("Interruption occurred");
-        }
-
-        try{
-            mutexIn.acquire();
-        } catch(InterruptedException e) {
-            System.out.println("Mutex is interrupted");
         }
 
         inPacket.setAccountNumber(inComingPacket[outputIndexServer].getAccountNumber());
@@ -461,15 +452,11 @@ public class Network extends Thread {
         {
                 try {
                     fullReceiving.acquire();
+                    mutexOut.acquire();
                 } catch (InterruptedException e) {
                     System.out.println("Interruption occurred");
                 }
 
-                try {
-                    mutexOut.acquire();
-                } catch(InterruptedException e) {
-                    System.out.println("Mutex is interrupted");
-                }
         		 outPacket.setAccountNumber(outGoingPacket[outputIndexClient].getAccountNumber());
         		 outPacket.setOperationType(outGoingPacket[outputIndexClient].getOperationType());
         		 outPacket.setTransactionAmount(outGoingPacket[outputIndexClient].getTransactionAmount());
@@ -510,15 +497,11 @@ public class Network extends Thread {
         {
 	        try {
 	            emptyTransferOut.acquire();
+	            mutexOut.acquire();
             } catch(InterruptedException e) {
                 System.out.println("Interruption occurred");
             }
 
-	        try{
-	            mutexOut.acquire();
-            } catch (InterruptedException e) {
-                System.out.println("Mutex is interrupted");
-            }
         		outGoingPacket[inputIndexServer].setAccountNumber(outPacket.getAccountNumber());
         		outGoingPacket[inputIndexServer].setOperationType(outPacket.getOperationType());
         		outGoingPacket[inputIndexServer].setTransactionAmount(outPacket.getTransactionAmount());

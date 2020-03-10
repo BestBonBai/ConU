@@ -18,7 +18,7 @@ public class Driver {
      */
     public static void main(String[] args) {
         //Set up IO stream to write output to a file
-        File outputFile = new File("./output/output-semaphore3.txt");
+        File outputFile = new File("./output/output-semaphore1.txt");
         PrintStream output = null;
         try {
             output = new PrintStream(outputFile);

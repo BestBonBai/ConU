@@ -276,7 +276,6 @@ public class Server extends Thread {
         	    Thread.yield(); 	//Yield the cpu if the network input buffer is empty
         	}
             */
-        	 
         	 if (!Network.getInBufferStatus().equals("empty"))
         	 { 
         		 System.out.println("\n DEBUG : Server.processTransactions() - transferring in account " + trans.getAccountNumber());
@@ -324,6 +323,7 @@ public class Server extends Thread {
         		 System.out.println("\n DEBUG : Server.processTransactions() - transferring out account " + trans.getAccountNumber());
         		 
         		 Network.transferOut(trans);                            		/* Transfer a completed transaction from the server to the network output buffer */
+
         		 setNumberOfTransactions( (getNumberOfTransactions() +  1) ); 	/* Count the number of transactions processed */
         	 }
          }
@@ -439,8 +439,7 @@ public class Server extends Thread {
 
         // Disconnect server from network if the 2 threads terminated
         if(getServerThreadRunningStatus1().equalsIgnoreCase("terminated")
-        && getServerThreadRunningStatus2().equalsIgnoreCase("terminated")
-        && Network.getClientConnectionStatus().equalsIgnoreCase("disconnected")) {
+        && getServerThreadRunningStatus2().equalsIgnoreCase("terminated")) {
             Network.disconnect(Network.getServerIP());
         }
 	
