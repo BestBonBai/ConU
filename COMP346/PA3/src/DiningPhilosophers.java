@@ -11,6 +11,8 @@ public class DiningPhilosophers
 	 * Data members
 	 * ------------
 	 */
+	public static Philosopher.status[] states;
+	public static boolean[] self;
 
 	/**
 	 * This default may be overridden from the command line
@@ -24,9 +26,9 @@ public class DiningPhilosophers
 	public static final int DINING_STEPS = 10;
 
 	/**
-	 * Our shared monitor for the philosphers to consult
+	 * Our shared monitor for the philosophers to consult
 	 */
-	public static Monitor soMonitor = null;
+	public static Monitor sharedMonitor = null;
 
 	/*
 	 * -------
@@ -49,30 +51,30 @@ public class DiningPhilosophers
 			int iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
 
 			// Make the monitor aware of how many philosophers there are
-			soMonitor = new Monitor(iPhilosophers);
+			sharedMonitor = new Monitor(iPhilosophers);
 
 			// Space for all the philosophers
-			Philosopher aoPhilosophers[] = new Philosopher[iPhilosophers];
+			// Stages of mind of philosophers
+			Philosopher[] groupPhilosopher = new Philosopher[iPhilosophers];
+			states = new Philosopher.status[iPhilosophers];
+			self = new boolean[iPhilosophers];
 
 			// Let 'em sit down
 			for(int j = 0; j < iPhilosophers; j++)
 			{
-				aoPhilosophers[j] = new Philosopher();
-				aoPhilosophers[j].start();
+				groupPhilosopher[j] = new Philosopher();
+				states[j] = Philosopher.status.thinking;
+				self[j] = false;
+				groupPhilosopher[j].start();
 			}
 
-			System.out.println
-			(
-				iPhilosophers +
-				" philosopher(s) came in for a dinner."
-			);
+			System.out.println (iPhilosophers + " philosopher(s) came in for a dinner.");
 
 			// Main waits for all its children to die...
 			// I mean, philosophers to finish their dinner.
 			for(int j = 0; j < iPhilosophers; j++)
-				aoPhilosophers[j].join();
-
-			System.out.println("All philosophers have left. System terminates normally.");
+				groupPhilosopher[j].join();
+        System.out.println("All philosophers have left. System terminates normally.");
 		}
 		catch(InterruptedException e)
 		{
@@ -80,7 +82,8 @@ public class DiningPhilosophers
 			reportException(e);
 			System.exit(1);
 		}
-	} // main()
+
+	} 
 
 	/**
 	 * Outputs exception information to STDERR
@@ -94,5 +97,3 @@ public class DiningPhilosophers
 		poException.printStackTrace(System.err);
 	}
 }
-
-// EOF

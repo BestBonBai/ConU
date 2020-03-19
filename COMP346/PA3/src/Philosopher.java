@@ -8,6 +8,8 @@ import common.BaseThread;
  */
 public class Philosopher extends BaseThread
 {
+	enum status {eating, hungry, thinking};
+
 	/**
 	 * Max time an action can take (in milliseconds)
 	 */
@@ -25,9 +27,10 @@ public class Philosopher extends BaseThread
 	{
 		try
 		{
-			// ...
+			System.out.println("I ... the great philosopher number " + this.iTID+ " eating...");
+			yield();
 			sleep((long)(Math.random() * TIME_TO_WASTE));
-			// ...
+			System.out.println("I am philosopher number " + this.iTID + " done eating. This is a waste of time !");
 		}
 		catch(InterruptedException e)
 		{
@@ -47,6 +50,7 @@ public class Philosopher extends BaseThread
 	 */
 	public void think()
 	{
+
 		// ...
 	}
 
@@ -74,11 +78,11 @@ public class Philosopher extends BaseThread
 	{
 		for(int i = 0; i < DiningPhilosophers.DINING_STEPS; i++)
 		{
-			DiningPhilosophers.soMonitor.pickUp(getTID());
+			DiningPhilosophers.sharedMonitor.pickUp(getTID());
 
 			eat();
 
-			DiningPhilosophers.soMonitor.putDown(getTID());
+			DiningPhilosophers.sharedMonitor.putDown(getTID());
 
 			think();
 

@@ -11,6 +11,7 @@ public class Monitor
 	 * Data members
 	 * ------------
 	 */
+	int numberOfChopsticks;
 
 
 	/**
@@ -19,6 +20,7 @@ public class Monitor
 	public Monitor(int piNumberOfPhilosophers)
 	{
 		// TODO: set appropriate number of chopsticks based on the # of philosophers
+		numberOfChopsticks = piNumberOfPhilosophers;
 	}
 
 	/*
@@ -33,7 +35,8 @@ public class Monitor
 	 */
 	public synchronized void pickUp(final int piTID)
 	{
-		// ...
+		DiningPhilosophers.states[piTID] = Philosopher.status.hungry;
+
 	}
 
 	/**
@@ -42,11 +45,12 @@ public class Monitor
 	 */
 	public synchronized void putDown(final int piTID)
 	{
-		// ...
+		DiningPhilosophers.states[piTID] = Philosopher.status.thinking;
 	}
 
+
 	/**
-	 * Only one philopher at a time is allowed to philosophy
+	 * Only one philosopher at a time is allowed to philosophy
 	 * (while she is not eating).
 	 */
 	public synchronized void requestTalk()
