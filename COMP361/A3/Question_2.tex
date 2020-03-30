@@ -16,5 +16,197 @@ Do the same computations and analysis for the Chord Method when $x^{0} = 0.1$.
 More generally, analytically determine all values of $x^{0}$ for which the Chord method will converge to the cube root of 5.
 \\
 \textbf{Solution:}
+\subsection{With $x_{(0)} = 1$}
 
+\subsubsection{Numerically carry out first 10 iterations}
+Python with Jupyter Notebook was being used to calculate the first 10 iterations, the algorithm is below. To check out the full source code, got to file in the directory of program.Problem2.ipynb
+\begin{lstlisting}
+# Main algorithm
+def chord(f, diff, init_x, max_iter=1000):
+    x = init_x
+    estimates = []
+    listX = [x]
+    for i in range(max_iter):
+        deltaX = -f(x)/diff(init_x)
+        x = x + deltaX
+        listX.append(x)
+        estimates.append(x)
+    return x, listX, estimates
+\end{lstlisting}
+
+The results are as following:
+\begin{quote}
+Xi =  1
+X(i+1) =  2.333333333333333 
+
+Xi =  2.333333333333333
+X(i+1) =  -0.23456790123456672 
+
+Xi =  -0.23456790123456672
+X(i+1) =  1.4364009049609154 
+
+Xi =  1.4364009049609154
+X(i+1) =  2.115184017622358 
+
+Xi =  2.115184017622358
+X(i+1) =  0.6274038354390186 
+
+Xi =  0.6274038354390186
+X(i+1) =  2.2117476794083464 
+
+Xi =  2.2117476794083464
+X(i+1) =  0.271918086443556 
+
+Xi =  0.271918086443556
+X(i+1) =  1.9318829289112252 
+
+Xi =  1.9318829289112252
+X(i+1) =  1.1951766954547978 
+
+Xi =  1.1951766954547978
+X(i+1) =  2.2927610409500208 
+\end{quote}
+
+\subsubsection{Determine the fixed points}
+\textbf{Cube root of 5} is a zero of function g (x)
+Thus, let $g(x) = x^{3} - 5$
+
+\newtheorem{mydef}{Definition}
+\begin{mydef}
+\textbf{Chord method}
+$x^{(k+1)} = x^{k} - \frac{g(x^{k})}{g'(x^{(0)})}$
+\end{mydef}
+
+Apply Chord method with g (x) and $x_0 = 1$:
+\begin{align*}
+    f(x) = x - \frac{x^{3} - 5}{3x_{0}^{2}}
+    = x - \frac{x^{3} - 5}{3}
+    = \frac{3x - x^{3} + 5}{3}
+\end{align*}
+To find the fixed point of f (x), let x = f (x)
+\begin{align*}
+    x = f(x) \\
+    \implies x = \frac{3x - x^{3} + 5}{3} \\
+    \implies 3x = 3x - x^{3} + 5 \\
+    \implies 5 - x^{3} = 0 \\
+    \implies x = \sqrt[3]{5}
+\end{align*}
+The fixed point of f (x) is $x = \sqrt[3]{5}$
+
+\subsubsection{Analyze fixed points of Chord iteration:}
+\begin{align*}
+    f'(x) = (x - \frac{x^{3} - 5}{3})'\\
+    = 1 - x^{2}\\
+    \implies |f'(x_{*})| = |1 - x_{*}^{2}| = |1 - (\sqrt[3]{5})^{2}| = 1.924 > 1
+\end{align*}
+$|f'(x_{*})| > 1$; thus the fixed point is \textbf{diverge} 
+
+\subsubsection{Fixed point iteration diagram}
+% Graph of the iteration no 1 \to  10
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+   \begin{axis}[my style,restrict y to domain=-5:5,width=\linewidth, xmin=-2, xmax=4,ymin=-2,ymax=4]
+      \addplot[samples=200]{(3*x-x^3+5)/(3)};
+      \addplot[domain=-4:4,color=blue]{x};
+      \addplot[mark=none,color=red,very thick] coordinates {
+          (1,0) (1, 7/3) (7/3, 7/3) (7/3, -19/81) 
+          (-19/81, -19/81) (-19/81, 1.436400905) 
+          (1.436400905, 1.436400905) (1.436400905, 2.115184017622358) 
+          (2.115184017622358 , 2.115184017622358 ) (2.115184017622358 , 0.6274038354390186 ) 
+          (0.6274038354390186 , 0.6274038354390186 ) (0.6274038354390186 , 2.2117476794083464 )
+          (2.2117476794083464 , 2.2117476794083464 ) (2.2117476794083464 , 0.271918086443556 )
+          (0.271918086443556 , 0.271918086443556 ) (0.271918086443556 , 1.9318829289112252 )
+          (1.9318829289112252 , 1.9318829289112252 ) (1.9318829289112252 , 1.1951766954547978 )
+          (1.1951766954547978 , 1.1951766954547978 ) (1.1951766954547978 , 2.2927610409500208 )
+        };
+   \end{axis}
+\end{tikzpicture}
+\caption{Fixed point iteration no.1 to no. 10 diagram}
+\end{figure}
+
+\subsection{With $x^{0} = 0.1$}
+
+\subsubsection{Numerically carry out first 10 iterations}
+Python with Jupyter Notebook was being used to calculate the first 10 iterations, the algorithm is the same as above question. To check out the full source code, got to file in the directory of program.Problem2.ipynb
+
+The results are as following:
+\begin{quote}
+Iteration no.  1
+Xi =  0.1
+X(i+1) =  166.7333333333333 
+
+Iteration no.  2
+Xi =  166.7333333333333
+X(i+1) =  -154505913.52345666 
+
+Iteration no.  3
+Xi =  -154505913.52345666
+X(i+1) =  1.229459037686188e+26 
+
+Iteration no.  4
+Xi =  1.229459037686188e+26
+X(i+1) =  -6.194709380101413e+79 
+
+Iteration no.  5
+Xi =  -6.194709380101413e+79
+X(i+1) =  7.923946873048754e+240 
+
+\end{quote}
+\textit{Note:} More than iteration 5, the result is too big to be computed.
+
+\subsubsection{Determine the fixed points}
+Let $g(x) = x^{3} - 5$
+
+Apply Chord method with g (x) and $x_0 = 0.1$:
+\begin{align*}
+    f(x) = x - \frac{x^{3} - 5}{3x_{0}^{2}}
+    = x - \frac{x^{3} - 5}{0.03}
+    = \frac{0.03x - x^{3} + 5}{0.03}
+\end{align*}
+To find the fixed point of f (x), let x = f (x)
+\begin{align*}
+    x = f(x) \\
+    \implies x = \frac{0.03x - x^{3} + 5}{0.03} \\
+    \implies 0.03x = 0.03x - x^{3} + 5 \\
+    \implies x^{3} - 5 = 0 \\
+    \implies x = \sqrt[3]{5}
+\end{align*}
+The fixed point of f (x) is $x = \sqrt[3]{5}$
+
+\subsubsection{Analyze fixed points of Chord iteration:}
+\begin{align*}
+    f'(x) = (x - \frac{x^{3} - 5}{0.03})'\\
+    ||f'(x_{*})| = |1- 100x_{*}^2| = |1 - 100(\sqrt[3]{5})^{2}|
+    = 281.401 > 1
+\end{align*}
+$|f'(x_{*})| > 1$; thus the fixed point is \textbf{diverge} 
+
+\subsubsection{Fixed point iteration diagram}
+\textit{The result is too big that it is insufficient to draw such iteration graph}
+
+\subsection{Analyze the condition of $x^{(0)}$ to make the Chord method converge}
+To find the fixed point, the equation is:
+\begin{align*}
+    x = x - \frac{x^{3} - 5}{3x_0^2} \\
+    \implies x^{3} - 5 = 0
+    \implies x = \sqrt[3]{5}
+\end{align*}
+\textbf{Conclude:} the value of the fixed point does not depend on the value of $x_0$ in Chord method. It is always $\sqrt[3]{5}$ \\
+The Chord method converges when:
+\begin{align*}
+    \implies |f'(x_(*))| < 1
+    \implies |(x - \frac{x^{3} - 5}{3x_0^2})'| < 1  \\
+    \implies |1 - \frac{1}{3x_0^2}(3x^2)| < 1 
+    \implies |1 - \frac{x^2}{x_0^2}| < 1 \textbf{(1)}\\
+    \frac{x^2}{x_0^2} \ge 0 \forall x_0 \neq 0 \textbf{(2)}\\
+    \text{From (1) and (2)}\implies 0 \le \frac{x^{2}}{x_0^2} < 1 \\
+    \implies 0 \le \frac{(\sqrt[3]{5})^2}{x_0^2} < 1 
+    \implies \frac{\sqrt[3]{5}^{2}}{x_0^2} - 1 < 0 \\
+\implies \frac{\sqrt[3]{5}^{2}-x_0^2}{x_0^2} < 0 \text{ However, } x_0^2 > 0 \forall x_0 \neq 0 \\
+    \implies \sqrt[3]{5}^2 - x_0^2 < 0
+    \implies x_0^2 > \sqrt[3]{5}^2
+    \implies x_0 > \sqrt[3]{5}
+\end{align*}
+\textbf{Conclusion:} The Chord method converges only when $x_0 > \sqrt[3]{5}$
 \newpage

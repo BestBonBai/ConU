@@ -33,40 +33,12 @@ def newton_raphson(f, diff, init_x, max_iter=1000):
     
 \end{lstlisting}
 
-The results after computing are:
+The results after computing are as following:
 \begin{quote}
-Xi =  1
-X(i+1) =  2.333333333333333 
 
-Xi =  2.333333333333333
-X(i+1) =  1.8616780045351473 
-
-Xi =  1.8616780045351473
-X(i+1) =  1.722001880058607 
-
-Xi =  1.722001880058607
-X(i+1) =  1.7100597366002945 
-
-Xi =  1.7100597366002945
-X(i+1) =  1.709975950782189 
-
-Xi =  1.709975950782189
-X(i+1) =  1.709975946676697 
-
-Xi =  1.709975946676697
-X(i+1) =  1.709975946676697 
-
-Xi =  1.709975946676697
-X(i+1) =  1.709975946676697 
-
-Xi =  1.709975946676697
-X(i+1) =  1.709975946676697 
-
-Xi =  1.709975946676697
-X(i+1) =  1.709975946676697
 \end{quote}
 
-\subsection{Fixed point finding}
+\subsection{Determine fixed points}
 \label{Fixed point finding}
 \textbf{Newton's method:}
 \begin{centering}
@@ -107,7 +79,7 @@ $|f'(x^{*})| = 0 \implies$ the fixed point is \textbf{attracting} and it is conv
       \addplot[samples=200]{(2*x^3+5)/(3*x^2)};
       \addplot[domain=-4:4,color=blue]{x};
       \addplot[mark=none,color=red,very thick] coordinates {
-            (1,0) (1, 7/3) (7/3, 7/3) (7/3, 821/441) (821/441, 821/441) (821/441, 1.722) (1.722, 1.722) (1.722, 1.710)
+          (1,0) (1, 7/3) (7/3, 7/3) (7/3, 821/441) (821/441, 821/441) (821/441, 1.722) (1.722, 1.722) (1.722, 1.710) (1.710, 1.710) (1.710, 7099)
       };
    \end{axis}
 \end{tikzpicture}
