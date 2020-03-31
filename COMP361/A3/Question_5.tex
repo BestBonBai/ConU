@@ -16,6 +16,84 @@ $x_{n+1} = \frac{1}{2} (x_n + \frac{R}{x_n})$ \\
 \end{itemize}
 
 \textbf{Solution:}
+\subsubsection{Iterations using Newton scheme}
+The iterations were conducted using Jupyter Notebook with Python. The main algorithm is as followed. The full source code can be found at \textit{program/Problem5.ipynb}
+\begin{lstlisting}
+def newton_f(x, R):
+    return (1/2)*(x + (R/x))
 
+def newton_method(f, x, R, NumOfIteration = 1000):
+    init_x = x
+    estimates = []
+    listX = [x]
+    for i in range(numOfIteration):
+        x = newton_f(x, R)
+        listX.append(x)
+        estimates.append(x)
+    return listX, estimates
+\end{lstlisting}
+
+The results are as following:
+\begin{quote}
+Iteration no. 1
+X =  1
+Xi =  1.5
+
+Iteration no. 2
+X =  1.5
+Xi =  1.4166666666666665
+
+Iteration no. 3
+X =  1.4166666666666665
+Xi =  1.4142156862745097
+
+Final estimation:  1.4142156862745097
+\end{quote}
+
+\subsubsection{Iterations using Bisection method}
+The iterations were conducted using Jupyter Notebook with Python. The main algorithm is as followed. The full source code can be found at \textit{program/Problem5.ipynb}
+\begin{lstlisting}
+def f(x):
+    return x**2 -2 
+
+def bisection_method(f, a, b, NumOfIteration = 1000):
+    """
+    a, b: the interval
+    f: the function to be approximated
+    """
+    if f(a) * f(b) >= 0:
+        print('Bisection method fails')
+        return None, None
+    
+    a_n = a
+    b_n = b
+    midpointRecord = []
+    for n in range(0, NumOfIteration):
+        midpoint = (a_n + b_n)/2
+        midpointRecord.append(midpoint)
+        fMidpoint = f(midpoint)
+        if f(a_n) * fMidpoint < 0:
+            b_n = midpoint
+        elif f(b_n) * fMidpoint <0:
+            a_n = midpoint
+        elif fMidpoint == 0:
+            print('Found exact solution')
+            return midpoint
+    return (a_n + b_n)/2, midpointRecord
+\end{lstlisting}
+
+The results are as following:
+\begin{quote}
+Iteration no. 1
+Midpoint:  1.5
+
+Iteration no. 2
+Midpoint:  1.25
+
+Iteration no. 3
+Midpoint:  1.375
+
+Final estimation:  1.4375
+\end{quote}
 \newpage
 
