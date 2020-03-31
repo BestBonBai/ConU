@@ -11,8 +11,8 @@ $x_{n+1} = \frac{1}{2} (x_n + \frac{R}{x_n})$ \\
 \begin{itemize}
     \item Perform three iterations of scheme (1) for computing $\sqrt(2)$, starting with $x_0 = 1$.
     \item Perform three iterations of the bisection method for computing $\sqrt(2)$, starting with interval [1,2].
-    \item Find theoretically the minimum number of iterations in both schemes to achieve $10^6$ accuracy.
-    \item Find numerically the minimum number of iterations in both schemes to achieve $10^6$ accuracy and compare your results with the theoretical estimates.
+    \item Find theoretically the minimum number of iterations in both schemes to achieve $10^{-6}$ accuracy.
+    \item Find numerically the minimum number of iterations in both schemes to achieve $10^{-6}$ accuracy and compare your results with the theoretical estimates.
 \end{itemize}
 
 \textbf{Solution:}
@@ -95,5 +95,52 @@ Midpoint:  1.375
 
 Final estimation:  1.4375
 \end{quote}
+
+% Graph of the iteration
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+   \begin{axis}[my style,restrict y to domain=-5:5,width=\linewidth, xmin=-2, xmax=4,ymin=-2,ymax=4]
+      \addplot[samples=200]{x^2 - 2};
+      \addplot[domain=-4:4,color=blue]{x};
+      \addplot[mark=none,color=red,very thick] coordinates {
+          (1, -1)(1, 0)
+      };
+      \addplot[mark=none,color=red,very thick] coordinates {
+          (2, 2)(2, 0)
+      };
+   \end{axis}
+\end{tikzpicture}
+\caption{Bisection method demonstration diagram}
+\end{figure}
+\newpage
+
+\subsubsection{Minimum number of iterations for $10^{-6}$ accuracy}
+\textbf{Scheme (1)}\\
+\textbf{Bisection method} \\
+Error of the approximation: 
+\[
+    e_{n} = |r - c_{n}| \le \frac{b_{0} - a_{0}}{2}\frac{1}{2^{n}}
+.\] 
+With
+\begin{itemize}
+    \item n: the $n^{th}$ iteration
+    \item $e_{n}$ Denotes the error
+    \item r: the real value
+    \item  $c_{n}$: The estimation at iteration n
+    \item  $a_{0}, b_{0}$: The 2 starting points of the starting interval
+\end{itemize}
+
+\begin{align*}
+    \implies e_{n} \le \frac{2-1}{2} \frac{1}{2^{n}} \le 10^{-6} \\
+    \implies 2^{n+1} \ge 10^{6}
+    \implies n + 1 \ge 20
+    \implies n \ge  19
+\end{align*}
+\textbf{Conclusion:} With the minimum of number of iteration is 19, the function will have $10^{-6}$ accuracy.
+
+
+
+
 \newpage
 
