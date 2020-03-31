@@ -4,7 +4,7 @@
 
 \textbf{Problem:}
 \\
-Consider the \textit{discrete logistic equation}
+Consider the \textit{discrete logistic equation}\\
 $x^{k+1} = cx^{k} (1-x^{k})$, k = 0, 1, 2, 4,\ldots
 \\
 For each of the following values of c, determine analytically the fixed points and whether they are attracting or repelling: c = 0.70, c = 1.00, c = 1.80, c = 2.00, c = 3.30, c = 3.50, c = 3.97. (You need only consider “physically meaningful” fixed points, namely those that lie in the interval [0, 1].)
@@ -13,6 +13,195 @@ If the convergence is linear then analytically determine the rate of convergence
 For each case include a statement that describes the behavior of the iterations
 \\
 \textbf{Solution:}
+\subsection{General analysis}
+\begin{align*}
+    f'(x) = (cx_{*} - cx_{*}^{2})' \\
+    = c - 2cx_{*} \\
+    = c(1 - 2x_{*})
+\end{align*}
+
+To determine the fixed point, let
+$f(x) = x^{*} = cx^{*}(1 - x^{*})$\\
+\begin{align*}
+\implies cx_{*}^{2} + x_{*} - cx_{*} = 0 \\
+\implies x_{*} = 0 \text{ and } x_{*} = 1 - \frac{1}{c}
+\end{align*}
+
+\begin{itemize}
+    \item With the fixed point x = 0, $|f'(x)| = |c( 1- 2*0 )| = c $. Thus, the fixed point is attracting when $0 \le c < 1$, and repelling when $1 < c$
+    \item With the fixed point $x = 1 - \frac{1}{c}$,  $|f'(1- \frac{1}{c})| = c[ 1 - 2 (1 - \frac{1}{c}) ] = 2 - c$. Thus, the function is attracting when $1 < c < 3$, repelling otherwise.
+\end{itemize}
+
+The iterations are computed to demonstrate the behavior using Jupyter Notebook with Python. The full source code can be found in the directory of \textit{program/Problem3.ipynb}
+The main algorithm is as following:
+\begin{lstlisting}
+def f(c, x):
+    return c*x*(1 - x)
+
+def logistic_equation(f, c, init_x, max_iter=1000):
+    x = init_x
+    estimates = []
+    listX = [x]
+    for i in range(max_iter):
+        x = f(c, x)
+        listX.append(x)
+        estimates.append(x)
+    return x, listX, estimates
+\end{lstlisting}
+
+\subsubsection{c = 0.70}
+c = 0.70, meaning fixed points of the function are 0 and $1 - \frac{1}{c} = \frac{-3}{7}$
+
+\begin{itemize}
+    \item The fixed point x = 0 is attracting. $|f'(0)| = 0.7 \implies$ the rate of convergence is 0.7
+    \item The fixed point x = 0.7 is repelling (0.7 < 1)
+\end{itemize}
+
+% Graph of the iteration
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+   \begin{axis}[my style,restrict y to domain=-5:5,width=\linewidth, xmin=-0.5, xmax=1.2,ymin=-0.5,ymax=0.5]
+       \addplot[samples=200]{0.7*x*(1 - x)};
+      \addplot[domain=-4:4,color=blue]{x};
+      \addplot[mark=none,color=red,very thick] coordinates {
+          (0.5, 0)(0.5,0.175)(0.175, 0.175)(0.175, 0.1010)(0.1010, 0.1010)(0.1010, 0.06359)(0.06359, 0.06359)(0.06359, 0.04168)(0.04168, 0.04168)(0.04168, 0.02796)(0.02796, 0.02796)(0.02796, 0.01902)(0.01902, 0.01902)
+      };
+   \end{axis}
+\end{tikzpicture}
+\caption{c = 0.7}
+\end{figure}
+
+\subsubsection{c = 1.00}
+\begin{itemize}
+    \item The fixed point x = 0 is attracting. $|f'(0)| = 1 \implies$ the rate of convergence is 1
+\end{itemize}
+
+% Graph of the iteration
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+   \begin{axis}[my style,restrict y to domain=-5:5,width=\linewidth, xmin=-0.5, xmax=1.2,ymin=-0.5,ymax=0.5]
+       \addplot[samples=200]{1*x*(1 - x)};
+      \addplot[domain=-4:4,color=blue]{x};
+      \addplot[mark=none,color=red,very thick] coordinates {
+          (0.5, 0)(0.5,0.25)(0.25, 0.25)(0.25, 0.1875)(0.1875, 0.1875)(0.1875, 0.1523)(0.1523, 0.1523)(0.1523, 0.1291)(0.1291, 0.1291)(0.1291, 0.1124)(0.1124, 0.1124)(0.1124, 0.0998)(0.0998, 0.0998)
+      };
+   \end{axis}
+\end{tikzpicture}
+\caption{c = 1.00}
+\end{figure}
+
+\subsubsection{c = 1.8}
+\begin{itemize}
+    \item The fixed point x = 0 is repelling. ($|f'(0)| = 1.8$) 
+    \item The fixed point x = 0.44 is repelling (0.44 < 1)
+\end{itemize}
+
+% Graph of the iteration
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+   \begin{axis}[my style,restrict y to domain=-5:5,width=\linewidth, xmin=-0.5, xmax=1.2,ymin=-0.5,ymax=0.5]
+       \addplot[samples=200]{1.8*x*(1 - x)};
+      \addplot[domain=-4:4,color=blue]{x};
+      \addplot[mark=none,color=red,very thick] coordinates {
+          (0.5, 0)(0.5,0.45)(0.45, 0.45)(0.45, 0.4455)(0.4455, 0.4455)(0.4455, 0.4446)(0.4446, 0.4446)(0.4446, 0.44448)(0.44448, 0.44448)(0.44448, 0.444452)(0.444452, 0.444452)
+      };
+   \end{axis}
+\end{tikzpicture}
+\caption{c = 1.80}
+\end{figure}
+
+\subsubsection{c = 2.00}
+\begin{itemize}
+    \item The fixed point x = 0 is repelling. ($|f'(0)| = 2$) 
+    \item The fixed point x = 0.5 is repelling (0.5 < 1)
+\end{itemize}
+
+% Graph of the iteration
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+   \begin{axis}[my style,restrict y to domain=-5:5,width=\linewidth, xmin=-0.5, xmax=1.2,ymin=-0.5,ymax=0.5]
+       \addplot[samples=200]{2*x*(1 - x)};
+      \addplot[domain=-4:4,color=blue]{x};
+      \addplot[mark=none,color=red,very thick] coordinates {
+          (0.5, 0)(0.5,0.5)(0.5, 0.5)(0.5, 0.5)
+      };
+   \end{axis}
+\end{tikzpicture}
+\caption{c = 2}
+\end{figure}
+
+\subsubsection{c = 3.30}
+\begin{itemize}
+    \item The fixed point x = 0 is repelling. ($|f'(0)| = 3.3$) 
+    \item The fixed point x = 0.69 is repelling (0.69 < 1)
+\end{itemize}
+
+% Graph of the iteration
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+   \begin{axis}[my style,restrict y to domain=-5:5,width=\linewidth, xmin=-0.5, xmax=1.2,ymin=-0.5,ymax=1]
+       \addplot[samples=200]{3.3*x*(1 - x)};
+      \addplot[domain=-4:4,color=blue]{x};
+      \addplot[mark=none,color=red,very thick] coordinates {
+          (0.5, 0)(0.5,0.825)(0.825, 0.825)(0.825, 0.4764)(0.4764, 0.4764)(0.4764, 0.8231)(0.8231, 0.8231)(0.8231, 0.4803)(0.4803, 0.4803)(0.4803, 0.8237)(0.8237, 0.8237)
+      };
+   \end{axis}
+\end{tikzpicture}
+\caption{c = 3.3}
+\end{figure}
+
+\subsubsection{c = 3.50}
+\begin{itemize}
+    \item The fixed point x = 0 is repelling. ($|f'(0)| = 3.5$) 
+    \item The fixed point x = 0.71 is repelling (0.71 < 1)
+\end{itemize}
+
+% Graph of the iteration
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+   \begin{axis}[my style,restrict y to domain=-5:5,width=\linewidth, xmin=-0.5, xmax=1.2,ymin=-0.5,ymax=1]
+       \addplot[samples=200]{3.5*x*(1 - x)};
+      \addplot[domain=-4:4,color=blue]{x};
+      \addplot[mark=none,color=red,very thick] coordinates {
+          (0.5, 0)(0.5,0.875)(0.875, 0.875)(0.875, 0.3828)(0.3828, 0.3828)(0.3828, 0.8269)(0.8269, 0.8269)(0.8269, 0.50089)(0.50089, 0.50089)(0.50089, 0.87499)(0.87499, 0.87499)(0.87499, 0.3828)(0.3828, 0.3828)
+      };
+   \end{axis}
+\end{tikzpicture}
+\caption{c = 3.5}
+\end{figure}
+
+\subsubsection{c = 3.97}
+\begin{itemize}
+    \item The fixed point x = 0 is repelling. ($|f'(0)| = 3.97$) 
+    \item The fixed point x = 0.74 is repelling (0.74 < 1)
+\end{itemize}
+
+% Graph of the iteration
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+   \begin{axis}[my style,restrict y to domain=-5:5,width=\linewidth, xmin=-0.5, xmax=1.2,ymin=-0.5,ymax=1]
+       \addplot[samples=200]{3.97*x*(1 - x)};
+      \addplot[domain=-4:4,color=blue]{x};
+      \addplot[mark=none,color=red,very thick] coordinates {
+          (0.5, 0)(0.5,0.9925)(0.9925, 0.9925)
+          (0.9925, 0.02955)(0.02955, 0.02955)(0.02955, 0.11385)
+          (0.11385, 0.11385)(0.40053, 0.40053)(0.40053, 0.95322)
+          (0.95322, 0.95322)(0.95322, 0.17701)(0.17701, 0.17701)
+          (0.17701, 0.57834)(0.57834, 0.57834)(0.57834, 0.96813)
+          (0.96813, 0.96813)(0.96813, 0.12248)(0.12248, 0.12248)
+          (0.12248, 0.42671)(0.42671, 0.42671)
+      };
+   \end{axis}
+\end{tikzpicture}
+\caption{c = 3.97}
+\end{figure}
 
 \newpage
 
