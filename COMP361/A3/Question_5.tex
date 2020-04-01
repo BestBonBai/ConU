@@ -1,6 +1,6 @@
 \newpage
 
-\section{Using Newton's method to find $\sqrt(R)$ }%
+\section{Newton's method and Bisection method to approximate $\sqrt(R)$ }%
 \label{sec:newton_s_method_to_find_sqrt_r_}
 
 \textbf{Problem:}
@@ -139,8 +139,79 @@ With
 \end{align*}
 \textbf{Conclusion:} With the minimum of number of iteration is 19, the function will have $10^{-6}$ accuracy.
 
+\subsubsection{Numerically find the minimum number of iterations}
+In order to find the minimum number of iterations, Jupyter Notebook with Python was utilized. The full source code is presented with example in the directory: \textit{program/Problem5.ipynb} \\
+\textbf{Newton's Scheme}\\
+The main algorithm is as following:
+\begin{lstlisting}
+# Define global criteria
+tol = pow(10, -6)
+r = math.sqrt(2) # real value
+x = 1
+R = 2
 
+def newton_MinOfIteration(f, x, R, tol, r, numOfIteration = 1000):
+    init_x = x
+    n = 0
+    for i in range(numOfIteration):
+        n += 1
+        x = newton_f(x, R)
+        if(abs(r - x)) <= tol:
+            return n
+    print('The min of iteration satisfies tolerance is beyond the allowed number of iteration')
+    return None
 
+n = newton_MinOfIteration(newton_f, x, R, tol, r)
+print('\nTo achive the accuracy of ', tol, ' with Newton\'s method, the minimum number of iteration is ', n)
+\end{lstlisting}
+The result:
+\begin{quote}
+To achive the accuracy of  1e-06  with Newton's method, the minimum number of iteration is  4
+\end{quote}
+
+textbf{Bisection method} \\
+Similarly, the main algorithm to find the minimum number of iteration to get $10^{-6}$ accuracy is as following:
+\begin{lstlisting}
+# Define global criteria
+tol = pow(10, -6)
+r = math.sqrt(2) # real value
+x = 1
+R = 2
+
+def bisection_MinOfIteration(f, a, b, r, tol, NumOfIteration = 1000):
+    if f(a) * f(b) >= 0:
+        print('Bisection method fails')
+        return None, None
+    a_n = a
+    b_n = b
+    n = 0
+    for n in range(0, NumOfIteration):
+        n += 1
+        midpoint = (a_n + b_n)/2
+        if abs(midpoint - r) <= tol:
+            return n
+
+        fMidpoint = f(midpoint)
+        if f(a_n) * fMidpoint < 0:
+            b_n = midpoint
+        elif f(b_n) * fMidpoint <0:
+            a_n = midpoint
+        elif fMidpoint == 0:
+            print('Found exact solution')
+            return n
+    print('The min of iteration satisfies tolerance is beyond the allowed number of iteration')
+    return None
+
+# Numerically calculate the minimum number of n for accuracy of 10^(-6)
+n = bisection_MinOfIteration(f, a, b, r, tol)
+print('\nTo achive the accuracy of ', tol, ' with Bisection method, the minimum number of iteration is ', n)
+\end{lstlisting}
+The result: 
+\begin{quote}
+    To achive the accuracy of  1e-06  with Bisection method, the minimum number of iteration is  19
+\end{quote}
+
+\textbf{Conclusion:} The result is as calculated in the previous question, stating the correctness of theoretically calculating.
 
 \newpage
 

@@ -11,13 +11,14 @@ Draw the “$x_{k+1}$ versus $x_{k}$ diagram”, again taking $x_{0} = 1$, and d
 For which values of $x_{0}$ will Newton’s method converge?
 \\
 \textbf{Solution:}
-\subsection{10 first iterations using Newton's method}
+\subsection{Iterations using Newton's method}
 \label{10iterations}
 Cube root of 5 is a zero of the function g (x) such that:\\
 $g(x) = x^{3} - 5$\\
 
-The first 10 iterations using Newton's method were carried out by using Python with Jupyter Notebook. Check out the source code and presentation in directory: program.Problem1.ipynb 
-
+The first 10 iterations using Newton's method were carried out by using Python with Jupyter Notebook. 
+Check out the full source code and presentation in directory: \textit{program/Problem1.ipynb}
+Below is the main algorithm:
 \begin{lstlisting}
 # The main algorithm
 def newton_raphson(f, diff, init_x, max_iter=1000):
@@ -35,7 +36,45 @@ def newton_raphson(f, diff, init_x, max_iter=1000):
 
 The results after computing are as following:
 \begin{quote}
+Iteration no.  1
+Xi =  1
+X(i+1) =  2.333333333333333 
 
+Iteration no.  2
+Xi =  2.333333333333333
+X(i+1) =  1.8616780045351473 
+
+Iteration no.  3
+Xi =  1.8616780045351473
+X(i+1) =  1.722001880058607 
+
+Iteration no.  4
+Xi =  1.722001880058607
+X(i+1) =  1.7100597366002945 
+
+Iteration no.  5
+Xi =  1.7100597366002945
+X(i+1) =  1.709975950782189 
+
+Iteration no.  6
+Xi =  1.709975950782189
+X(i+1) =  1.709975946676697 
+
+Iteration no.  7
+Xi =  1.709975946676697
+X(i+1) =  1.709975946676697 
+
+Iteration no.  8
+Xi =  1.709975946676697
+X(i+1) =  1.709975946676697 
+
+Iteration no.  9
+Xi =  1.709975946676697
+X(i+1) =  1.709975946676697 
+
+Iteration no.  10
+Xi =  1.709975946676697
+X(i+1) =  1.709975946676697 
 \end{quote}
 
 \subsection{Determine fixed points}
@@ -85,5 +124,8 @@ $|f'(x^{*})| = 0 \implies$ the fixed point is \textbf{attracting} and it is conv
 \end{tikzpicture}
 \caption{Fixed point iteration diagram}
 \end{figure}
+
+\subsection{Newton's method converges}
+The fixed point is always attracting regardless of the value of $x^{0}$; thus the Newton's method always converges at the fixed point.
 
 \newpage

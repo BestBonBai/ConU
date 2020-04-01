@@ -17,5 +17,138 @@ $i = 0, 1, 2, 3, $\\
 Present and discuss your numerical results in a concise manner.
 \\
 \textbf{Solution:}
+
+The code and full presentation is available in the directory: \textit{program/Problem4.ipynb} \\
+
+Below is the supporting functions for the main algorithm:
+\begin{lstlisting}
+# The original system of linear equation
+def G(x):
+    g1 = pow(x[0], 2)*x[1] - 1
+    g2 = x[1] - pow(x[0], 4)
+    return np.array([g1, g2], dtype = np.float)
+
+def convertG(x):
+    for number in x:
+        if(number != 0):
+            number = -1 * number
+    return x
+
+# Jacobian matrix
+def dG(x):
+    J = np.zeros([len(x), len(x)], dtype = np.float)
+    eps = 1e-10
+    for i in range(len(x)):
+        x1 = x.copy()
+        x2 = x.copy()
+
+        x1[i] += eps
+        x2[i] -= eps
+
+        g1 = G(x1)
+        g2 = G(x2)
+
+        J[ : ,i] = (g1 - g2) / (2 * eps)
+    
+    return J
+
+def calculateDeltaX(dG, G):
+    return np.linalg.solve(dG, G)
+
+def estimateIteration(guess, deltaX):
+    return np.add(guess, deltaX)
+\end{lstlisting}
+
+The main functions are as following: 
+\begin{lstlisting}
+def solveIteration(guessX1, guessX2):
+    initGuess = np.array([guessX1, guessX2], dtype = np.float)
+    funcG = G(initGuess)
+    funcG = convertG(funcG)
+    funcDG = dG(initGuess)
+    deltaX = calculateDeltaX(funcDG, funcG)
+    results = estimateIteration(initGuess, deltaX)
+    return results
+
+def SolveDataSet(rangeSet):
+    count = 0
+    for i in guessSet:
+        for j in guessSet:
+            count = count + 1
+            print("\nIteration: no.", count)
+            print("i = ", i, " j = ", j)
+            estimation = solveIteration(i, j)
+            print("x1 = ", estimation[0], " x2 = ", estimation[1])
+
+guessSet = range(1, 4)
+SolveDataSet(guessSet)
+\end{lstlisting}
+The output is as following:
+\begin{quote}
+    Iteration: no. 1
+i =  1  j =  1
+x1 =  1.0  x2 =  1.0
+
+Iteration: no. 2
+i =  1  j =  2
+x1 =  1.0  x2 =  2.999999917259636
+
+Iteration: no. 3
+i =  1  j =  3
+x1 =  1.0  x2 =  4.999999834519272
+
+Iteration: no. 4
+i =  1  j =  4
+x1 =  1.0  x2 =  6.999999751778907
+
+Iteration: no. 5
+i =  2  j =  1
+x1 =  2.477272687783008  x2 =  1.2727272501617188
+
+Iteration: no. 6
+i =  2  j =  2
+x1 =  2.46323525578939  x2 =  2.8235293436255824
+
+Iteration: no. 7
+i =  2  j =  3
+x1 =  2.449999962766836  x2 =  4.39999988416349
+
+Iteration: no. 8
+i =  2  j =  4
+x1 =  2.437499963801091  x2 =  5.999999834519272
+
+Iteration: no. 9
+i =  3  j =  1
+x1 =  3.7443757939848985  x2 =  1.3926382860186328
+
+Iteration: no. 10
+i =  3  j =  2
+x1 =  3.7398369866787884  x2 =  2.9024376358618897
+
+Iteraton: no. 11
+i =  3  j =  3
+x1 =  3.7353532030813827  x2 =  4.418179444595575
+
+Iteration: no. 12
+i =  3  j =  4
+x1 =  3.730923441770851  x2 =  5.939755560512124
+
+Iteration: no. 13
+i =  4  j =  1
+x1 =  4.997806722363986  x2 =  1.4385965612489156
+
+Iteration: no. 14
+i =  4  j =  2
+x1 =  4.995865220763078  x2 =  2.9416346189274662
+
+Iteration: no. 15
+i =  4  j =  3
+x1 =  4.993931258042135  x2 =  4.446602869886977
+
+Iteration: no. 16
+i =  4  j =  4
+x1 =  4.992004790375868  x2 =  5.95349009345808
+\end{quote}
+
 \newpage
 

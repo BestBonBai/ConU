@@ -19,7 +19,9 @@ More generally, analytically determine all values of $x^{0}$ for which the Chord
 \subsection{With $x_{(0)} = 1$}
 
 \subsubsection{Numerically carry out first 10 iterations}
-Python with Jupyter Notebook was being used to calculate the first 10 iterations, the algorithm is below. To check out the full source code, got to file in the directory of program.Problem2.ipynb
+Check out the full source code and presentation in directory: \textit{program/Problem2.ipynb}
+Below is the main algorithm:
+
 \begin{lstlisting}
 # Main algorithm
 def chord(f, diff, init_x, max_iter=1000):
@@ -128,7 +130,8 @@ $|f'(x_{*})| > 1$; thus the fixed point is \textbf{diverge}
 \subsection{With $x^{0} = 0.1$}
 
 \subsubsection{Numerically carry out first 10 iterations}
-Python with Jupyter Notebook was being used to calculate the first 10 iterations, the algorithm is the same as above question. To check out the full source code, got to file in the directory of program.Problem2.ipynb
+
+Check out the full source code and presentation in directory: \textit{program/Problem2.ipynb}
 
 The results are as following:
 \begin{quote}
@@ -153,7 +156,7 @@ Xi =  -6.194709380101413e+79
 X(i+1) =  7.923946873048754e+240 
 
 \end{quote}
-\textit{Note:} More than iteration 5, the result is too big to be computed.
+\textit{Note:} More than iteration 5, the result is too big to be computed and displayed
 
 \subsubsection{Determine the fixed points}
 Let $g(x) = x^{3} - 5$
@@ -193,7 +196,7 @@ To find the fixed point, the equation is:
     \implies x = \sqrt[3]{5}
 \end{align*}
 \textbf{Conclude:} the value of the fixed point does not depend on the value of $x_0$ in Chord method. It is always $\sqrt[3]{5}$ \\
-The Chord method converges when:
+The Chord method converges when
 \begin{align*}
     \implies |f'(x_(*))| < 1
     \implies |(x - \frac{x^{3} - 5}{3x_0^2})'| < 1  \\

@@ -32,8 +32,8 @@ $f(x) = x^{*} = cx^{*}(1 - x^{*})$\\
     \item With the fixed point $x = 1 - \frac{1}{c}$,  $|f'(1- \frac{1}{c})| = c[ 1 - 2 (1 - \frac{1}{c}) ] = 2 - c$. Thus, the function is attracting when $1 < c < 3$, repelling otherwise.
 \end{itemize}
 
-The iterations are computed to demonstrate the behavior using Jupyter Notebook with Python. The full source code can be found in the directory of \textit{program/Problem3.ipynb}
-The main algorithm is as following:
+Check out the full source code and presentation in directory: \textit{program/Problem3.ipynb} \\
+Below is the main algorithm:
 \begin{lstlisting}
 def f(c, x):
     return c*x*(1 - x)
