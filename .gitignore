@@ -6,3 +6,8 @@
 *.project
 *.settings
 *out
+*.aux
+*.aux
+*.log
+*.toc
+*.json
