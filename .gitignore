@@ -6,7 +6,6 @@
 *.project
 *.settings
 *out
-.txt
 *.aux
 *.aux
 *.log
