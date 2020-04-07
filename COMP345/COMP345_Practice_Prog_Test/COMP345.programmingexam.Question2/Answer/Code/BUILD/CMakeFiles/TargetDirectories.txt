@@ -1,0 +1,7 @@
+/home/dukengn/workspace/ConU/COMP345/COMP345_Practice_Prog_Test/COMP345.programmingexam.Question2/Answer/Code/BUILD/CMakeFiles/install/strip.dir
+/home/dukengn/workspace/ConU/COMP345/COMP345_Practice_Prog_Test/COMP345.programmingexam.Question2/Answer/Code/BUILD/CMakeFiles/install/local.dir
+/home/dukengn/workspace/ConU/COMP345/COMP345_Practice_Prog_Test/COMP345.programmingexam.Question2/Answer/Code/BUILD/CMakeFiles/edit_cache.dir
+/home/dukengn/workspace/ConU/COMP345/COMP345_Practice_Prog_Test/COMP345.programmingexam.Question2/Answer/Code/BUILD/CMakeFiles/linkedList.dir
+/home/dukengn/workspace/ConU/COMP345/COMP345_Practice_Prog_Test/COMP345.programmingexam.Question2/Answer/Code/BUILD/CMakeFiles/rebuild_cache.dir
+/home/dukengn/workspace/ConU/COMP345/COMP345_Practice_Prog_Test/COMP345.programmingexam.Question2/Answer/Code/BUILD/CMakeFiles/install.dir
+/home/dukengn/workspace/ConU/COMP345/COMP345_Practice_Prog_Test/COMP345.programmingexam.Question2/Answer/Code/BUILD/CMakeFiles/list_install_components.dir

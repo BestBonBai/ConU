@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dukengn/workspace/ConU/COMP345/COMP345_Practice_Prog_Test/COMP345.programmingexam.Question6/Answer/Code/main.cpp
+main.h
+/home/dukengn/workspace/ConU/COMP345/COMP345_Practice_Prog_Test/COMP345.programmingexam.Question6/Answer/Code/main.h
+
+/home/dukengn/workspace/ConU/COMP345/COMP345_Practice_Prog_Test/COMP345.programmingexam.Question6/Answer/Code/main.h
+iostream
+-
+
