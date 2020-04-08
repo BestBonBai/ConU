@@ -1,0 +1,66 @@
+\documentclass[a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{amsthm}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{transparent}
+\usepackage[affil-it]{authblk}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{float}
+\usepackage{pgfplots}
+
+\usepgfplotslibrary{polar}
+\usepgflibrary{shapes.geometric}
+
+% Settings
+\pgfplotsset{my style/.append style={axis x line=middle, axis y line=middle, xlabel={$x$}, ylabel={$y$}, axis equal}}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicsyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+% title
+\title{COMP 361: Elementary Numerical Methods\\
+Assignment no.4}
+
+\author{Duc Nguyen}
+ \affil{Gina Cody School of Computer Science and Software Engineering \\
+    Concordia University, Montreal, QC, Canada}
+\date{Winter 2020}
+
+\begin{document}
+\maketitle
+
+\newpage
+\tableofcontents
+\newpage
+
+\textbf{NOTE:}\\
+The folder <program> attached in the same directory contains every program for the assignment. Consult the file README.md inside the folder for build guide and list of dependencies. \\
+The programs were written in Python with Jupyter Notebook.
+\input{Question_1} %-- not done
+\input{Question_2} %-- not done
+\input{Question_3}  %-- not done
+
+\end{document}
