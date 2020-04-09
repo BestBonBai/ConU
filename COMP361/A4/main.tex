@@ -9,20 +9,14 @@
 \usepackage{xifthen}
 \usepackage{transparent}
 \usepackage[affil-it]{authblk}
-
+\usepackage{graphicx}
 \usepackage{listings}
 \usepackage{color}
 \usepackage{float}
 \usepackage{pgfplots}
 
-\usepgfplotslibrary{polar}
-\usepgflibrary{shapes.geometric}
-
 % Settings
-\pgfplotsset{my style/.append style={axis x line=middle, axis y line=middle, xlabel={$x$}, ylabel={$y$}, axis equal}}
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
+\graphicspath{{./images/}}
 
 \lstset{frame=tb,
   language=Python,
@@ -30,10 +24,10 @@
   belowskip=3mm,
   showstringspaces=false,
   columns=flexible,
-  basicsyle={\small\ttfamily},
+  basicstyle={\small\ttfamily},
   numbers=none,
   numberstyle=\tiny\color{gray},
-  keywordstyle=\color{blue},
+  keywordstyle=\color{blue}, 
   commentstyle=\color{dkgreen},
   stringstyle=\color{mauve},
   breaklines=true,
@@ -42,7 +36,7 @@
 }
 % title
 \title{COMP 361: Elementary Numerical Methods\\
-Assignment no.4}
+Assignment no.3}
 
 \author{Duc Nguyen}
  \affil{Gina Cody School of Computer Science and Software Engineering \\
@@ -59,8 +53,8 @@ Assignment no.4}
 \textbf{NOTE:}\\
 The folder <program> attached in the same directory contains every program for the assignment. Consult the file README.md inside the folder for build guide and list of dependencies. \\
 The programs were written in Python with Jupyter Notebook.
-\input{Question_1} %-- not done
-\input{Question_2} %-- not done
+%\input{Question_1} %-- not done
+%\input{Question_2} %-- not done
 \input{Question_3}  %-- not done
 
 \end{document}

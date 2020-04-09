@@ -1,0 +1,114 @@
+\section{Question 2}
+\subsection{Problem}
+Give complete details on the derivation of the five-point centered approximation to the
+second derivative of a function f(x), for the example on Pages 236-237 of the Lecture Notes.
+Also, give complete details on using Taylor expansions to determine the leading error term,
+as given on Page 237.
+
+\subsection{Complete details on the derivation of the five-point centered approximation}
+With n = 4, m = 2, x = $x_{2}$, and reference interval: \\
+\begin{itemize}
+    \item $x_0 = -2 h$
+    \item $x_1 = -h$
+    \item  $x_2 = 0$
+    \item $x_3 = h$
+    \item $x_4 = 2h$
+\end{itemize}
+
+
+\subsubsection{$l_{0}(x_{2})''$}
+\begin{align*}
+    l_{0}(x) = \frac{(x - x_1)(x - x_2)(x - x_3)(x - x_4)}{(x_0 - x_1)(x_0-x_2)(x_0-x_3)(x_0-x_4)} \\
+    = \frac{(x - x_1)(x - x_2)(x - x_3)(x - x_4)}{24h^{4}} \\
+    l'_{0}(x) = \frac{1}{24h^4} ((x - x1) (x - x2) (x - x3) + (x - x1) (x - x2) (x - x4)\\ + (x - x1) (x - x3) (x - x4) + (x - x2) (x - x3) (x - x4)) \\
+\implies l''_{0}(x) = \frac{1}{24h^4} 2 (6 x^2 + x_2 x_3 + x_2 x_4 + x_3 x_4 + \\ x_1 (x_2 + x_3 + x_4) - 3 x (x_1 + x_2 + x_3 + x_4)) \\
+\implies l''_{0}(x_2) = \frac{1}{12h^4} (6 x_{2}^2 + x_2 x_3 + x_2 x_4 + x_3 x_4 + \\ x_1 (x_2 + x_3 + x_4) - 3 x_2 (x_1 + x_2 + x_3 + x_4)) \\
+\text{Substitute reference interval} \\
+= \frac{1}{12h^4}(0 + 0 + 0 + 2h^2 - h(3h) - 0  )\\
+= \frac{-h^2}{12h^4} \\
+= \frac{-1}{12h^2}
+\end{align*}
+
+
+\subsubsection{$l_{1}(x_{2})''$}
+\begin{align*}
+    l_{1}(x) = \frac{(x - x_0)(x - x_2)(x - x_3)(x - x_4)}{(x_1 - x_0)(x_1-x_2)(x_1-x_3)(x_1-x_4)} \\
+    l_{1}(x) = \frac{(x - x_0)(x - x_2)(x - x_3)(x - x_4)}{-6h^4} \\
+    l'_{1}(x) = \frac{1}{-6h^4} ((x - x_0) (x - x_2) (x - x_3) + (x - x_0) (x - x_2) (x - x_4) \\ + (x - x_0) (x - x_3) (x - x_4) + (x - x_2) (x - x_3) (x - x_4)) \\
+\implies    l''_{1}(x) = \frac{1}{-6h^4} (2 (6 x^2 + x_2 x_3 + x_2 x_4 + x_3 x_4 \\ + x_0 (x_2 + x_3 + x_4) - 3 x (x_0 + x_2 + x_3 + x_4))) \\
+\implies    l''_{1}(x_2) = \frac{1}{-6h^4} (2 (6 x_{2}^2 + x_2 x_3 + x_2 x_4 + x_3 x_4 \\ + x_0 (x_2 + x_3 + x_4) - 3 x_2 (x_0 + x_2 + x_3 + x_4))) \\
+\text{Substitute reference interval} \\
+= \frac{1}{-6h^4} (2 (0 + 0 + 0 + 2h^2 - 2h (3h) - 0))\\
+= \frac{2 (-4h^2)}{-6h^4} \\
+= \frac{4}{3h^2} \\
+= \frac{16}{12h^2}
+\end{align*}
+
+
+\subsubsection{$l_{2}(x_{2})''$}
+\begin{align*}
+    l_{2}(x) = \frac{(x - x_0)(x - x_1)(x - x_3)(x - x_4)}{(x_2 - x_0)(x_2 - x_2)(x_2-x_3)(x_2-x_4)} \\
+    l_{2}(x) = \frac{(x - x_0)(x - x_1)(x - x_3)(x - x_4)}{4h^4} 
+    \\
+\implies    l'_{2}(x) = \frac{1}{4h^4} ((x - x_0) (x - x_1) (x - x_3) + (x - x_0) (x - x_1) (x - x_4) \\ + (x - x_0) (x - x_3) (x - x_4) + (x - x_1) (x - x_3) (x - x_4)) 
+    \\
+\implies    l''_{2}(x) = \frac{1}{4h^4} (2 (6 x^2 + x_1 x_3 + x_1 x_4 + x_3 x_4 \\ + x_0 (x_1 + x_3 + x_4) - 3 x (x_0 + x_1 + x_3 + x_4)))
+    \\
+    \implies    l''_{2}(x_2) = \frac{1}{4h^4} (2 (6 x_{2}^2 + x_1 x_3 + x_1 x_4 + x_3 x_4 \\ + x_0 (x_1 + x_3 + x_4) - 3 x_2 (x_0 + x_1 + x_3 + x_4)))
+    \\
+\text{Substitute reference interval} \\
+= \frac{1}{4h^4} (2(0 - h^2 - 2h^2 + 2h^2 - 2h(-h + h + 2h) - 0)) \\
+= \frac{1}{4h^4} (2( - h^2 - 4h^2 )) \\
+= \frac{1}{2h^4} (- 5h^2 ) \\
+= \frac{-5}{2h^2} \\
+= \frac{-30}{12h^2}
+\end{align*}
+
+\subsubsection{$l_{3}(x_{2})''$}
+\begin{align*}
+    l_{3}(x) = \frac{(x - x_0)(x - x_1)(x - x_2)(x - x_4)}{(x_3 - x_0)(x_3 - x_2)(x_3-x_3)(x_3-x_4)} \\
+    l_{3}(x) = \frac{(x - x_0)(x - x_1)(x - x_2)(x - x_4)}{-6h^4} 
+    \\
+    \implies l'_{3}(x) = \frac{1}{-6h^4} (x - x_0) (x - x_1) (x - x_2) + (x - x_0) (x - x_1) (x - x_4) \\ + (x - x_0) (x - x_2) (x - x_4) + (x - x_1) (x - x_2) (x - x_4)
+    \\
+    \implies l''_{3}(x) = \frac{1}{-6h^4} (2 (6 x^2 + x_1 x_2 + x_1 x_4 + x_2 x_4 \\ + x_0 (x_1 + x_2 + x_4) - 3 x (x_0 + x_1 + x_2 + x_4))) 
+    \\
+    \implies l''_{3}(x_2) = \frac{1}{-6h^4} (2 (6 x_{2}^2 + x_1 x_2 + x_1 x_4 + x_2 x_4 \\ + x_0 (x_1 + x_2 + x_4) - 3 x_2 (x_0 + x_1 + x_2 + x_4)))
+    \\
+\text{Substitute reference interval} \\
+= \frac{1}{-6h^4} (2(0 + 0 - h (2h) + 0 - 2h (-h + 2h) - 0)) \\
+= \frac{1}{-6h^4} (2 (-2h^2 -2h^2)) \\
+=\frac{2(-4h^2)}{-6h^4}\\
+=\frac{-8h^2}{-6h^4}\\
+=\frac{16}{12h^2}
+\end{align*}
+
+\subsubsection{$l_{4}(x_{2})''$}
+\begin{align*}
+    l_{4}(x) = \frac{(x - x_0)(x - x_1)(x - x_2)(x - x_3)}{(x_4 - x_0)(x_4 - x_1)(x_4-x_2)(x_4-x_3)} \\
+    l_{4}(x) = \frac{(x - x_0)(x - x_1)(x - x_2)(x - x_3)}{24h^4} 
+    \\
+    \implies l'_{4}(x) = \frac{1}{24h^4} ((x - x_0 (x - x_1) (x - x_2) + (x - x_0) (x - x_1) (x - x_3) \\ + (x - x_0) (x - x_2) (x - x_3) + (x - x_1) (x - x_2) (x - x_3))) \\
+    \implies l''_{4}(x) = \frac{1}{24h^4} (2 (6 x^2 + x_1 x_2 + x_1 x_3 + x_2 x_3 \\ + x_0 (x_1 + x_2 + x_3) - 3 x (x_0 + x_1 + x_2 + x_3))) 
+    \\
+    \implies l''_{4}(x_2) = \frac{1}{24h^4} (2 (6 x_{2}^2 + x_1 x_2 + x_1 x_3 + x_2 x_3 \\ + x_0 (x_1 + x_2 + x_3) - 3 x_2 (x_0 + x_1 + x_2 + x_3))) \\
+\text{Substitute reference interval} \\
+= \frac{1}{24h^4} (2(0 + 0 + (-h)h + 0 - h(-h + h) - 0)) \\
+= \frac{2(-h^2)}{24h^4} \\
+= \frac{-1}{12h^2}
+\end{align*}
+
+\newpage
+\subsection{Complete details on using Taylor expansions to determine the leading error term}
+\begin{align*}
+    f''(x_2) \approx \frac{-f_0 + 16 f_1 - 30f_2 + 16f_3 -f_4}{12h^2} \\
+\end{align*}
+
+\begin{itemize}
+    \item
+        \begin{align*}
+            -f_0 = - [f(x) - (2h)f^{(1)}(x) + \frac{(2h)^2}{2} f^{(2)}(x) - \frac{(2h)^3}{6} f^{(3)}(x) \\
+            + \frac{(2h)^4}{24} f^{(4)}(x) - \frac{(2h)^5}{120} f^{(5)}(x) \\ 
+            + \frac{(2h)^6}{720} f^{(6)}(x)  ]
+        \end{align*}
+\end{itemize}
