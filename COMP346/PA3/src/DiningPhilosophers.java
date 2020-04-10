@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 /**
  * Class DiningPhilosophers
  * The main starter.
@@ -11,8 +12,6 @@ public class DiningPhilosophers
 	 * Data members
 	 * ------------
 	 */
-	public static Philosopher.status[] states;
-	public static boolean[] self;
 
 	/**
 	 * This default may be overridden from the command line
@@ -29,6 +28,11 @@ public class DiningPhilosophers
 	 * Our shared monitor for the philosophers to consult
 	 */
 	public static Monitor sharedMonitor = null;
+
+  /*
+   * A group of philosophers
+   */
+  public static Philosopher[] groupPhilosopher = null;
 
 	/*
 	 * -------
@@ -48,23 +52,31 @@ public class DiningPhilosophers
 			 * Should be settable from the command line
 			 * or the default if no arguments supplied.
 			 */
-			int iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
+			int iPhilosophers = 0;
+      try {
+          int num = Integer.parseInt(argv[0]);
+        if(num >= 1 ) {
+            iPhilosophers = num;
+        } else {
+            throw new InputMismatchException();
+        }
+      } catch(Exception e) {
+          System.out.println(" Input mismatches or no input found. Using the default number of philosophers");
+          iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
+      }
+
+      System.out.println("Number of Philosophers: " + iPhilosophers);
 
 			// Make the monitor aware of how many philosophers there are
 			sharedMonitor = new Monitor(iPhilosophers);
 
 			// Space for all the philosophers
-			// Stages of mind of philosophers
-			Philosopher[] groupPhilosopher = new Philosopher[iPhilosophers];
-			states = new Philosopher.status[iPhilosophers];
-			self = new boolean[iPhilosophers];
+			groupPhilosopher = new Philosopher[iPhilosophers];
 
 			// Let 'em sit down
 			for(int j = 0; j < iPhilosophers; j++)
 			{
-				groupPhilosopher[j] = new Philosopher();
-				states[j] = Philosopher.status.thinking;
-				self[j] = false;
+				groupPhilosopher[j] = new Philosopher(j);
 				groupPhilosopher[j].start();
 			}
 

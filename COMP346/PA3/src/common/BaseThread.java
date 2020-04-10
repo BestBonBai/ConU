@@ -70,6 +70,7 @@ public class BaseThread extends Thread
 	public BaseThread(final int piTID)
 	{
 		this.iTID = piTID;
+    System.out.println("Set Thread ID = " + this.getTID());
 	}
 
 	/**
@@ -91,7 +92,7 @@ public class BaseThread extends Thread
 
 	/**
 	 * Just a make up for the PHASE I to make it somewhat tangeable.
-	 * Must be atomic.
+	 *  Must be atomic.
 	 */
 	protected synchronized void phase1()
 	{

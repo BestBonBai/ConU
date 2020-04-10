@@ -8,7 +8,10 @@ import common.BaseThread;
  */
 public class Philosopher extends BaseThread
 {
-	enum status {eating, hungry, thinking};
+
+    public Philosopher(int TID) {
+        super(TID);
+    }
 
 	/**
 	 * Max time an action can take (in milliseconds)
@@ -30,6 +33,7 @@ public class Philosopher extends BaseThread
 			System.out.println("I ... the great philosopher number " + this.iTID+ " eating...");
 			yield();
 			sleep((long)(Math.random() * TIME_TO_WASTE));
+      yield();
 			System.out.println("I am philosopher number " + this.iTID + " done eating. This is a waste of time !");
 		}
 		catch(InterruptedException e)
@@ -50,8 +54,20 @@ public class Philosopher extends BaseThread
 	 */
 	public void think()
 	{
-
-		// ...
+		try
+		{
+			System.out.println("THINKING is what I, the great philosopher number " + this.iTID+ " ...");
+			yield();
+			sleep((long)(Math.random() * TIME_TO_WASTE));
+      yield();
+			System.out.println("I am done with THINKING, I am philosopher number " + this.iTID + ". This is a enlightmen!");
+		}
+		catch(InterruptedException e)
+		{
+			System.err.println("Philosopher.think():");
+			DiningPhilosophers.reportException(e);
+			System.exit(1);
+		}
 	}
 
 	/**
@@ -64,15 +80,17 @@ public class Philosopher extends BaseThread
 	 */
 	public void talk()
 	{
-		// ...
-
-		saySomething();
-
-		// ...
+    System.out.println("I am TALKING now, I am the great philosopher number " + this.iTID+ " ...");
+    yield();
+    saySomething();
+    yield();
+    System.out.println("I am done with TALKING, I am philosopher number " + this.iTID + ". This has been a pleasure!");
 	}
 
 	/**
 	 * No, this is not the act of running, just the overridden Thread.run()
+   * Okay..
+   *
 	 */
 	public void run()
 	{
@@ -91,13 +109,12 @@ public class Philosopher extends BaseThread
 			 * A decision is made at random whether this particular
 			 * philosopher is about to say something terribly useful.
 			 */
-			if(true == false)
+			if(DiningPhilosophers.sharedMonitor.state[getTID()] != Monitor.STATES.eating)
 			{
-				// Some monitor ops down here...
+        DiningPhilosophers.sharedMonitor.requestTalk();
 				talk();
-				// ...
+        DiningPhilosophers.sharedMonitor.endTalk();
 			}
-
 			yield();
 		}
 	} // run()
@@ -114,7 +131,8 @@ public class Philosopher extends BaseThread
 			"You know, true is false and false is true if you think of it",
 			"2 + 2 = 5 for extremely large values of 2...",
 			"If thee cannot speak, thee must be silent",
-			"My number is " + getTID() + ""
+			"My number is " + getTID() + "",
+      "The opposite of isolate is actually yousoearly.."
 		};
 
 		System.out.println
