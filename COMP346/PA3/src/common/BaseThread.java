@@ -70,7 +70,6 @@ public class BaseThread extends Thread
 	public BaseThread(final int piTID)
 	{
 		this.iTID = piTID;
-    System.out.println("Set Thread ID = " + this.getTID());
 	}
 
 	/**

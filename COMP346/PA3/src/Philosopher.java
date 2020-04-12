@@ -9,10 +9,9 @@ import common.BaseThread;
 public class Philosopher extends BaseThread
 {
 
-    public Philosopher(int TID) {
-        super(TID);
+    public Philosopher(int id) {
+        super(id);
     }
-
 	/**
 	 * Max time an action can take (in milliseconds)
 	 */
@@ -30,11 +29,11 @@ public class Philosopher extends BaseThread
 	{
 		try
 		{
-			System.out.println("I ... the great philosopher number " + this.iTID+ " eating...");
+			System.out.println("\nEATING is what I ... the great philosopher number " + this.iTID+ " doing ...");
 			yield();
 			sleep((long)(Math.random() * TIME_TO_WASTE));
       yield();
-			System.out.println("I am philosopher number " + this.iTID + " done eating. This is a waste of time !");
+			System.out.println("\nDONE EATING, I am philosopher no." + this.iTID + ". Gotta think now  !");
 		}
 		catch(InterruptedException e)
 		{
@@ -56,11 +55,11 @@ public class Philosopher extends BaseThread
 	{
 		try
 		{
-			System.out.println("THINKING is what I, the great philosopher number " + this.iTID+ " ...");
+			System.out.println("\nTHINKING is what I, the great philosopher number " + this.iTID+ " doing");
 			yield();
 			sleep((long)(Math.random() * TIME_TO_WASTE));
       yield();
-			System.out.println("I am done with THINKING, I am philosopher number " + this.iTID + ". This is a enlightmen!");
+			System.out.println("\nDONE THINKING, I am philosopher number " + this.iTID + ". This is an enlightmen!");
 		}
 		catch(InterruptedException e)
 		{
@@ -80,11 +79,18 @@ public class Philosopher extends BaseThread
 	 */
 	public void talk()
 	{
-    System.out.println("I am TALKING now, I am the great philosopher number " + this.iTID+ " ...");
-    yield();
-    saySomething();
-    yield();
-    System.out.println("I am done with TALKING, I am philosopher number " + this.iTID + ". This has been a pleasure!");
+    try {
+        System.out.println("\nTALKING now, I am the great philosopher number " + this.iTID+ " ...");
+        yield();
+        saySomething();
+        sleep((long)(Math.random() * TIME_TO_WASTE));
+        yield();
+        System.out.println("\nDONE TALKING, I am philosopher number " + this.iTID + ". This has been a pleasure!");
+    } catch(InterruptedException e) {
+        System.err.println("Philosopher.talk():");
+        DiningPhilosophers.reportException(e);
+        System.exit(1);
+    }
 	}
 
 	/**
@@ -109,6 +115,7 @@ public class Philosopher extends BaseThread
 			 * A decision is made at random whether this particular
 			 * philosopher is about to say something terribly useful.
 			 */
+
 			if(DiningPhilosophers.sharedMonitor.state[getTID()] != Monitor.STATES.eating)
 			{
         DiningPhilosophers.sharedMonitor.requestTalk();
@@ -128,16 +135,15 @@ public class Philosopher extends BaseThread
 		String[] astrPhrases =
 		{
 			"Eh, it's not easy to be a philosopher: eat, think, talk, eat...",
-			"You know, true is false and false is true if you think of it",
 			"2 + 2 = 5 for extremely large values of 2...",
-			"If thee cannot speak, thee must be silent",
-			"My number is " + getTID() + "",
-      "The opposite of isolate is actually yousoearly.."
+      "omg, lol, lgtm, tbh",
+      "The opposite of isolate is actually yousoearly..",
+      "We should not gather here because of Corona ..."
 		};
 
 		System.out.println
 		(
-			"Philosopher " + getTID() + " says: " +
+			"\nPhilosopher " + getTID() + " says: " +
 			astrPhrases[(int)(Math.random() * astrPhrases.length)]
 		);
 	}

@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.io.*;
 /**
  * Class DiningPhilosophers
  * The main starter.
@@ -64,7 +65,19 @@ public class DiningPhilosophers
           System.out.println(" Input mismatches or no input found. Using the default number of philosophers");
           iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
       }
-
+/*
+      // Print output to file
+      String fileName = "../output/output-" + iPhilosophers + "-philosophers"; 
+      File outputFile = new File(fileName);
+      PrintStream output = null;
+      try {
+          output = new PrintStream(outputFile);
+          System.setOut(output);
+      } catch(FileNotFoundException e) {
+          System.out.println("Output file is missing or cannot be openned");
+          System.exit(0);
+      }
+*/
       System.out.println("Number of Philosophers: " + iPhilosophers);
 
 			// Make the monitor aware of how many philosophers there are
@@ -86,7 +99,7 @@ public class DiningPhilosophers
 			// I mean, philosophers to finish their dinner.
 			for(int j = 0; j < iPhilosophers; j++)
 				groupPhilosopher[j].join();
-        System.out.println("All philosophers have left. System terminates normally.");
+        System.out.println("\n\nAll philosophers have left the party. \nSystem terminates normally.");
 		}
 		catch(InterruptedException e)
 		{
