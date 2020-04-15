@@ -13,6 +13,7 @@ import java.util.Random;
  * $Revision: 1.2 $
  * $Last Revision Date: 2018/03/06 $
  *
+ * @author Duc Nguyen -- student
  * @author Serguei A. Mokhov, mokhov@cs.concordia.ca
  */
 public class BaseThread extends Thread

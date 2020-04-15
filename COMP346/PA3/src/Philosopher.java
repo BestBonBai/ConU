@@ -4,6 +4,7 @@ import common.BaseThread;
  * Class Philosopher.
  * Outlines main subrutines of our virtual philosopher.
  *
+ * @author Duc Nguyen -- student
  * @author Serguei A. Mokhov, mokhov@cs.concordia.ca
  */
 public class Philosopher extends BaseThread
@@ -59,7 +60,7 @@ public class Philosopher extends BaseThread
 			yield();
 			sleep((long)(Math.random() * TIME_TO_WASTE));
       yield();
-			System.out.println("\nDONE THINKING, I am philosopher number " + this.iTID + ". This is an enlightmen!");
+			System.out.println("\nDONE THINKING, I am philosopher number " + this.iTID + ". This is an enlightenment!");
 		}
 		catch(InterruptedException e)
 		{
@@ -136,14 +137,14 @@ public class Philosopher extends BaseThread
 		{
 			"Eh, it's not easy to be a philosopher: eat, think, talk, eat...",
 			"2 + 2 = 5 for extremely large values of 2...",
-      "omg, lol, lgtm, tbh",
       "The opposite of isolate is actually yousoearly..",
-      "We should not gather here because of Corona ..."
+      "We should not gather here because of Corona Virus...",
+      "We are sharing chopsticks. How weird and gross is this?"
 		};
 
 		System.out.println
 		(
-			"\nPhilosopher " + getTID() + " says: " +
+			"\nPhilosopher " + getTID() + " SAYS: " +
 			astrPhrases[(int)(Math.random() * astrPhrases.length)]
 		);
 	}

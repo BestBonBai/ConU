@@ -1,0 +1,565 @@
+4 philosopher(s) came in for a dinner.
+
+EATING is what I ... the great philosopher number 2 doing ...
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE EATING, I am philosopher no.2. Gotta think now  !
+
+EATING is what I ... the great philosopher number 1 doing ...
+
+THINKING is what I, the great philosopher number 2 doing
+
+EATING is what I ... the great philosopher number 3 doing ...
+
+DONE THINKING, I am philosopher number 2. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 2 ...
+
+Philosopher 2 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+DONE EATING, I am philosopher no.3. Gotta think now  !
+
+THINKING is what I, the great philosopher number 3 doing
+
+DONE EATING, I am philosopher no.1. Gotta think now  !
+
+THINKING is what I, the great philosopher number 1 doing
+
+DONE THINKING, I am philosopher number 1. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 2. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 2 doing ...
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE THINKING, I am philosopher number 3. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+TALKING now, I am the great philosopher number 1 ...
+
+Philosopher 1 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE EATING, I am philosopher no.2. Gotta think now  !
+
+THINKING is what I, the great philosopher number 2 doing
+
+DONE TALKING, I am philosopher number 1. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 3 ...
+
+Philosopher 3 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+EATING is what I ... the great philosopher number 1 doing ...
+
+DONE EATING, I am philosopher no.1. Gotta think now  !
+
+THINKING is what I, the great philosopher number 1 doing
+
+DONE TALKING, I am philosopher number 3. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 3 doing ...
+
+DONE THINKING, I am philosopher number 2. This is an enlightenment!
+
+DONE THINKING, I am philosopher number 1. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 2 ...
+
+Philosopher 2 SAYS: We should not gather here because of Corona Virus...
+
+DONE TALKING, I am philosopher number 2. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 1 ...
+
+Philosopher 1 SAYS: Eh, it's not easy to be a philosopher: eat, think, talk, eat...
+
+DONE TALKING, I am philosopher number 1. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 1 doing ...
+
+DONE EATING, I am philosopher no.1. Gotta think now  !
+
+THINKING is what I, the great philosopher number 1 doing
+
+DONE EATING, I am philosopher no.3. Gotta think now  !
+
+THINKING is what I, the great philosopher number 3 doing
+
+EATING is what I ... the great philosopher number 2 doing ...
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: We should not gather here because of Corona Virus...
+
+DONE THINKING, I am philosopher number 3. This is an enlightenment!
+
+DONE THINKING, I am philosopher number 1. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+TALKING now, I am the great philosopher number 3 ...
+
+Philosopher 3 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE EATING, I am philosopher no.2. Gotta think now  !
+
+THINKING is what I, the great philosopher number 2 doing
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 2. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 3. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 1 ...
+
+EATING is what I ... the great philosopher number 3 doing ...
+
+Philosopher 1 SAYS: 2 + 2 = 5 for extremely large values of 2...
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+DONE EATING, I am philosopher no.3. Gotta think now  !
+
+THINKING is what I, the great philosopher number 3 doing
+
+DONE TALKING, I am philosopher number 1. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 1 doing ...
+
+TALKING now, I am the great philosopher number 2 ...
+
+Philosopher 2 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE THINKING, I am philosopher number 3. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 2. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: We should not gather here because of Corona Virus...
+
+DONE EATING, I am philosopher no.1. Gotta think now  !
+
+THINKING is what I, the great philosopher number 1 doing
+
+EATING is what I ... the great philosopher number 2 doing ...
+
+DONE THINKING, I am philosopher number 1. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+TALKING now, I am the great philosopher number 3 ...
+
+Philosopher 3 SAYS: Eh, it's not easy to be a philosopher: eat, think, talk, eat...
+
+DONE EATING, I am philosopher no.2. Gotta think now  !
+
+THINKING is what I, the great philosopher number 2 doing
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 3. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 3 doing ...
+
+TALKING now, I am the great philosopher number 1 ...
+
+Philosopher 1 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE THINKING, I am philosopher number 2. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 1. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 1 doing ...
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE EATING, I am philosopher no.3. Gotta think now  !
+
+THINKING is what I, the great philosopher number 3 doing
+
+DONE EATING, I am philosopher no.1. Gotta think now  !
+
+THINKING is what I, the great philosopher number 1 doing
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+TALKING now, I am the great philosopher number 2 ...
+
+Philosopher 2 SAYS: We should not gather here because of Corona Virus...
+
+DONE THINKING, I am philosopher number 1. This is an enlightenment!
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 3. This is an enlightenment!
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 2. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 1 ...
+
+EATING is what I ... the great philosopher number 2 doing ...
+
+Philosopher 1 SAYS: 2 + 2 = 5 for extremely large values of 2...
+
+DONE EATING, I am philosopher no.2. Gotta think now  !
+
+THINKING is what I, the great philosopher number 2 doing
+
+DONE THINKING, I am philosopher number 2. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 1. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 1 doing ...
+
+TALKING now, I am the great philosopher number 3 ...
+
+Philosopher 3 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE TALKING, I am philosopher number 3. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 3 doing ...
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE EATING, I am philosopher no.1. Gotta think now  !
+
+THINKING is what I, the great philosopher number 1 doing
+
+DONE THINKING, I am philosopher number 1. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 2 ...
+
+Philosopher 2 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE EATING, I am philosopher no.3. Gotta think now  !
+
+THINKING is what I, the great philosopher number 3 doing
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE TALKING, I am philosopher number 2. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 1 ...
+
+EATING is what I ... the great philosopher number 2 doing ...
+
+Philosopher 1 SAYS: Eh, it's not easy to be a philosopher: eat, think, talk, eat...
+
+DONE THINKING, I am philosopher number 3. This is an enlightenment!
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE TALKING, I am philosopher number 1. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 3 ...
+
+Philosopher 3 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+DONE EATING, I am philosopher no.2. Gotta think now  !
+
+THINKING is what I, the great philosopher number 2 doing
+
+EATING is what I ... the great philosopher number 1 doing ...
+
+DONE EATING, I am philosopher no.1. Gotta think now  !
+
+DONE THINKING, I am philosopher number 2. This is an enlightenment!
+
+THINKING is what I, the great philosopher number 1 doing
+
+DONE TALKING, I am philosopher number 3. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 0 ...
+
+EATING is what I ... the great philosopher number 3 doing ...
+
+Philosopher 0 SAYS: We should not gather here because of Corona Virus...
+
+DONE THINKING, I am philosopher number 1. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 2 ...
+
+Philosopher 2 SAYS: 2 + 2 = 5 for extremely large values of 2...
+
+DONE EATING, I am philosopher no.3. Gotta think now  !
+
+THINKING is what I, the great philosopher number 3 doing
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE TALKING, I am philosopher number 2. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 1 ...
+
+EATING is what I ... the great philosopher number 2 doing ...
+
+Philosopher 1 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE TALKING, I am philosopher number 1. This has been a pleasure!
+
+DONE EATING, I am philosopher no.2. Gotta think now  !
+
+THINKING is what I, the great philosopher number 2 doing
+
+EATING is what I ... the great philosopher number 1 doing ...
+
+DONE THINKING, I am philosopher number 3. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 3 ...
+
+Philosopher 3 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE EATING, I am philosopher no.1. Gotta think now  !
+
+THINKING is what I, the great philosopher number 1 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+DONE THINKING, I am philosopher number 2. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 3. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 0 ...
+
+EATING is what I ... the great philosopher number 3 doing ...
+
+Philosopher 0 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 2 ...
+
+Philosopher 2 SAYS: We should not gather here because of Corona Virus...
+
+DONE THINKING, I am philosopher number 1. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 2. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 1 ...
+
+Philosopher 1 SAYS: 2 + 2 = 5 for extremely large values of 2...
+
+DONE EATING, I am philosopher no.3. Gotta think now  !
+
+THINKING is what I, the great philosopher number 3 doing
+
+EATING is what I ... the great philosopher number 2 doing ...
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 3. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 1. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 3 ...
+
+Philosopher 3 SAYS: 2 + 2 = 5 for extremely large values of 2...
+
+DONE EATING, I am philosopher no.2. Gotta think now  !
+
+THINKING is what I, the great philosopher number 2 doing
+
+EATING is what I ... the great philosopher number 1 doing ...
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+DONE THINKING, I am philosopher number 2. This is an enlightenment!
+
+DONE EATING, I am philosopher no.1. Gotta think now  !
+
+THINKING is what I, the great philosopher number 1 doing
+
+DONE TALKING, I am philosopher number 3. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 0 ...
+
+EATING is what I ... the great philosopher number 3 doing ...
+
+Philosopher 0 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 2 ...
+
+Philosopher 2 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE EATING, I am philosopher no.3. Gotta think now  !
+
+THINKING is what I, the great philosopher number 3 doing
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE TALKING, I am philosopher number 2. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 2 doing ...
+
+DONE EATING, I am philosopher no.2. Gotta think now  !
+
+THINKING is what I, the great philosopher number 2 doing
+
+DONE THINKING, I am philosopher number 3. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 3 ...
+
+Philosopher 3 SAYS: Eh, it's not easy to be a philosopher: eat, think, talk, eat...
+
+DONE THINKING, I am philosopher number 2. This is an enlightenment!
+
+DONE THINKING, I am philosopher number 1. This is an enlightenment!
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE TALKING, I am philosopher number 3. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 2 ...
+
+EATING is what I ... the great philosopher number 3 doing ...
+
+Philosopher 2 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE EATING, I am philosopher no.3. Gotta think now  !
+
+THINKING is what I, the great philosopher number 3 doing
+
+DONE TALKING, I am philosopher number 2. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 1 ...
+
+EATING is what I ... the great philosopher number 2 doing ...
+
+Philosopher 1 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+DONE EATING, I am philosopher no.2. Gotta think now  !
+
+THINKING is what I, the great philosopher number 2 doing
+
+DONE TALKING, I am philosopher number 1. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 0 ...
+
+EATING is what I ... the great philosopher number 1 doing ...
+
+Philosopher 0 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE EATING, I am philosopher no.1. Gotta think now  !
+
+THINKING is what I, the great philosopher number 1 doing
+
+DONE THINKING, I am philosopher number 3. This is an enlightenment!
+
+DONE THINKING, I am philosopher number 1. This is an enlightenment!
+
+DONE THINKING, I am philosopher number 2. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+TALKING now, I am the great philosopher number 3 ...
+
+Philosopher 3 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE TALKING, I am philosopher number 3. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 3 doing ...
+
+TALKING now, I am the great philosopher number 1 ...
+
+Philosopher 1 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE TALKING, I am philosopher number 1. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 2 ...
+
+Philosopher 2 SAYS: Eh, it's not easy to be a philosopher: eat, think, talk, eat...
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+DONE TALKING, I am philosopher number 2. This has been a pleasure!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE EATING, I am philosopher no.3. Gotta think now  !
+
+THINKING is what I, the great philosopher number 3 doing
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+DONE THINKING, I am philosopher number 3. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 3 ...
+
+Philosopher 3 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE TALKING, I am philosopher number 3. This has been a pleasure!
+
+
+All philosophers have left the party. 
+System terminates normally.

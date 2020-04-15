@@ -5,7 +5,7 @@ import java.util.concurrent.locks.Condition;
 /**
  * Class Monitor
  * To synchronize dining philosophers.
- *
+ * @author Duc Nguyen -- student
  * @author Serguei A. Mokhov, mokhov@cs.concordia.ca
  */
 public class Monitor
@@ -18,7 +18,8 @@ public class Monitor
 	enum STATES {eating, hungry, thinking};
 	int numberOfChopsticks;
   private int NumberOfPhilosophers;
-  final Lock lock;
+
+  final Lock lock; // A lock to provide synchronization state
 	public static STATES[] state;
 	public static Condition [] self;
   private static Condition talking;
@@ -30,10 +31,12 @@ public class Monitor
 	public Monitor(int NumberOfPhilosophers)
 	{
     this.NumberOfPhilosophers = NumberOfPhilosophers;
-    lock = new ReentrantLock();
+    //Set number of chopsticks and states corresponding to the number of philosophers joining the party
 		numberOfChopsticks = NumberOfPhilosophers;
 		state = new STATES[NumberOfPhilosophers];
 		self = new Condition [NumberOfPhilosophers];
+
+    lock = new ReentrantLock();
     //Set initial states
     for(int i = 0; i < NumberOfPhilosophers; ++i) {
         state[i] = STATES.thinking;
@@ -49,7 +52,7 @@ public class Monitor
 	 * -------------------------------
 	 */
 
-  // A method used to test 2 sides of a philosopher
+  // A method used to test 2 sides of a philosopher (check if the current philosopher has enough chopsticks)
   public void test(int piTID) {
       lock.lock();
       try {
@@ -95,7 +98,7 @@ public class Monitor
       lock.lock();
       try {
           state[piTID] = STATES.thinking;
-          //Check and let right, left philosophers to pick up chopstick
+          //Check and let right, left philosophers to pick up chopstick if they are waiting while hungry.
           test((piTID - 1 + NumberOfPhilosophers) % NumberOfPhilosophers);
           test((piTID + 1 + NumberOfPhilosophers) % NumberOfPhilosophers);
       } finally {
@@ -105,13 +108,13 @@ public class Monitor
 
 	/**
 	 * Only one philosopher at a time is allowed to philosophy
-	 * (while she is not eating).
+	 * (while she is not eating: the condition is checked before calling requestTalk inside Philosopher class)
 	 */
-	public synchronized void requestTalk()
+	public void requestTalk()
 	{
     lock.lock();
     try {
-        while(someOneTalking) {
+        if(someOneTalking) {
             talking.await();
         }
         someOneTalking = true;
@@ -126,7 +129,7 @@ public class Monitor
 	 * When one philosopher is done talking stuff, others
 	 * can feel free to start talking.
 	 */
-	public synchronized void endTalk()
+	public void endTalk()
 	{
       lock.lock();
       try {

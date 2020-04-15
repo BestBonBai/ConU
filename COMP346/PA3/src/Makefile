@@ -1,7 +1,6 @@
-# Just a makefile to save some typing :-)
 # Serguei A. Mokhov, mokhov@cs.concordia.ca
+# Duc Nguyen -- student
 # PA3
-# Use gmake.
 
 JAVAC=javac
 JFLAGS=-g
@@ -15,7 +14,7 @@ JAVAFILES := $(ASMTDIRS:%=%/*.java)
 CLASSES := $(ASMTDIRS:%=%/*.class)
 
 all: $(EXE).class
-	@echo "Dining Philosophers Application has been built."
+	@echo "The party for Philosophers has been built! Let's rock"
 
 $(EXE).class: $(JAVAFILES)
 	$(JAVAC) $(JFLAGS) $(EXE).java

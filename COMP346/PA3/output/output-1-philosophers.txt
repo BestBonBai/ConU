@@ -1,0 +1,145 @@
+1 philosopher(s) came in for a dinner.
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: 2 + 2 = 5 for extremely large values of 2...
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: Eh, it's not easy to be a philosopher: eat, think, talk, eat...
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: Eh, it's not easy to be a philosopher: eat, think, talk, eat...
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: Eh, it's not easy to be a philosopher: eat, think, talk, eat...
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: 2 + 2 = 5 for extremely large values of 2...
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: We are sharing chopsticks. How weird and gross is this?
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: 2 + 2 = 5 for extremely large values of 2...
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: 2 + 2 = 5 for extremely large values of 2...
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+EATING is what I ... the great philosopher number 0 doing ...
+
+DONE EATING, I am philosopher no.0. Gotta think now  !
+
+THINKING is what I, the great philosopher number 0 doing
+
+DONE THINKING, I am philosopher number 0. This is an enlightenment!
+
+TALKING now, I am the great philosopher number 0 ...
+
+Philosopher 0 SAYS: The opposite of isolate is actually yousoearly..
+
+DONE TALKING, I am philosopher number 0. This has been a pleasure!
+
+
+All philosophers have left the party. 
+System terminates normally.
