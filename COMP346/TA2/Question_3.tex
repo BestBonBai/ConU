@@ -1,0 +1,22 @@
+\newpage
+\section{Shared memory problem}
+\subsection{Problem:}
+\begin{itemize}
+    \item Does shared memory provide faster or slower interactions between user processes?
+    \item Under what conditions is shared memory not suitable at all for inter-process communications? 
+\end{itemize}
+
+\subsection{Answer:}
+\begin{itemize}
+    \item In shared memory, the communication between the processes take place through shared address space. So, in shared memory system, multiple processes can share the virtual memory space.
+
+Thus, shared memory provides fastest interactions between user processes as the memory segment is mapped by the operating system in the address space of several processes.
+
+    \item he conditions in which the shared memory is not suitable for inter-process communications are as follows:
+        \begin{itemize}
+            \item When more CPUs are added corresponding to a shared memory section, it can lead to an increase in traffic on shared memory, which will increase the traffic associated with the cache. So, the shared memory models do not work across multiple machines.
+            \item In current scenario, due to complexity of the systems as well as the tasks, the requirement of processors increases, so the cost as well as the difficulty to design shared memory machines according to the increasing complexity of processors increases.
+            \item The shared memory models create synchronization problems and not suitable for producer consumer problems
+            \item It is also unsuitable for the conditions of bounded buffer and unbounded buffer.
+        \end{itemize}
+\end{itemize}
