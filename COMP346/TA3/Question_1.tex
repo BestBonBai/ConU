@@ -1,0 +1,42 @@
+\newpage
+\section{General questions}
+\subsection{Problems:}
+Answer the following questions:
+\begin{itemize}
+    \item 
+        \begin{itemize}
+            \item What are relocatable programs?
+            \item What makes a program relocatable? 
+            \item From the OS memory management context, why programs (processes) need to be relocatable?
+        \end{itemize}
+    \item What is (are) the advantage(s) and/or disadvantage(s) of small versus big page sizes?
+    \item What is (are) the advantage(s) of paging over segmentation?
+    \item What is (are) the advantage(s) of segmentation over paging?
+\end{itemize}
+
+\subsection{Answer:}
+
+\begin{itemize}
+    \item 
+        \begin{itemize}
+            \item A program is said to be relocatable that can be placed at any memory address and can be executed without any changes. A program can be relocatable only If it contains data with relative address.
+            \item If the program contains data with relative addresses, then it can be relocatable. In the other hand, if the program contains data with absolute addresses, then it cannot be relocatable.
+            \item There will be several programs that are in memory to be executed. So, it should be possible to load the program at any available memory location and execute it without doing any modifications.
+        \end{itemize}
+    \item
+        \begin{itemize}
+            \item Memory wastage will be less with pages with small size compared to pages with large size. A large page will waste memory. It may cause internal fragmentation in the last frame allocated to the program/process.
+            \item Pages with small size will require large page tables where as large page size will require small page tables. In other words, the number of entries in the page table will be more when the page size is small.
+            \item When the page size is small, the number of page faults will be more. When the page size is big, the number of page faults will be less.
+        \end{itemize}
+    \item 
+        \begin{itemize}
+            \item There will be no external fragmentation
+            \item Swapping of pages between disk and memory is easy as the pages and frames are of equal size.
+        \end{itemize}
+    \item 
+        \begin{itemize}
+            \item There will be no internal fragmentation.
+            \item The memory space occupied by segment table is less when compared to the memory space occupied by page table in paging mechanism.
+        \end{itemize}
+\end{itemize}
