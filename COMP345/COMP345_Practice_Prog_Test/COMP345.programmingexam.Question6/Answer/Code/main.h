@@ -8,10 +8,10 @@ class MyArray {
 
     public:
         MyArray();
-        MyArray(int array[], int size);
-        MyArray(MyArray& array);
+        MyArray(const int array[], int size);
+        MyArray(const MyArray& array);
 
-        const MyArray& operator=(MyArray& array);
+        MyArray& operator=(MyArray& array);
         bool isInArray(int check);
 
         // Getter
@@ -24,12 +24,20 @@ class MyArray {
 inline int* MyArray::getArray() {return theArray;}
 inline int MyArray::getSize() {return size;}
 
-const MyArray& MyArray::operator=(MyArray& another) {
+MyArray& MyArray::operator=(MyArray& another) {
     if(&another != this) {
         delete[] this->getArray();
         size = another.getSize();
-        theArray = new int[size];
+        if(another.theArray) {
+            theArray = new int[size];
+            for(int i = 0; i< this->size; i++) {
+                this->theArray[i] = another.theArray[i];
+            }
+        } else {
+            theArray = 0;
+        }
     }
+
     return *this;
 }
 
