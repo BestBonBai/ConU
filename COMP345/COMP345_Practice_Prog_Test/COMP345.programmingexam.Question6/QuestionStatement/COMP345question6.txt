@@ -1,0 +1,48 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// QUESTION 6 [50 marks]
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Write a C++ program including a class named MyArray that include two private data members: a dynamically allocated array of integers 
+named theArray, and an integer named size that stores the number of elements in theArray. The answer must be separated into a .h and 
+a .cpp file. 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// PART 1 [40 marks]:
+// 
+// The class MyArray must also include the following public methods: 
+// 
+// a.[5 marks] a default constructor that initializes theArray to size zero.
+// b.[5 marks] a constructor that takes a statically allocated array as a parameter and copies it into theArray, while making sure 
+               that duplicates are removed during the copy (using the isInArray function—see B.i.(e)).
+// c.[5 marks] a copy constructor. 
+// d.[5 marks] an assignment operator.
+// e.[5 marks] an isInArray non-inline member function that gets an integer value as a parameter and returns true if the value 
+               received as parameter is in theArray, and false if it is not.
+// f.[5 marks] a getArray inline member function returning theArray.
+// g.[5 marks] a getSize inline member function returning the size of the stored array.
+// h.[5 marks] a destructor. 
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+//
+// Part 2 [10 marks]: 
+// 
+// The program must include a main function that implements the following operations and specifications:
+// 
+// a.[2 marks] create an object of type pointer to MyArray using the constructor developed in question B.i.(b). 
+// b.[3 marks] use the copy constructor developed in question B.i.(c) to create another object of type MyArray and assign it to a 
+               variable of type pointer to MyArray named copiedArray.
+// c.[3 marks] print to the screen all elements of the array stored in the copiedArray object. 
+// d.[2 marks] ensure that the main function does not implement a memory leak.  
+// 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// END OF QUESTION 6
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
