@@ -1,0 +1,35 @@
+\newpage
+\section{Question 1: [10 marks]}
+\subsection{Problem Description:}
+
+Prove or disprove the following statements. To prove a statement is true, give a formal
+argument (in cases involving implications among FD’s, use Armstrong’s Axioms). To
+disprove falsity, give a counterexample.
+
+\subsection{A.}
+\{A $\rightarrow$ B, C $\rightarrow$ AB\} $\Rightarrow$ \{C $\rightarrow$ B\}
+\\
+
+$C \rightarrow AB \Rightarrow C \rightarrow A AND C \rightarrow B (Decomposition/Splitting rule) $\\
+With:
+\begin{itemize}
+    \item A -> B
+    \item C -> A
+\end{itemize}
+=> C -> B
+\\
+\textbf{Conclusion}: The statement is true
+
+\subsection{B.}
+\{KL $\rightarrow$ M, L $\rightarrow$ N\} $\Rightarrow$ \{KN $\rightarrow$ M\} \\
+Based on pseudo transitivity rule => 
+\textbf{Conclusion}: The statement is true
+
+\subsection{C.}
+\{A $\rightarrow$ C, BD $\rightarrow$ A, C $\rightarrow$ D\} $\Rightarrow$ \{AB $\rightarrow$ CD\} \\
+\begin{itemize}
+    \item {A -> C} => AB -> C
+    \item {AB -> C, C -> D} => AB -> D
+    \item {AB -> C, AB -> D} => AB -> CD
+\end{itemize}
+\textbf{Conclusion}: The statement is true
