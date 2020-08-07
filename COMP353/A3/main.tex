@@ -1,0 +1,155 @@
+\documentclass[a4paper]{article}
+
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{amsthm}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage[outline]{contour}
+\usepackage[affil-it]{authblk}
+
+\title{COMP 353 Databases\\
+Assignment no.3}
+
+\author{Duc Nguyen}
+ \affil{Gina Cody School of Computer Science and Software Engineering \\
+    Concordia University, Montreal, QC, Canada}
+\date{Summer 2020}
+
+\begin{document}
+\maketitle
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Problem description:}
+Consider a DB schema consisting of the following relation schemes:
+\begin{itemize}
+    \item \textbf{Regions} (\underline{\textbf{Region\_ID}}, Region\_Name)
+    \item \textbf{Countries} (\underline{\textbf{Country\_id}}, Country\_Name, Region\_Id)
+    \item \textbf{Locations} (\underline{\textbf{Location\_Id}}, Street\_address, Postal\_code, City, State\_Province, Country\_Id)
+    \item \textbf{Jobs} (\underline{\textbf{Job\_Id}},  Job\_title, Min\_Salary, Max\_salary)
+    \item \textbf{Departments} (\underline{\textbf{Dep\_Id}},  Dep\_Name, Manager\_Id,
+Location\_Id)
+    \item \textbf{Employees} (\underline{\textbf{Emp\_ID}},  FirstName, Last\_Name, E-mail,
+Phone\_number, Hire\_date, Job\_Id, Salary, Comsn\_pct,
+Manager\_Id, Dep\_Id)
+    \item \textbf{Employee\_History} (\underline{\textbf{Emp\_ID}, \textbf{Joining\_date}}, last\_date, Job\_ID, Dep\_ID)
+\end{itemize}
+
+\textbf{Keys are underlined} \\
+Now, express the following queries in Relational Algebra (You are not allowed to use
+aggregate functions):
+
+\newpage
+\subsection{Query 1.}
+\subsubsection{Description}
+Find the FirstName, LastName, email, phone number, hire date and salary of
+employees currently working in the research and development department.
+\subsubsection{Relational Algebra}
+\begin{align*}
+\pi_{\substack{
+        \text{FirstName, Last\_Name,} \\ 
+        \text{E-mail, Phone\_number,}\\
+        \text{Hire\_date, Salary}
+    }
+}
+(\sigma_{\text{Dep\_Name="Research and Development"}} (\text{Departments } \bowtie\text{ Employees})  )
+\end{align*}
+
+
+\subsection{Query 2.}
+\subsubsection{Description}
+Find the FirstName and LastName of employees who are currently working in
+Canada but have never worked in the United States.
+\subsubsection{Relational Algebra}
+\begin{align*}
+    &\rho_{A}(\pi_{FirstName, Last\_Name} (\sigma_{\text{Country\_Name = "Canada"}} (Employees \bowtie Departments \bowtie Locations \bowtie Countries)  )) \\
+    &\rho_{B}(\pi_{FirstName, Last\_Name} (\sigma_{\text{Country\_Name = "United States"}} \\
+    &(Employees \bowtie Employee\_History \bowtie Departments \bowtie Locations \bowtie Countries)  )) \\
+    & A - B
+\end{align*}
+
+\newpage
+\subsection{Query 3.}
+\subsubsection{Description}
+Find the FirstName, LastName and Department Name of employees who are
+currently managers of a department in which they have never worked in the past
+for the department they are currently managing.
+\subsubsection{Relational Algebra}
+
+\begin{align*}
+&\rho_{Dept} (\pi_{Dep\_Id, Dep\_Name} (Departments)) \\
+&\rho_{(A)} (\pi_{\substack{
+    \text{FirstName} \\
+    \text{Last\_Name} \\
+    \text{Dep\_Name}
+    }}
+    (\sigma_{Employees.Manager\_Id = Emp\_ID} (\text{Employees } \bowtie \text{ Dept}))
+    ) \\
+&\rho_{EH} (Employees \bowtie_{Employees.Emp\_ID = Employee\_History.Emp\_ID} Employee\_History) \\
+&\rho_{B} (\pi_{\substack{
+    \text{FirstName} \\
+    \text{Last\_Name} \\
+    \text{Dep\_Name}
+    }
+}
+(\sigma_{Employees.Dep\_Id = Employee\_History.Dep\_Id} (\text{Employees } \bowtie \text{ EH })) ) \\
+&A - B
+\end{align*}
+
+\subsection{Query 4.}
+\subsubsection{Description}
+Find the Job Title and the maximum salary of all jobs that have the max salary as
+the highest salaries among all other jobs.
+\subsubsection{Assumption}
+\textbf{Assume the question is asking for the highest Max\_salary in Jobs}
+\subsubsection{Relational Algebra}
+\begin{align*}
+&\rho_{\text{ TOTAL}} (\pi_{Job\_title, Max\_salary} (Jobs)) \\
+&\rho_{A} (TOTAL) \\
+&\rho_{\text{ B}} (\pi_{Max\_salary} (Jobs)) \\
+&\rho_{C} (\pi_{Job\_title, A.Max\_salary} (A \bowtie_{A.Max\_salary < B.Max\_salary} B)) \\
+& TOTAL - C
+\end{align*}
+
+\newpage
+\subsection{Query 5.}
+\subsubsection{Description}
+Find the department name of all the departments that are located in the region of
+North America
+\subsubsection{Relational Algebra}
+\begin{align*}
+    &\pi_{Dep\_Name} (\sigma_{\text{Region\_Name = "North America"}} (Departments \bowtie Locations \bowtie Countries \bowtie Regions) )
+\end{align*}
+
+\subsection{Query 6.}
+\subsubsection{Description}
+Find the FirstName and LastName of employees who worked on all jobs
+throughout their lifetime (from first day of work till today if they are still
+working)
+\subsubsection{Assumption}
+\textbf{Assuming the question asks for people who have worked at every job in the Jobs relation before}
+\subsubsection{Relational Algebra}
+\begin{align*}
+    &\pi_{FirstName, Last\_Name} ((Jobs \bowtie (Employees \bowtie Employee\_History) ) \div (\pi_{Job\_Id} Jobs))
+\end{align*}
+
+\subsection{Query 7.}
+\subsubsection{Description}
+Find the FirstName and LastName of employees who throughout their career
+worked in all the locations that are located in the province of Quebec.
+\subsubsection{Relational Algebra}
+\begin{align*}
+    & \rho_{A} ( \\
+    &\pi_{FirstName, Last\_Name} ( \\
+    &\sigma_{State\_Province = "Quebec"} (Employees \bowtie Employee\_History \bowtie Departments \bowtie Locations))) \\
+    & \rho_{B} ( \\
+    &\pi_{FirstName, Last\_Name} ( \\
+    &\sigma_{State\_Province \neq "Quebec"} (Employees \bowtie Employee\_History \bowtie Departments \bowtie Locations))) \\
+    & A - B
+\end{align*}
+\end{document}
