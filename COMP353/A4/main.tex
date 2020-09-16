@@ -1,0 +1,262 @@
+\documentclass[a4paper]{article}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{amsthm}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage[outline]{contour}
+\usepackage[affil-it]{authblk}
+
+\title{COMP 353 Databases\\
+Assignment no.4}
+
+\author{Duc Nguyen}
+ \affil{Gina Cody School of Computer Science and Software Engineering \\
+    Concordia University, Montreal, QC, Canada}
+\date{Summer 2020}
+
+\begin{document}
+\maketitle
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Problem description:}
+Consider a DB schema consisting of the following relation schemes:
+\begin{itemize}
+    \item \textbf{Regions} (\underline{\textbf{Region\_ID}}, Region\_Name)
+    \item \textbf{Countries} (\underline{\textbf{Country\_id}}, Country\_Name, Region\_Id)
+    \item \textbf{Locations} (\underline{\textbf{Location\_Id}}, Street\_address, Postal\_code, City, State\_Province, Country\_Id)
+    \item \textbf{Jobs} (\underline{\textbf{Job\_Id}},  Job\_title, Min\_Salary, Max\_salary)
+    \item \textbf{Departments} (\underline{\textbf{Dep\_Id}},  Dep\_Name, Manager\_Id,
+Location\_Id)
+    \item \textbf{Employees} (\underline{\textbf{Emp\_ID}},  FirstName, Last\_Name, E-mail,
+Phone\_number, Hire\_date, Job\_Id, Salary, Comsn\_pct,
+Manager\_Id, Dep\_Id)
+    \item \textbf{Employee\_History} (\underline{\textbf{Emp\_ID}, \textbf{Joining\_date}}, last\_date, Job\_ID, Dep\_ID)
+\end{itemize}
+
+\textbf{Keys are underlined} \\
+Now, express the following queries in SQL:
+\newpage
+\subsection{Query 1.}
+\subsubsection{Description}
+Find the count of departments, region name(s) and cities for the department(s)
+that have more than 500 employees.
+\subsubsection{SQL code}
+\begin{lstlisting}[language=SQL]
+select count(Dep_Id), Region_Name, City
+from Regions R
+join Countries C on R.Region_ID = C.Region_ID 
+join Locations L on C.Country_Id = L.Country_Id 
+join Departments D on D.Location_Id = L.Location_Id
+where Dep_Id in (
+    select Dep_Id 
+    from Employees
+    group by Dep_Id 
+    having count(Dep_Id) > 500
+)
+group by Region_Name, City ;
+\end{lstlisting}
+
+\subsection{Query 2.}
+\subsubsection{Description}
+For a department in which the max salary is greater than 100000 for employees
+who worked in the past, set the manager name as ‘Picard’
+\begin{lstlisting}[language=SQL]
+update Employees e
+set FirstName = 'Picard' 
+where Dep_Id in 
+    (select  Dep_Id 
+    from Employees
+    where Emp_ID in 
+        (select Emp_ID from Employee_History )
+    group by Dep_Id
+    having max(Salary) > 10000);
+\end{lstlisting}
+
+\newpage
+\subsection{Query 3.}
+\subsubsection{Description}
+Find month and year which witnessed lowest count of employees joining a
+department located in ‘Vancouver’.
+\subsubsection{SQL Query}
+\begin{lstlisting}[language=SQL]
+select month(Joining_date), year(Joining_date)
+from Employee_History E
+join Departments D on E.Dep_Id = D.Dep_Id
+join Locations L on D.Location_Id = L.Location_Id
+where L.City = 'Vancouver'
+having count(E.Emp_ID) = (
+    select min(count(E.Emp_ID))
+    from Employee_History H
+    join Departments on H.Dep_Id = D.Location_Id
+    join Locations on D.Location_Id = L.Location_Id
+    where L.City = 'Vancouver'
+);
+\end{lstlisting}
+
+
+\subsection{Query 4.}
+\subsubsection{Description}
+With the help of schema find the year which witnessed maximum number of
+employee intake.
+\subsubsection{SQL Query}
+\begin{lstlisting}[language=SQL]
+select year(A.Joining_date)
+from Employee_History A
+join Employees B
+on A.Emp_ID=B.Emp_ID
+group by year(A.Joining_date)
+group by count(*) desc
+limit 1;
+\end{lstlisting}
+
+\newpage
+\subsection{Query 5.}
+\subsubsection{Description}
+For the year in query-4, find how many joined in each month in that specific year
+\subsubsection{SQL Query}
+\begin{lstlisting}[language=SQL]
+select count(Emp_ID), month(Joining_date)
+from Employee_History h
+where year(Joining_date) = (
+	select year(A.Joining_date)
+	from Employee_History A
+	join Employees B
+	on A.Emp_ID=B.Emp_ID
+	group by year(A.Joining_date)
+	group by count(*) desc
+	limit 1
+)
+group by month(Joining_date)
+order by count(Emp_ID);
+\end{lstlisting}
+
+\newpage
+\textbf{PART 2: Use triggers for the queries below:}
+\subsection{Query 6.}
+\subsubsection{Description}
+Create a trigger to ensure that a salary of an employee cannot exceed the salary of
+his/her manager. If the employee does not have a manager, then his/her salary
+cannot be more than 10\% of the highest salary in the database.
+\subsubsection{SQL Query}
+\begin{lstlisting}
+CREATE TRIGGER A
+BEFORE INSERT OR UPDATE OF Salary, Manager_Id ON Employees
+NEW ROW AS new
+FOR EACH ROW
+WHEN (new.Salary > (SELECT Salary
+    FROM Employees
+    WHERE Emp_ID = Manager_Id))
+    OR 
+    ( new.Emp_ID IN (SELECT Emp_ID FROM Employees WHERE Manager_Id = NULL)
+    AND new.Salary > 1.1 * ( SELECT MAX(Salary) FROM Employees)
+Begin
+    ROLLBACK;
+End;
+\end{lstlisting}
+
+\newpage
+\subsection{Query 7.}
+\subsubsection{Description}
+For changes in the job of an employee, updated details provided below must be
+written to Employee History:
+hire date of the employee for start date, old job ID, old department ID,
+Employee ID, todays' system date for end date. In case a row is already
+present for employee job history then the start date must be the end date of that
+(row +1).
+\subsubsection{SQL Query}
+\begin{lstlisting}
+CREATE TRIGGER B
+AFTER INSERT OR UPDATE OF Job_Id ON Employees
+FOR EACH ROW
+referencing
+    old row as Old
+    new row as New
+declare
+    enddate date;
+    startdate date;
+begin
+    select max(last_date) into enddate
+    from Employee_History
+    where Employee_History.Emp_ID = old.Emp_ID;
+    
+    if enddate is null:
+        insert into 
+        Employee_History (Joining_date, Job_ID, Dep_ID, Emp_ID, last_date) 
+        values (Old.Hire_date, Old.Job_Id, Old.Dep_Id, Old.Emp_ID, sysdate);
+    else:
+        startdate = enddate + 1;
+        update Employee_History
+        set Joining_date = startdate, last_date = sysdate
+        where Old.Emp_ID = Employee_History.Emp_ID;
+    end if;
+\end{lstlisting}
+
+\newpage
+\subsection{Query 8.}
+\subsubsection{Description}
+Make a Trigger to ensure that the salary of the employee is never decreased while
+working in an organization.
+\subsubsection{SQL Query}
+\begin{lstlisting}
+create trigger C
+after update of Salary on Employees
+referencing old row as OldT, new row as NewT
+for each row
+when (OldT.Salary > NewT.Salary)
+begin
+    update Employees
+    set Salary = OldT.Salary
+end;
+\end{lstlisting}
+
+
+\subsection{Query 9.}
+\subsubsection{Description}
+Create a trigger to ensure that an increase of salary for an employee is conform
+with the following rules: If experience is more than 8 years, increase salary by
+max 20\%; If experience is greater than 3 years, increase salary by max of 10\%;
+Otherwise a max increase of 5\%.
+\subsubsection{SQL Query}
+\begin{lstlisting}
+create trigger D
+before update of Salary on Employees
+referencing 
+    old row as Old
+    new row as New
+for each row
+when (
+    ((getdate() - new.Hire_date) < 8 and (new.Salary > 1.20 * old.Salary) )
+    or ((getDate() - new.Hire_date) < 3 and (new.Salary > 1.10 * old.Salary))
+    or (new.Salary > 1.05 * old.Salary)
+    )
+begin
+    rollback;
+end;
+\end{lstlisting}
+
+\newpage
+\subsection{Query 10.}
+\subsubsection{Description}
+Create a trigger to ensure that Min\_salary cannot exceed Max\_salary for any job
+\subsubsection{SQL Query}
+\begin{lstlisting}
+create trigger E
+before update on Jobs
+referencing 
+    new row as newTuple
+for each row
+when (newTuple.Min_Salary > newTuple.Max_Salary)
+begin 
+    rollback;
+end 
+\end{lstlisting}
+
+\end{document}

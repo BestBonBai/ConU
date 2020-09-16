@@ -1,0 +1,87 @@
+\newpage
+\section{Question 3: [10 marks]}
+\subsection{Problem Description:}
+You are given a relation scheme R = {B, N, S, T, A, R, C} where B = Building, N = Door
+Number, S = Street, T = Type, A = Architect, R = Subcontractor and C = Class.
+Constraints between the attributes can be expressed in the form of the following
+functional dependencies: \\
+F = \{AB -> T, A -> B, R -> C, NS -> BT\}.
+
+\newpage
+\subsection{Find all the candidate keys of F. Prove that these are the only keys}
+From the set F: \\
+=>
+\begin{itemize}
+    \item \{NS -> BT\} => NS -> B AND NS -> T (Splitting rule)
+\end{itemize}
+
+The first super key contains all the attributes: \\
+$\{B, N, S, T, A, R, C\}^{+}$ = {B, N, S, T, A, R, C}
+\\
+
+From the set of function dependencies F:
+\begin{itemize}
+    \item B is redundant if there are N,S in the key
+    \item T is redundant if there are N,S in the key
+    \item C is redundant if there is R in the key
+\end{itemize}
+
+=> The keys left are {N, S, A, R} \\
+$\{N,S,A,R\}^{+} = \{N, S, A, R, B, T, C\}$ => \{N,S,A,R\} is a super key \\
+Proper subsets of {N,S,A,R} are:
+\begin{itemize}
+    \item \{N\}. $\{N\}^{+} = \{N\}$ => not a super key
+    \item \{S\}. $\{S\}^{+} = \{S\}$ => not a super key
+    \item \{A\}. $\{A\}^{+} = \{A, B, T\}$ => not a super key
+    \item \{R\}. $\{R\}^{+} = \{R, C\}$ => not a super key
+    \item \{N, S\}. $\{N, S\}^{+} = \{ N, S, B, T\}$ => not a super key
+    \item \{N, A\}. $\{N, A\}^{+} = \{ N, A, B, T\}$ => not a super key
+    \item \{N, R\}. $\{N, R\}^{+} = \{ N, R, C\}$ => not a super key
+    \item \{S, A\}. $\{S, A\}^{+} = \{ S, A, B, T\}$ => not a super key
+    \item \{S, R\}. $\{S, R\}^{+} = \{ S, R, C\}$ => not a super key
+    \item \{A, R\}. $\{A, R\}^{+} = \{ A, R, B, T, C\}$ => not a super key
+    \item \{N, S, A\}. $\{N, S, A\}^{+} = \{ N, S, A, B, T\}$ => not a super key
+    \item \{N, S, R\}. $\{N, S, R\}^{+} = \{ N, S, R, B, T, C\}$ => not a super key
+    \item \{N, A, R\}. $\{N, A, R\}^{+} = \{ N, R, A, B, C, T\}$ => not a super key
+    \item \{S, A, R\}. $\{S, A, R\}^{+} = \{ S, A, R, B, T\}$ => not a super key
+\end{itemize}
+
+\textbf{No proper subsets of \{N,S,A,R\} are super keys => It is candidate key.}\\
+Moreover, there is no function dependencies in F that determine any key inside \{N,S,A,R\}. Therefore, no key could possibly replace a key in the candidate key \{N,S,A,R\}; hence it is the only candidate key.
+
+\newpage
+\subsection{Derive a canonical cover for F in a systematic manner.}
+Let G be the minimal/canonical cover of F (the set of function dependencies) \\
+G = \{AB->T, A->B, R->C, NS->BT\}
+
+\subsubsection{Make every function dependency X in G determine only 1 attribute:}
+The only dependency needed to be splitted is: NS -> BT\\
+\begin{itemize}
+    \item \{NS->BT\} => {NS->B} AND {NS->T}
+\end{itemize}
+
+G = \{AB->T, A->B, R->C, NS->B, NS->T\}
+
+\subsection{Minimize the left hand side X of every FD}
+\begin{itemize}
+    \item \{A->B, AB->T\} => A->T AND B->T
+\end{itemize}
+=> 
+G = \{A->T, B->T, A->B, R->C, NS->B, NS->T\}
+
+\subsection{Remove redundant FD, if any}
+G = \{A->T, B->T, A->B, R->C, NS->B, NS->T\}
+\begin{itemize}
+    \item A->T. $A^{+} = \{ A, B\}$. There're no T in the closure => the FD is not redundant.
+    \item B->T. $B^{+} = \{ B\}$. There're no T in the closure => the FD is not redundant.
+    \item A->B. $A^{+} = \{ A, B\}$. There is B in the closure => the FD is redundant => Remove this FD
+    \item R->C. $R^{+} = \{ R\}$. There're no C in the closure => the FD is not redundant.
+    \item NS->B. $\{N,S\}^{+} = \{ N, S, T\}$. There're no B in the closure => the FD is not redundant.
+    \item NS->T. $\{N,S\}^{+} = \{ N, S, B, T\}$. There is T in the closure => the FD is redundant => Remove this FD
+\end{itemize}
+\textbf{The canonical cover of F is G} = \{A->T, B->T, R->C, NS->B\}
+
+
+\newpage
+\subsection{Does a set of FD’s have a unique canonical cover? Why? }
+The answer is no. A set of FD's might have more than one unique canonical cover. Depending on the order of simplifying, the canonical cover might be different each time. 

@@ -1,0 +1,177 @@
+\newpage
+\section{Question 2: [10 marks]}
+\subsection{Problem Description}
+Suppose you are given a relation scheme R = {A, B, C, D}. For each of the following sets
+of functional dependencies, assuming those are the only dependencies that hold for R, do
+the following:
+\begin{itemize}
+    \item Identify the candidate key(s) for R.
+    \item State whether or not the proposed decomposition of R into smaller relations
+is a good decomposition, briefly explaining why or why not.
+\end{itemize}
+
+The super key with all they keys in it: \{A,B,C,D\}
+$\{A,B,C,D\}^{+} = \{A,B,C,D\}$
+
+
+\newpage
+\subsection{\{B -> C, D -> A\}: decompose into BC and AD.}
+\subsubsection{Find the candidate key(s):}
+From the set of function dependencies:
+\begin{itemize}
+    \item C is redundant if there is B in the key
+    \item A is redundant if there is D in the key
+\end{itemize}
+The keys left are: \{B,D\} \\
+$\{B,D\}^{+} = \{A,B,C,D\}$ => \{B,D\} is a super key.
+Proper subsets of \{B,D\} are:
+\begin{itemize}
+    \item \{B\}. $\{B\}^{+} = \{B, C\}$ => not a super key.
+    \item \{D\}. $\{D\}^{+} = \{D, A\}$ => not a super key.
+\end{itemize}
+No proper subsets of \{B, D\} are super keys => \{B,D\} is a candidate key.
+Moreover, there is no function dependencies in F that determine the keys B or D (prime keys). hence, it is the only candidate key of the relation.
+
+\textbf{Conclusion: Candidate key: \{ B, D \}}
+
+\subsubsection{Evaluate the decomposition}
+\begin{itemize}
+    \item $R_{1}(BC) \cup R_{2}(AD) = R(ABCD)$
+    \item $R_{1}(BC) \cap R_{2}(AD) = \emptyset$
+\end{itemize}
+=> \textbf{The decomposition is lossy.} \\
+=> \textbf{The decomposition is not good.}
+
+
+\newpage
+\subsection{\{AB -> C, C-> A, C -> D\}: decompose into ACD and BC.}
+\subsubsection{Find the candidate key(s):}
+From the set of function dependencies:
+\begin{itemize}
+    \item A is redundant if there is C in the key
+    \item D is redundant if there is C in the key
+\end{itemize}
+The keys left are: \{B,C\} \\
+$\{B,C\}^{+} = \{A,B,C,D\}$ => \{B,C\} is a super key.
+Proper subsets of \{B,C\} are:
+\begin{itemize}
+    \item \{B\}. $\{B\}^{+} = \{B\}$ => not a super key.
+    \item \{C\}. $\{C\}^{+} = \{C, D, A\}$ => not a super key.
+\end{itemize}
+No proper subsets of \{B, C\} are super keys => \{B,C\} is a candidate key. \\
+\textbf{Prime keys:} B, C \\
+
+The prime key C can be determined by AB in F => try replacing C with AB => Key: \{A,B\} \\
+$\{A, B\}^{+} = \{A,B,C,D\}$ => \{A,B\} is a super key.
+Proper subsets of \{A,B\} are:
+\begin{itemize}
+    \item \{A\}. $\{A\}^{+} = \{A\}$ => not a super key.
+    \item \{B\}. $\{B\}^{+} = \{B\}$ => not a super key.
+\end{itemize}
+No proper subsets of \{A, B\} are super keys => \{A,B\} is a candidate key. \\
+\textbf{Prime keys:} A, B, C \\
+
+Finished checking all the FD's in which the right hand side is a prime key \\
+\textbf{Conclusion: Candidate keys: \{B,C\}, \{A,B\}}
+
+\subsubsection{Evaluate the decomposition}
+\begin{itemize}
+    \item $R_{1}(ACD) \cup R_{2}(BC) = R(ABCD)$
+    \item $R_{1}(ACD) \cap R_{2}(BC) = C \neq \emptyset$
+    \item $C^{+} = \{C,A,D\}$ => C is super key of $R_{1}$
+\end{itemize}
+=> \textbf{The decomposition is lossless.} \\
+=> \textbf{The decomposition is good.}
+
+\newpage
+\subsection{\{A -> BC, C -> AD\}: decompose into ABC and AD.}
+\subsubsection{Find the candidate key(s):}
+Splitting the FD's in F:
+\begin{itemize}
+    \item \{A->BC\} => \{A->B\} AND \{A->C\} (Splitting rule)
+    \item \{C->AD\} => \{C->A\} AND \{C->D\} (Splitting rule)
+    \item \{A->C\}, \{C->D\} => \{A->D\} (Transitivity)
+\end{itemize}
+F would be transformed to: \{A->B, A->C, A->D, C->A, C->D\}
+
+From the set of function dependencies:
+\begin{itemize}
+    \item B,D is redundant if there is A in the key
+    \item D is redundant if there is C in the key
+\end{itemize}
+The key left is \{A\} \\
+$\{A\}^{+} = \{A,B,C,D\}$ => \{A\} is a super key. \\
+There are no proper subsets of \{A\} => \{A\} is a candidate key.
+\textbf{Prime keys:} A \\
+The prime key A can be determined by C in F => try replacing A with C => Key: \{C\} \\
+$\{C\}^{+} = \{A,B,C,D\}$ => \{C\} is a super key. \\
+There are no proper subsets of \{C\} => \{C\} is a candidate key. \\
+\textbf{Prime keys:} A, C \\
+Finished checking all the FD's in which the right hand side is a prime key \\
+\textbf{Conclusion: Candidate keys: \{A\}, \{C\}}
+
+
+\subsubsection{Evaluate the decomposition}
+\begin{itemize}
+    \item $R_{1}(ABC) \cup R_{2}(AD) = R(ABCD)$
+    \item $R_{1}(ABC) \cap R_{2}(AD) = A \neq \emptyset$
+    \item $A^{+} = \{A,B,C,D\}$ => A is super key of both $R_{1}$ and $R_{2}$
+\end{itemize}
+=> \textbf{The decomposition is lossless.} \\
+=> \textbf{The decomposition is good.}
+
+\subsection{\{A -> B, B -> C, C -> D\}: decompose into AB and ACD.}
+\subsubsection{Find the candidate key(s):}
+Extend the FD's in F:
+\begin{itemize}
+    \item \{A->B\}, \{B->C\} => \{A->C\} (Transitivity)
+    \item \{A->C\}, \{C->D\} => \{A->D\} (Transitivity)
+\end{itemize}
+F would be transformed to: \{A->B, B->C, C->D, A->C, A->D\} \\
+From the set of function dependencies:
+\begin{itemize}
+    \item B,C, D is redundant if there is A in the key
+\end{itemize}
+The key left is \{A\} \\
+$\{A\}^{+} = \{A,B,C,D\}$ => \{A\} is a super key. \\
+There are no proper subsets of \{A\} => \{A\} is a candidate key.
+Finished checking all the FD's in which the right hand side is a prime key \\
+\textbf{Conclusion: Candidate key: \{A\}}
+
+\subsubsection{Evaluate the decomposition}
+\begin{itemize}
+    \item $R_{1}(AB) \cup R_{2}(ACD) = R(ABCD)$
+    \item $R_{1}(AB) \cap R_{2}(ACD) = A \neq \emptyset$
+    \item $A^{+} = \{A,B,C,D\}$ => A is super key of both $R_{1}$ and $R_{2}$
+\end{itemize}
+=> \textbf{The decomposition is lossless.}\\
+=> \textbf{The decomposition is good.}
+
+\newpage
+\subsection{\{A -> B, B -> C, C -> D\}: decompose into AB, AD and CD.}
+\subsubsection{Find the candidate key(s):}
+The relation and the function dependencies are exactly the same as in question d => 
+\textbf{Candidate key: \{A\}}
+
+\subsubsection{Evaluate the decomposition}
+
+\begin{center}
+    \begin{tabular}{c c c c c}
+        \ & A & B & C & D \\
+        R1(AB) & $\alpha$ &$\alpha$ & $\beta$ & $\beta$ \\
+        R2(AD) & $\alpha$ &$\beta$ & $\alpha$ & $\beta$ \\
+        R3(CD) & $\beta$ &$\beta$ & $\alpha$ & $\alpha$ 
+    \end{tabular}
+\end{center}
+Use function dependencies to transform the table
+\begin{center}
+    \begin{tabular}{c c c c c}
+        \ & A & B & C & D \\
+        R1(AB) & $\alpha$ &$\alpha$ & $\beta$ & $\beta$ \\
+        R2(AD) & $\alpha$ &$\alpha$ & $\alpha$ & $\alpha$ \\
+        R3(CD) & $\beta$ &$\beta$ & $\alpha$ & $\alpha$ 
+    \end{tabular}
+\end{center}
+The second row of R2 is full of $\alpha$ \\
+=> \textbf{The decomposition is lossless.}\\
+=> \textbf{The decomposition is good.}
